@@ -1310,6 +1310,33 @@ h3#reply-title {
 #secondary {
 }
 
+#widget-as3gg-project-info {
+	text-align: center;
+	background: #fbfbfb;
+	color: #000;
+	/*line-height: 18px;*/
+	margin-bottom: 18px;
+	
+	/*align: center;*/	
+	/*padding: 1.5em;*/
+}
+#widget-as3gg-project-info div img {
+	float: left;
+	margin: 0 2px 0 0;
+}
+
+#widget-as3gg-project-info p {
+	/*font-family: 'IM Fell DW Pica', serif;
+	font-size: 16px;*/	
+	text-align: left;
+	color: #666;
+}
+
+#widget-as3gg-project-info p strong {
+	text-align: left;
+	color: #000;
+}
+
 /* Footer widget areas */
 #footer-widget-area {
 }
