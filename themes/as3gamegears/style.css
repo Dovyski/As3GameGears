@@ -1312,13 +1312,8 @@ h3#reply-title {
 
 #widget-as3gg-project-info {
 	text-align: center;
-	background: #fbfbfb;
 	color: #000;
-	/*line-height: 18px;*/
-	margin-bottom: 18px;
-	
-	/*align: center;*/	
-	/*padding: 1.5em;*/
+	margin-bottom: 100px;
 }
 #widget-as3gg-project-info div img {
 	float: left;
@@ -1329,10 +1324,11 @@ h3#reply-title {
 	/*font-family: 'IM Fell DW Pica', serif;
 	font-size: 16px;*/	
 	text-align: left;
+	text-decoration: none;
 	color: #666;
 }
 
-#widget-as3gg-project-info p strong {
+#widget-as3gg-project-info p strong, a:link, a:hover, a:active, a:visited {
 	text-align: left;
 	color: #000;
 }
