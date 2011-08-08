@@ -199,7 +199,7 @@ class As3ggProjectInfo extends WP_Widget {
 	}
 
 	private function make_pretty_twitter_link($twitter_account) {
-		return $twitter_account != '' ? '<a href="http://twitter/'.$twitter_account.'" target="_blank">@'.$twitter_account.'</a>' : $twitter_account;
+		return $twitter_account != '' ? '<a href="http://twitter.com/'.$twitter_account.'" target="_blank">@'.$twitter_account.'</a>' : $twitter_account;
 	}
 
 	private function make_pretty_repo_link($repo_url) {

@@ -725,9 +725,15 @@ div.menu li {
 	line-height: 18px;
 	clear: both;
 }
-.entry-meta a,
+.entry-meta a, 
 .entry-utility a {
 	color: #888;
+	text-decoration: none;
+}
+.entry-meta a:link,
+.entry-utility a:link {
+	color: #888;
+	text-decoration: none;
 }
 .entry-meta a:hover,
 .entry-utility a:hover {
@@ -736,73 +742,6 @@ div.menu li {
 #content .video-player {
 	padding: 0;
 }
-
-/* Gear info
--------------------------------------------------------------- */
-
-#gear-info {
-	float: left;
-	display: block;
-	width: 80px;
-	height: 60px;
-	margin-left: 0;
-	margin-right: 15px;
-	margin-top: 15px;
-	padding: 1px;
-	/*-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;*/
-	
-	color: #000;
-	font-family: 'IM Fell DW Pica', serif;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 200;
-	line-height: 15px;
-}
-#gear-info p {
-	padding-top: 3px;
-	text-align: center;
-}
-.gear-icon-good {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 65px;
-	height: 90px;
-	background-image: url('images/icons/set2/heart-icon.png');
-}
-.gear-icon-alert {
-	margin-left: auto;
-	margin-right: auto;
-	width: 90px;
-	height: 80px;
-	background-image: url('images/icons/set2/caution-triangle-icon.png');
-}
-.gear-icon-bad {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 80px;
-	height: 110px;
-	background-image: url('images/icons/set2/lock-closed-icon.png');
-}
-.gear-info-good {
-	background: #CAFFB5;
-	border: 2px solid #00dd00;
-}
-.gear-info-bad {
-	background: #FFE3E3;
-	border: 2px solid #550000;
-}
-.gear-info-alert {
-	background: #FFEC9E;
-	border: 2px solid #FFDB38;
-}
-.gear-info-none {
-	background: #eee;
-	border: 2px solid #000000;
-}
-
 
 /* Asides
 -------------------------------------------------------------- */
@@ -1005,6 +944,53 @@ div.menu li {
 }
 
 
+/* =Search
+-------------------------------------------------------------- */
+
+/* #search */
+#search{
+	box-shadow:2px 2px 5px #777;
+	-moz-box-shadow:2px 2px 5px #777;
+	-webkit-box-shadow:2px 2px 5px #777;
+	position:relative;
+	background:#f5f5f5;
+	right:0;
+	bottom:-40px;
+	width:350px;
+	height:24px;
+	border:1px solid #999;
+}
+#search form{padding:0;}
+#search input#s{
+	width:270px;
+	height:12px;
+	background:transparent;
+	border:none;
+	color:#000;
+	padding:6px;font-size:12px;
+}
+#search form input#searchsubmit{
+	cursor:pointer;
+	position:absolute;
+	right:0;
+	top:0;
+	width:70px;
+	height:24px;
+	padding-left:30px;
+	background:#565657 url('images/icons/search_small.png') no-repeat center 0;
+	border:none;
+	border-left:1px solid #999;
+	text-indent:-9999px;
+}
+
+#search-thumb {
+	display:block;
+	float: left;
+	padding-left: 60px;
+	width:100%;
+	height:90px;
+	background: url("images/icons/search.png") top left no-repeat;
+}
 
 /* =Comments
 -------------------------------------------------------------- */

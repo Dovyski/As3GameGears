@@ -47,7 +47,9 @@
 	<div id="header">
 		<div id="masthead">
 			<div id="branding" role="banner">
-
+				<div id="search">
+					<?php get_search_form(); ?>
+				</div>	
 			</div><!-- #branding -->
 
 			<div id="access" role="navigation">

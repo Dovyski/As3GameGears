@@ -13,7 +13,7 @@ get_header(); ?>
 			<div id="content" role="main">
 
 <?php if ( have_posts() ) : ?>
-				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'as3gamegears' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+				<div id="search-thumb"><h1 class="page-title"><?php printf( __( 'What we have for: %s', 'as3gamegears' ), '<span>' . get_search_query() . '</span>' ); ?></h1></div>
 				<?php
 				/* Run the loop for the search to output the results.
 				 * If you want to overload this in a child theme then include a file
@@ -26,7 +26,7 @@ get_header(); ?>
 					<h2 class="entry-title"><?php _e( 'Nothing Found', 'as3gamegears' ); ?></h2>
 					<div class="entry-content">
 						<p><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'as3gamegears' ); ?></p>
-						<?php get_search_form(); ?>
+						<?php //get_search_form(); ?>
 					</div><!-- .entry-content -->
 				</div><!-- #post-0 -->
 <?php endif; ?>
