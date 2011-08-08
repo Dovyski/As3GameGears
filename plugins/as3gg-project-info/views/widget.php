@@ -1,28 +1,30 @@
 <!-- As3GameGears Sideinfo -->
-<?php 
+<?php
 	echo '<div id="widget-as3gg-project-info">';
 		echo '<img src="'; bloginfo('template_directory'); echo '/images/sideinfo/sideinfo_splash.png" />';
 		echo '<div>';
 			echo '<img src="'; bloginfo('template_directory'); echo '/images/sideinfo/sideinfo_cube.png" />';
-			echo '<p><strong>Mozilla Public 1.0</strong><br />License</p>';
+			echo '<p><strong>'.$infos['as3gg_license'].'</strong><br />License</p>';
 			
-			echo '<img src="'; bloginfo('template_directory'); echo '/images/sideinfo/sideinfo_web.png" />';
-			echo '<p><strong>www.site.com.br</strong><br />website</p>';
-
-			echo '<img src="'; bloginfo('template_directory'); echo '/images/sideinfo/sideinfo_twitter.png" />';
-			echo '<p><strong>@twitteracount</strong><br />Twitter</p>';
+			if(isset($infos['as3gg_site']) && $infos['as3gg_site'] != '') {
+				echo '<img src="'; bloginfo('template_directory'); echo '/images/sideinfo/sideinfo_web.png" />';
+				echo '<p><strong>'.$infos['as3gg_site'].'</strong><br />website</p>';
+			}
 			
-			echo '<img src="'; bloginfo('template_directory'); echo '/images/sideinfo/sideinfo_box.png" />';
-			echo '<p><strong>GitHub</strong><br />Code repository</p>';
+			if(isset($infos['as3gg_twitter']) && $infos['as3gg_twitter'] != '') {
+				echo '<img src="'; bloginfo('template_directory'); echo '/images/sideinfo/sideinfo_twitter.png" />';
+				echo '<p><strong>'.$infos['as3gg_twitter'].'</strong><br />Twitter</p>';				
+			}
 			
-			echo '<img src="'; bloginfo('template_directory'); echo '/images/sideinfo/sideinfo_stats.png" />';
-			echo '<p><img src="http://www.ohloh.net/p/charack/analyses/latest/commits_spark.png" width="140" /></p>';
+			if(isset($infos['as3gg_repo']) && $infos['as3gg_repo'] != '') {
+				echo '<img src="'; bloginfo('template_directory'); echo '/images/sideinfo/sideinfo_box.png" />';
+				echo '<p><strong>'.$infos['as3gg_repo'].'</strong><br />Code repository</p>';				
+			}
 			
-			echo '<br /><br />';
-			
-			//echo '<pre>';
-			//print_r(get_post_meta(get_the_ID(), 'customkeytest', false));
-			//echo '</pre>';
+			if(isset($infos['as3gg_stats']) && $infos['as3gg_stats'] != '') {
+				echo '<img src="'; bloginfo('template_directory'); echo '/images/sideinfo/sideinfo_stats.png" />';
+				echo '<p><img src="http://www.ohloh.net/p/'.$infos['as3gg_stats'].'/analyses/latest/commits_spark.png" width="140" /></p>';				
+			}
 		echo '</div>';
 	echo '</div>';
 ?>

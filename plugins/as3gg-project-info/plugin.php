@@ -47,8 +47,8 @@ class As3ggProjectInfo extends WP_Widget {
 	  
 	    // TODO: update classname and description
 		$widget_opts = array (
-			'classname' => PLUGIN_NAME, 
-			'description' => __('Short description of the plugin goes here.', PLUGIN_LOCALE)
+			'classname' 	=> PLUGIN_NAME, 
+			'description' 	=> __('Short description of the plugin goes here.', PLUGIN_LOCALE),
 		);	
 			
 		$this->WP_Widget(PLUGIN_SLUG, __(PLUGIN_NAME, PLUGIN_LOCALE), $widget_opts);
@@ -69,15 +69,19 @@ class As3ggProjectInfo extends WP_Widget {
 	 * @instance
 	 */
 	function widget($args, $instance) {
-		//extract($args, EXTR_SKIP);
-		//echo $before_widget;
+		if(!is_single()) {
+			return;
+		}
 	
-		// TODO: This is where you retrieve the widget values
-    
+    	$raw_infos 					= get_post_meta(get_the_ID(), '', false);
+    	$infos['as3gg_license']		= $this->make_pretty_license_link();
+    	$infos['as3gg_site']		= $this->make_pretty_website_link($raw_infos['as3gg_site'][0]);  
+    	$infos['as3gg_twitter']		= $this->make_pretty_twitter_link($raw_infos['as3gg_twitter'][0]);    	
+    	$infos['as3gg_repo']		= $this->make_pretty_repo_link($raw_infos['as3gg_repo'][0]);
+		$infos['as3gg_stats']		= $this->make_pretty_stats_link($raw_infos['as3gg_stats'][0]);
+    	
 		// Display the widget
 		include(WP_PLUGIN_DIR . '/' . PLUGIN_SLUG . '/views/widget.php');
-		
-		//echo $after_widget;
 	}
 	
 	/**
@@ -169,6 +173,53 @@ class As3ggProjectInfo extends WP_Widget {
 			}
 		}
 	}
+	
+	private function make_pretty_license_link() {
+		$tags_list 	= get_the_tag_list('', ', ');
+		return $tags_list ? $tags_list : 'Unknown';
+	}	
+	
+	private function make_pretty_website_link($url) {
+		$return 	= '';
+		$url_limit 	= 18; 
+		
+		if($url != '') {
+			$parts = explode('.', $url);
+			
+			if(preg_match('$https?://(www)?$i', $parts[0])) {
+				unset($parts[0]);
+			}
+			
+			$text	= implode('.', $parts);
+			$text 	= strlen($text) > $url_limit ? substr($text, 0, $url_limit) . '...' : $text;
+			$return = '<a href="'.$url.'" target="_blank">'.$text.'</a>';
+		}
+		
+		return $return;
+	}
+
+	private function make_pretty_twitter_link($twitter_account) {
+		return $twitter_account != '' ? '<a href="http://twitter/'.$twitter_account.'" target="_blank">@'.$twitter_account.'</a>' : $twitter_account;
+	}
+
+	private function make_pretty_repo_link($repo_url) {
+		$ret = '';
+		
+		if($repo_url != '') {
+			if(strpos($repo_url, 'github.com') !== false) {
+				$ret = '<a href="'.$repo_url.'" target="_blank">GitHub</a>';
+				
+			} else if(strpos($repo_url, 'googlecode.com') !== false) {
+				$ret = '<a href="'.$repo_url.'" target="_blank">Google Code</a>';				
+			}
+		}
+		
+		return $ret;
+	} 		
+	
+	private function make_pretty_stats_link($project_id) {
+		return $project_id;
+	} 		
 }
 
 add_action('widgets_init', create_function('', 'register_widget("As3ggProjectInfo");'));
