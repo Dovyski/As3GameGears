@@ -30,7 +30,7 @@ License:
 	THE SOFTWARE.
 */
 
-class As3ggProjectInfo extends WP_Widget {
+class As3ggSideinfo extends WP_Widget {
 
 	/*--------------------------------------------------*/
 	/* Constructor
@@ -41,21 +41,20 @@ class As3ggProjectInfo extends WP_Widget {
 	 * the widget, loads localization files, and includes necessary scripts and
 	 * styles.
 	 */
-	function As3ggProjectInfo() {
+	function As3ggSideinfo() {
 		// Define constnats used throughout the plugin
 	    $this->init_plugin_constants();
 	  
-	    // TODO: update classname and description
 		$widget_opts = array (
 			'classname' 	=> PLUGIN_NAME, 
-			'description' 	=> __('Short description of the plugin goes here.', PLUGIN_LOCALE),
+			'description' 	=> __('Displays information about the project the user is currently viewing.', PLUGIN_LOCALE),
 		);	
 			
 		$this->WP_Widget(PLUGIN_SLUG, __(PLUGIN_NAME, PLUGIN_LOCALE), $widget_opts);
 		load_plugin_textdomain(PLUGIN_LOCALE, false, dirname(plugin_basename( __FILE__ ) ) . '/lang/' );
 			
 	    // Load JavaScript and stylesheets
-	    $this->register_scripts_and_styles();
+	    //$this->register_scripts_and_styles();
 	}
 
 	/*--------------------------------------------------*/
@@ -126,15 +125,15 @@ class As3ggProjectInfo extends WP_Widget {
 	 */
 	private function init_plugin_constants() {
 		if(!defined('PLUGIN_LOCALE')) {
-			define('PLUGIN_LOCALE', 'plugin-name-locale');
+			define('PLUGIN_LOCALE', 'as3gg-sideinfo-locale');
 	    }
 	    
 	    if(!defined('PLUGIN_NAME')) {
-			define('PLUGIN_NAME', 'As3gg Project Info');
+			define('PLUGIN_NAME', 'As3gg Sideinfo');
 	    }
 	    
 		if(!defined('PLUGIN_SLUG')) {
-			define('PLUGIN_SLUG', 'as3gg-project-info');
+			define('PLUGIN_SLUG', 'as3gg-sideinfo');
 	    }
 	}
   
@@ -222,5 +221,5 @@ class As3ggProjectInfo extends WP_Widget {
 	} 		
 }
 
-add_action('widgets_init', create_function('', 'register_widget("As3ggProjectInfo");'));
+add_action('widgets_init', create_function('', 'register_widget("As3ggSideinfo");'));
 ?>

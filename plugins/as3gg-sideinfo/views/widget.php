@@ -1,6 +1,6 @@
 <!-- As3GameGears Sideinfo -->
 <?php
-	echo '<div id="widget-as3gg-project-info">';
+	echo '<div id="widget-as3gg-sideinfo">';
 		echo '<img src="'; bloginfo('template_directory'); echo '/images/sideinfo/sideinfo_splash.png" />';
 		echo '<div>';
 			echo '<img src="'; bloginfo('template_directory'); echo '/images/sideinfo/sideinfo_cube.png" />';

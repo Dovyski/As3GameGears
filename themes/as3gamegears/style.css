@@ -1,9 +1,9 @@
 /*
 Theme Name: AS3 Game Gears
-Theme URI: http://wordpress.org/
-Description: AS3 Game Gears Theme, based on Wordpress Twenty Ten theme (thanks!).
+Theme URI: https://as3gamegears.com
+Description: Theme powering the site AS3GameGears.com. The theme is based on Wordpress Twenty Ten theme (thanks!).
 Author: Fernando Bevilacqua <dovyski@gmail.com>
-Version: 1.0
+Version: 1.5
 Tags: black, two-columns, fixed-width, threaded-comments, sticky-post, translation-ready, microformats, rtl-language-support, editor-style
 */
 
@@ -1296,25 +1296,23 @@ h3#reply-title {
 #secondary {
 }
 
-#widget-as3gg-project-info {
+#widget-as3gg-sideinfo {
 	text-align: center;
 	color: #000;
 	margin-bottom: 100px;
 }
-#widget-as3gg-project-info div img {
+#widget-as3gg-sideinfo div img {
 	float: left;
 	margin: 0 2px 0 0;
 }
 
-#widget-as3gg-project-info p {
-	/*font-family: 'IM Fell DW Pica', serif;
-	font-size: 16px;*/	
+#widget-as3gg-sideinfo p {	
 	text-align: left;
 	text-decoration: none;
 	color: #666;
 }
 
-#widget-as3gg-project-info p strong, a:link, a:hover, a:active, a:visited {
+#widget-as3gg-sideinfo p strong, a:link, a:hover, a:active, a:visited {
 	text-align: left;
 	color: #000;
 }
