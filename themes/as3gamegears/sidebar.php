@@ -10,7 +10,8 @@
 
 		<div id="primary" class="widget-area" role="complementary">
 			<ul class="xoxo">
-			
+
+<?php if ( ! is_single() ) : ?>
 			<li id=socialinv class="widget-container">
 				<p>
 					<a href="http://twitter.com/as3gamegears" target="_blank"><img src="<?php bloginfo('template_directory'); ?>/images/icons/twitter.png" border="0" width="50" height="50" title="Follow us on Twitter!" /></a>
@@ -18,6 +19,7 @@
 					<a href="http://www.linkedin.com/in/fernandobevilacqua" target="_blank"><img src="<?php bloginfo('template_directory'); ?>/images/icons/linkedin.png" border="0" width="50" height="50" title="My LinkedIn profile" /></a>
 				</p>		
 			</li>
+<?php endif; ?>
 
 <?php
 	/* When we call the dynamic_sidebar() function, it'll spit out
