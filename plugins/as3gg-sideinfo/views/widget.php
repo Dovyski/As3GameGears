@@ -8,7 +8,7 @@
 			
 			if(isset($infos['as3gg_site']) && $infos['as3gg_site'] != '') {
 				echo '<img src="'; bloginfo('template_directory'); echo '/images/sideinfo/sideinfo_web.png" />';
-				echo '<p><strong>'.$infos['as3gg_site'].'</strong><br />website</p>';
+				echo '<p><strong>'.$infos['as3gg_site'].'</strong><br />Website</p>';
 			}
 			
 			if(isset($infos['as3gg_twitter']) && $infos['as3gg_twitter'] != '') {

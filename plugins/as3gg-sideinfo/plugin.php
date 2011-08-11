@@ -185,8 +185,10 @@ class As3ggSideinfo extends WP_Widget {
 		if($url != '') {
 			$parts = explode('.', $url);
 			
-			if(preg_match('$https?://(www)?$i', $parts[0])) {
+			if(preg_match('$https?://www?$i', $parts[0])) {
 				unset($parts[0]);
+			} else if(preg_match('$https?://$i', $parts[0])) {
+				$parts[0] = substr($parts[0], strpos($parts[0], ':') + 3, 999);
 			}
 			
 			$text	= implode('.', $parts);
