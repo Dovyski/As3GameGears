@@ -3,7 +3,7 @@
 Plugin Name: As3GameGears Sideinfo
 Plugin URI: http://as3gamegears.com/sideinfo
 Description: Displays stats about the project being visualized on As3GameGears.
-Version: 1.0
+Version: 1.1
 Author: Fernando Bevilacqua
 Author URI: http://as3gamegears.com
 Author Email: dovyski@gmail.com
@@ -205,14 +205,19 @@ class As3ggSideinfo extends WP_Widget {
 
 	private function make_pretty_repo_link($repo_url) {
 		$ret = '';
+		$maps = array(
+			'googlecode.com' 	=> 'Google Code',
+			'sourceforge.net' 	=> 'SourceForge',
+			'github.com' 		=> 'GitHub'
+		);
 		
 		if($repo_url != '') {
-			if(strpos($repo_url, 'github.com') !== false) {
-				$ret = '<a href="'.$repo_url.'" target="_blank">GitHub</a>';
-				
-			} else if(strpos($repo_url, 'googlecode.com') !== false) {
-				$ret = '<a href="'.$repo_url.'" target="_blank">Google Code</a>';				
-			}
+			$parts 	= parse_url($repo_url);
+			$domain = explode('.', $parts['host']);
+			$name	= $domain[count($domain) - 2];
+			$domain = $name . '.' . $domain[count($domain) - 1];
+			
+			$ret = '<a href="'.$repo_url.'" target="_blank">'.(isset($maps[$domain]) ? $maps[$domain] : ucwords($name)).'</a>';
 		}
 		
 		return $ret;
