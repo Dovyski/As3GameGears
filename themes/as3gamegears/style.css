@@ -202,7 +202,7 @@ div.menu,
 
 /* Main global 'theme' and typographic styles  */
 body {
-	background-image: url('images/background.png');
+	background-image: url('images/background.jpg');
 }
 
 body,
@@ -469,7 +469,7 @@ div.menu li {
 #main {
 	overflow: hidden;
 	padding: 10px 0 0 0;
-	background-image: url('images/main-background.png');
+	background-image: url('images/main-background.jpg');
 }
 #content {
 	margin-bottom: 36px;
@@ -1341,7 +1341,7 @@ h3#reply-title {
 #footer {
 	margin-bottom: 20px;
 	height: 315px;
-	background-image: url('images/footer-background.png');
+	background-image: url('images/footer-background.jpg');
 }
 #colophon {
 	/*border-top: 4px solid #000;*/
