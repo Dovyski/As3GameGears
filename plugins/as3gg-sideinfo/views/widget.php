@@ -4,10 +4,21 @@
 	$baseUrl = WP_PLUGIN_URL . '/'. PLUGIN_SLUG;
 	
 	echo '<div id="widget-as3gg-sideinfo">';
-		echo '<img src="'. $baseUrl.'/images/sideinfo_splash.jpg" />';
+		if(!empty($infos['as3gg_spash'])) {
+			echo '<img src="'. $baseUrl.'/images/'.$infos['as3gg_spash'].'" title="Information" />';			
+		}
 		echo '<div>';
-			echo '<img src="'. $baseUrl.'/images/sideinfo_cube.jpg" />';
-			echo '<p><strong>'.$infos['as3gg_license'].'</strong><br />License</p>';
+			if(isset($infos['as3gg_download']) && $infos['as3gg_download'] != '') {
+				echo '<a href="'.$infos['as3gg_download'].'" target="_blank" class="large yellow awesome" style="margin-bottom: 10px;">';
+						echo '<img src="'. $baseUrl.'/images/sideinfo_download.png" border="0" />';
+						echo 'Download<br /><small>Gimme it!</small>';
+				echo '</a>';
+			}
+			
+			if(isset($infos['as3gg_hide_license']) && $infos['as3gg_hide_license'] == false) {
+				echo '<img src="'. $baseUrl.'/images/sideinfo_cube.jpg" />';
+				echo '<p><strong>'.$infos['as3gg_license'].'</strong><br />License</p>';
+			}
 			
 			if(isset($infos['as3gg_site']) && $infos['as3gg_site'] != '') {
 				echo '<img src="'. $baseUrl.'/images/sideinfo_web.jpg" />';
@@ -21,7 +32,7 @@
 			
 			if(isset($infos['as3gg_repo']) && $infos['as3gg_repo'] != '') {
 				echo '<img src="'. $baseUrl.'/images/sideinfo_box.jpg" />';
-				echo '<p><strong>'.$infos['as3gg_repo'].'</strong><br />Code repository</p>';				
+				echo '<p><strong>'.$infos['as3gg_repo'].'</strong><br />Code Repository</p>';				
 			}
 			
 			if(isset($infos['as3gg_stats']) && $infos['as3gg_stats'] != '') {

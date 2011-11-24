@@ -54,7 +54,7 @@ class As3ggSideinfo extends WP_Widget {
 		load_plugin_textdomain(PLUGIN_LOCALE, false, dirname(plugin_basename( __FILE__ ) ) . '/lang/' );
 			
 	    // Load JavaScript and stylesheets
-	    //$this->register_scripts_and_styles();
+	    $this->register_scripts_and_styles();
 	}
 
 	/*--------------------------------------------------*/
@@ -71,14 +71,18 @@ class As3ggSideinfo extends WP_Widget {
 		if(!is_single()) {
 			return;
 		}
-	
+
     	$raw_infos 					= get_post_meta(get_the_ID(), '', false);
+    	
+    	$infos['as3gg_download']	= $this->make_download_href($raw_infos['as3gg_download'][0]);
     	$infos['as3gg_license']		= $this->make_pretty_license_link();
     	$infos['as3gg_site']		= $this->make_pretty_website_link($raw_infos['as3gg_site'][0]);  
     	$infos['as3gg_twitter']		= $this->make_pretty_twitter_link($raw_infos['as3gg_twitter'][0]);    	
     	$infos['as3gg_repo']		= $this->make_pretty_repo_link($raw_infos['as3gg_repo'][0]);
 		$infos['as3gg_stats']		= $this->make_pretty_stats_link($raw_infos['as3gg_stats'][0]);
-    	
+		$infos['as3gg_spash']		= $this->generate_spash_img();   
+		$infos['as3gg_hide_license']= $this->is_blog_post();
+
 		// Display the widget
 		include(WP_PLUGIN_DIR . '/' . PLUGIN_SLUG . '/views/widget.php');
 	}
@@ -202,6 +206,10 @@ class As3ggSideinfo extends WP_Widget {
 	private function make_pretty_twitter_link($twitter_account) {
 		return $twitter_account != '' ? '<a href="http://twitter.com/'.$twitter_account.'" target="_blank">@'.$twitter_account.'</a>' : $twitter_account;
 	}
+	
+	private function make_download_href($download_link) {
+		return $download_link != '' ? $download_link : '';
+	}
 
 	private function make_pretty_repo_link($repo_url) {
 		$ret = '';
@@ -225,7 +233,25 @@ class As3ggSideinfo extends WP_Widget {
 	
 	private function make_pretty_stats_link($project_id) {
 		return $project_id;
-	} 		
+	}
+
+	private function generate_spash_img() {
+		$ret		= 'sideinfo_splash.jpg';
+		$categories = get_the_category(get_the_ID());
+
+		if($categories != null) {
+			if($categories[0]->slug == 'blog') {
+				$ret = '';
+			}
+		}
+		
+		return $ret;
+	}
+	
+	private function is_blog_post() {
+		$categories = get_the_category(get_the_ID());
+		return $categories != null && $categories[0]->slug == 'blog';
+	}
 }
 
 add_action('widgets_init', create_function('', 'register_widget("As3ggSideinfo");'));
