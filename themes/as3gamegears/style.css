@@ -3,7 +3,7 @@ Theme Name: AS3 Game Gears
 Theme URI: https://as3gamegears.com
 Description: Theme powering the site AS3GameGears.com. The theme is based on Wordpress Twenty Ten theme (thanks!).
 Author: Fernando Bevilacqua <dovyski@gmail.com>
-Version: 1.6
+Version: 1.7
 Tags: black, two-columns, fixed-width, threaded-comments, sticky-post, translation-ready, microformats, rtl-language-support, editor-style
 */
 
@@ -369,6 +369,11 @@ a:hover {
 
 #branding {
 	background-image: url('images/main-header.png');
+	height: 330px;
+}
+
+#branding.christmas {
+	background-image: url('images/main-header-christmas.png') !important;
 	height: 330px;
 }
 

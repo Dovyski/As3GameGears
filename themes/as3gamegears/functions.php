@@ -539,3 +539,25 @@ function as3gg_posted_in() {
 	);
 }
 endif;
+
+
+if ( ! function_exists( 'as3gg_header_special_style' ) ) :
+/**
+ * Prints HTML with special CSS code to change the site header in case of some important date.  
+*
+* @since AS3 Game Gears 1.1
+*/
+function as3gg_header_special_class() {
+	$month 	= date('m');
+	$out 	= "";
+	
+	switch($month) {
+		case 12:
+			// Christmas
+			$out = "christmas";
+			break;
+	}
+	
+	echo $out;
+}
+endif;
