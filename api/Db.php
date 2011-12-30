@@ -47,4 +47,24 @@ class Db {
 		
 		return $aRet;
 	}
+	
+	public static function categoryExists($theCategoryName) {
+		// TODO: implement
+		return true;
+	}
+	
+	public static function search($theText, $theCategory = null) {
+		// TODO: improve search by using several columns.
+		$aCat	 = empty($theCategory) ? "" : " AND category = '".addslashes($theCategory)."'";
+		$aRet 	 = array();
+		$aResult = self::execute("SELECT * FROM ".self::TABLE_ITEMS." WHERE name LIKE '%".addslashes($theText)."%'" . $aCat);
+	
+		if(self::numRows($aResult) > 0) {
+			while($aRow = self::fetchAssoc($aResult)) {
+				$aRet[] = $aRow;
+			}
+		}
+	
+		return $aRet;
+	}
 }
