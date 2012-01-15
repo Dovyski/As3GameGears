@@ -46,6 +46,34 @@ function getTerm($theTermId, $theColumn = 'slug') {
 	return $aRet;
 }
 
+function findCategories() {
+	$aRes 	= dbQuery("SELECT t.term_id AS id, t.name, t.slug, tt.description FROM ".WP_PREFIX."term_taxonomy AS tt JOIN ".WP_PREFIX."terms AS t ON tt.term_id = t.term_id WHERE tt.taxonomy = 'category' AND t.slug NOT IN ('blog', 'blogroll')");
+	$aCat	= array();
+	
+	if(mysql_num_rows($aRes) > 0) {
+		while($aRow = mysql_fetch_assoc($aRes)) {
+			$aCat[$aRow['id']] = $aRow;
+		}
+	}
+
+	mysql_free_result($aRes);
+	return $aCat;
+}
+
+function findLicenses() {
+	$aRes 	= dbQuery("SELECT t.term_id AS id, t.name, t.slug FROM ".WP_PREFIX."term_taxonomy AS tt JOIN ".WP_PREFIX."terms AS t ON tt.term_id = t.term_id WHERE tt.taxonomy = 'post_tag' AND t.slug NOT IN ('blog', 'blogroll')");
+	$aRet	= array();
+
+	if(mysql_num_rows($aRes) > 0) {
+		while($aRow = mysql_fetch_assoc($aRes)) {
+			$aRet[$aRow['slug']] = $aRow;
+		}
+	}
+
+	mysql_free_result($aRes);
+	return $aRet;
+}
+
 $aResult = dbQuery("SELECT ID, post_content, post_title, post_name FROM ".WP_PREFIX."posts WHERE post_status = 'publish' AND post_type = 'post'");
 
 if(mysql_num_rows($aResult) > 0) {
@@ -89,10 +117,10 @@ if(mysql_num_rows($aResult) > 0) {
 				while($aTemp = mysql_fetch_assoc($aResTaxonomies)) {
 					//var_dump($aTemp);
 					if($aTemp['taxonomy'] == 'category') {
-						$aData['category'][] = getTerm($aTemp['term_id'], 'slug');
+						$aData['category'][] = getTerm($aTemp['term_id']);
 						
 					} else if($aTemp['taxonomy'] == 'post_tag') {
-						$aData['license'][] = getTerm($aTemp['term_id'], 'name');						
+						$aData['license'][] = getTerm($aTemp['term_id']);						
 					}
 					
 					//echo "term_id = " . $aTemp['term_id'] . " = ".getTerm($aTemp['term_id'])." (tax ".$aTemp['taxonomy'].")\n";
