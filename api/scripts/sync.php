@@ -35,18 +35,18 @@ function dbQuery($theSql) {
 function getTerm($theTermId, $theColumn = 'slug') {
 	$theTermId 	= (int)$theTermId;
 	$aRes 		= dbQuery("SELECT name, slug FROM ".WP_PREFIX."terms WHERE term_id = " . $theTermId);
-	$aRet		= array();
+	$aRet		= false;
 	
 	if(mysql_num_rows($aRes) > 0) {
 		while($aTemp = mysql_fetch_assoc($aRes)) {
-			$aRet[] = $aTemp[$theColumn];
+			$aRet = $aTemp[$theColumn];
 		}
 	}
 	
 	return $aRet;
 }
 
-$aResult = dbQuery("SELECT ID, post_content, post_title, post_name FROM ".WP_PREFIX."posts WHERE post_status = 'publish' AND post_type = 'post' LIMIT 10");
+$aResult = dbQuery("SELECT ID, post_content, post_title, post_name FROM ".WP_PREFIX."posts WHERE post_status = 'publish' AND post_type = 'post'");
 
 if(mysql_num_rows($aResult) > 0) {
 	while($aItem = mysql_fetch_assoc($aResult)) {
@@ -57,7 +57,8 @@ if(mysql_num_rows($aResult) > 0) {
 		$aData['name'] 			= $aItem['post_title'];
 		$aData['description'] 	= $aItem['post_content'];
 		$aData['excerpt'] 		= ""; // TODO
-		$aData['license'] 		= "MIT"; // TODO
+		$aData['category'] 		= array();
+		$aData['license'] 		= array();
 		
 		$aRes = dbQuery("SELECT meta_key, meta_value FROM ".WP_PREFIX."postmeta WHERE meta_key LIKE 'as3gg_%' AND post_id = " . $aItem['ID']);
 
@@ -81,17 +82,20 @@ if(mysql_num_rows($aResult) > 0) {
 			}
 			mysql_free_result($aRes);
 			//var_dump($aTermsTaxIds);exit();
+			
 			$aResTaxonomies = dbQuery("SELECT term_taxonomy_id, term_id, taxonomy FROM ".WP_PREFIX."term_taxonomy WHERE term_taxonomy_id IN (" . implode(',', $aTermsTaxIds).") AND (taxonomy = 'category' OR taxonomy = 'post_tag')");
 			
 			if(mysql_num_rows($aResTaxonomies) > 0) {
 				while($aTemp = mysql_fetch_assoc($aResTaxonomies)) {
 					//var_dump($aTemp);
-					$aKey 			= $aTemp['taxonomy'] == 'category' ? 'category' : 'license';
-					$aColumn		= $aKey == 'license' ? 'name' : 'slug';
-
-					$aData[$aKey] 	= getTerm($aTemp['term_id'], $aColumn);
+					if($aTemp['taxonomy'] == 'category') {
+						$aData['category'][] = getTerm($aTemp['term_id'], 'slug');
+						
+					} else if($aTemp['taxonomy'] == 'post_tag') {
+						$aData['license'][] = getTerm($aTemp['term_id'], 'name');						
+					}
 					
-					echo "term_id = " . $aTemp['term_id'] . " = ".implode(',', $aData[$aKey])."\n";
+					//echo "term_id = " . $aTemp['term_id'] . " = ".getTerm($aTemp['term_id'])." (tax ".$aTemp['taxonomy'].")\n";
 				}
 			}
 			
@@ -99,7 +103,7 @@ if(mysql_num_rows($aResult) > 0) {
 		}
 		
 		
-		//var_dump($aData);
+		var_dump($aData);
 		unset($aData);
 		
 		echo "[OK]\n";
