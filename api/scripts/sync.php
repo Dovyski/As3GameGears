@@ -66,6 +66,26 @@ function getTerm($theTermId, $theColumn = 'slug') {
 	return $aRet;
 }
 
+function saveCategoriesAndLicenses($theCategories, $theLicenses) {
+	echo "Adding categories:\n";
+	
+	foreach($theCategories as $aId => $aInfo) {
+		echo "  Add ".$aInfo['slug'] . " (".$aInfo['name'].") ";
+		dbQuery("INSERT IGNORE INTO ".Db::TABLE_CATEGORIES." (id, name, slug, description, parent) VALUES (".$aId.", '".addslashes($aInfo['name'])."', '".addslashes($aInfo['slug'])."', '".addslashes($aInfo['description'])."', ".$aInfo['parent'].")", 1);
+		echo "\n";		
+	}
+	
+	echo "\nAdding licenses:\n";
+	
+	foreach($theLicenses as $aSlug => $aInfo) {
+		echo "  Add ".$aInfo['slug'] . " (".$aInfo['name'].") ";
+		dbQuery("INSERT IGNORE INTO ".Db::TABLE_LICENSES." (id, name, slug) VALUES (".$aInfo['id'].", '".addslashes($aInfo['name'])."', '".addslashes($aInfo['slug'])."')", 1);
+		echo "\n";
+	}
+	
+	echo "\n";
+}
+
 function findCategories() {
 	$aRes 	= dbQuery("SELECT tt.term_taxonomy_id AS id, t.name, t.slug, tt.description, tt.parent FROM ".WP_PREFIX."term_taxonomy AS tt JOIN ".WP_PREFIX."terms AS t ON tt.term_id = t.term_id OR tt.parent = tt.term_taxonomy_id  WHERE tt.taxonomy = 'category' AND t.slug NOT IN ('blog', 'blogroll')");
 	$aCat	= array();
@@ -108,8 +128,12 @@ function insetIntoDb($theItem, $theCategories, $theLicenses) {
 	$aLicense	= isset($theItem['license'][0]) ? $theItem['license'][0] : 'NULL'; 
 	$aLicense2 	= isset($theItem['license'][1]) ? $theItem['license'][1] : 'NULL';
 	
-	dbQuery("INSERT IGNORE INTO ".Db::TABLE_ITEMS." (id, name, description, excerpt, category, category2, license, license2) VALUES (id, '".addslashes($theItem['name'])."', '".addslashes($theItem['description'])."', '".addslashes($theItem['excerpt'])."', ".$aCategory.", ".$aCategory2.", ".$aLicense.", ".$aLicense2.")", 1);
+	dbQuery("INSERT IGNORE INTO ".Db::TABLE_ITEMS." (id, name, description, excerpt, category, category2, license, license2, site, repository, twitter, stats, sample) VALUES (".$theItem['id'].", '".addslashes($theItem['name'])."', '".addslashes($theItem['description'])."', '".addslashes($theItem['excerpt'])."', ".$aCategory.", ".$aCategory2.", ".$aLicense.", ".$aLicense2.", '".addslashes($theItem['site'])."', '".addslashes($theItem['repo'])."', '".addslashes($theItem['twitter'])."', '".addslashes($theItem['stats'])."', '".addslashes($theItem['sample'])."')", 1);
 }
+
+
+saveCategoriesAndLicenses(findCategories(), findLicenses());
+
 
 $aResult = dbQuery("SELECT ID, post_content, post_title, post_name FROM ".WP_PREFIX."posts WHERE post_status = 'publish' AND post_type = 'post'");
 
@@ -117,16 +141,23 @@ if(mysql_num_rows($aResult) > 0) {
 	$aCategories = findCategories();
 	$aLicenses	 = findLicenses();
 	
+	echo "Adding items:\n";
+	
 	while($aItem = mysql_fetch_assoc($aResult)) {
 		$aData = array();
 		
-		echo "Processing " . $aItem['post_title'] . "...";
+		echo "  Add " . $aItem['post_title'] . " ";
 		
+		$aData['id'] 			= $aItem['ID'];
 		$aData['name'] 			= $aItem['post_title'];
 		$aData['description'] 	= $aItem['post_content'];
 		$aData['excerpt'] 		= ""; // TODO
 		$aData['category'] 		= array();
 		$aData['license'] 		= array();
+		$aData['repo'] 			= '';
+		$aData['twitter'] 		= '';
+		$aData['stats'] 		= '';
+		$aData['sample'] 		= '';
 		
 		$aRes = dbQuery("SELECT meta_key, meta_value FROM ".WP_PREFIX."postmeta WHERE meta_key LIKE 'as3gg_%' AND post_id = " . $aItem['ID']);
 
@@ -138,6 +169,9 @@ if(mysql_num_rows($aResult) > 0) {
 		}
 		
 		mysql_free_result($aRes);
+		
+		// TODO: fill out site prop if not set.
+		$aData['site'] = empty($aData['site']) ? '' : $aData['site'];
 		
 		// Get item category
 		$aRes = dbQuery("SELECT term_taxonomy_id FROM ".WP_PREFIX."term_relationships WHERE object_id = " . $aItem['ID']);
@@ -175,7 +209,7 @@ if(mysql_num_rows($aResult) > 0) {
 		insetIntoDb($aData, $aCategories, $aLicenses);
 		unset($aData);
 		
-		echo "[OK]\n";
+		echo "\n";
 	}
 	echo "All done!\n";
 }	

@@ -1,6 +1,8 @@
 <?php
 class Db {
-	const TABLE_ITEMS = "items"; 
+	const TABLE_ITEMS 		= "items"; 
+	const TABLE_CATEGORIES 	= "categories";
+	const TABLE_LICENSES 	= "licenses";
 	
 	private static $mConnection = null;	
 	
@@ -48,7 +50,7 @@ class Db {
 		return $aRet;
 	}
 	
-	public static function categoryExists($theCategoryName) {
+	public static function categoryExists($theCategorySlug) {
 		// TODO: implement
 		return true;
 	}
@@ -66,5 +68,14 @@ class Db {
 		}
 	
 		return $aRet;
+	}
+	
+	
+	public static function findCategories() {
+		
+	}
+	
+	public static function findLicenses() {
+		
 	}
 }
