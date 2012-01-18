@@ -32,18 +32,7 @@ class Search {
 		$aRet->items	= array();
 
 		foreach(Db::search($text, $category) as $aKey => $aInfo) {
-			$aEntry					= new stdClass();
-			$aEntry->id 			= $aInfo['id'];
-			$aEntry->name 			= $aInfo['name'];
-			$aEntry->description 	= $aInfo['description'];
-			$aEntry->excerpt 		= "Complete description.";
-			$aEntry->license 		= "MIT";
-			$aEntry->site 			= "http://toolsite.com";
-			$aEntry->repository		= "git://github.com/account/project-as3.git";
-			$aEntry->twitter		= "TwitterLogin";
-			$aEntry->stats 			= "OhlhoID";
-
-			$aRet->items[]			= $aEntry; 
+			$aRet->items[] = Utils::createItem($aInfo); 
 		}
 		
 		return $aRet;
