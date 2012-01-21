@@ -23,12 +23,12 @@ class Categories {
 			}
 			
 			$aRet				= new stdClass();
-			$aRet->id			= $aCategory['id'];
+			$aRet->id			= (int)$aCategory['id'];
 			$aRet->name			= $aCategory['name'];
 			$aRet->slug			= $aCategory['slug'];
 			$aRet->description	= $aCategory['description'];
 			$aRet->items		= array();
-			
+
 			foreach(Db::findItemsByCategoryId($aCategory['id']) as $aKey => $aInfo) {
 				$aRet->items[] = Utils::createItem($aInfo);
 			}

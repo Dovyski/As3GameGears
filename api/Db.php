@@ -51,8 +51,7 @@ class Db {
 	}
 	
 	public static function categoryExists($theCategorySlug) {
-		// TODO: implement
-		return true;
+		return getCategoryBySlug($theCategorySlug) != null;
 	}
 	
 	public static function getCategoryBySlug($theSlug) {
@@ -61,6 +60,7 @@ class Db {
 	
 		if(self::numRows($aResult) > 0) {
 			$aRet = self::fetchAssoc($aResult);
+			Utils::castFields($aRet);
 		}
 	
 		return $aRet;
@@ -88,6 +88,7 @@ class Db {
 	
 		if(self::numRows($aResult) > 0) {
 			while($aRow = self::fetchAssoc($aResult)) {
+				Utils::castFields($aRow);
 				$aRet[] = $aRow;
 			}
 		}
@@ -101,6 +102,7 @@ class Db {
 		
 		if(self::numRows($aResult) > 0) {
 			while($aRow = self::fetchAssoc($aResult)) {
+				Utils::castFields($aRow);
 				$aRet[] = $aRow;
 			}
 		}
