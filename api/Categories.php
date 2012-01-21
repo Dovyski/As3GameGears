@@ -19,7 +19,7 @@ class Categories {
 			$aCategory = Db::getCategoryBySlug($slug);
 
 			if($aCategory == null) {
-				throw new RestException(self::INVALID_CATEGORY, "Unknown category " . $category);
+				throw new RestException(self::INVALID_CATEGORY, "Unknown category " . $slug);
 			}
 			
 			$aRet				= new stdClass();

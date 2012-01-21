@@ -13,6 +13,7 @@ $r->setSupportedFormats('JsonFormat', 'XmlFormat');
 
 $r->addAPIClass('Items');
 $r->addAPIClass('Categories');
+$r->addAPIClass('Licenses');
 $r->addAPIClass('Search');
 
 $r->handle();
