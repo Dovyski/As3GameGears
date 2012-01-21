@@ -55,6 +55,17 @@ class Db {
 		return true;
 	}
 	
+	public static function getCategoryBySlug($theSlug) {
+		$aRet 	 = null;
+		$aResult = self::execute("SELECT * FROM ".self::TABLE_CATEGORIES." WHERE slug LIKE '".addslashes($theSlug)."'");
+	
+		if(self::numRows($aResult) > 0) {
+			$aRet = self::fetchAssoc($aResult);
+		}
+	
+		return $aRet;
+	}
+	
 	public static function search($theText, $theCategory = null) {
 		// TODO: improve search by using several columns.
 		$aCat	 = empty($theCategory) ? "" : " AND category = '".addslashes($theCategory)."'";
@@ -70,9 +81,31 @@ class Db {
 		return $aRet;
 	}
 	
+	public static function findItemsByCategoryId($theCategoryId) {
+		$theCategoryId	 = (int)$theCategoryId;
+		$aRet 	 		 = array();
+		$aResult 		 = self::execute("SELECT * FROM ".self::TABLE_ITEMS." WHERE category = " . $theCategoryId . " OR category2 = " . $theCategoryId);
+	
+		if(self::numRows($aResult) > 0) {
+			while($aRow = self::fetchAssoc($aResult)) {
+				$aRet[] = $aRow;
+			}
+		}
+	
+		return $aRet;
+	}
 	
 	public static function findCategories() {
+		$aRet 	 = array();
+		$aResult = self::execute("SELECT * FROM ".self::TABLE_CATEGORIES." WHERE 1");
 		
+		if(self::numRows($aResult) > 0) {
+			while($aRow = self::fetchAssoc($aResult)) {
+				$aRet[] = $aRow;
+			}
+		}
+		
+		return $aRet;
 	}
 	
 	public static function findLicenses() {
