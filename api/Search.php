@@ -5,33 +5,19 @@
  *
  */
 class Search {
-	const INVALID_QUERY					= 5001;
-	const INVALID_CATEGORY				= 5002;
+	const INVALID_QUERY	= 5001;
 	
-	public function index($category="", $text="") {
+	public function index($text="") {
 		
-		if(empty($category)) {
+		if(empty($text)) {
 			throw new RestException(self::INVALID_QUERY, "Invalid query");
 		}
-		
-		if(!empty($text) && Db::categoryExists($category) == false) {
-			throw new RestException(self::INVALID_CATEGORY, "Unknown category " . $category);
-		}
-		
-		$aFilterCat		= !empty($text); 
-		$text			= empty($text) ? $category : $text;
-		$category		= $aFilterCat ? $category : null;
-		$aRet			= new stdClass();
-		
-		$aRet->query	= $text;
 
-		if($aFilterCat) {
-			$aRet->category	= $category;
-		}
-		
+		$aRet			= new stdClass();
+		$aRet->query	= $text;
 		$aRet->items	= array();
 
-		foreach(Db::search($text, $category) as $aKey => $aInfo) {
+		foreach(Db::search($text) as $aKey => $aInfo) {
 			$aRet->items[] = Utils::createItem($aInfo); 
 		}
 		
