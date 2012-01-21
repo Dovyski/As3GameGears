@@ -1,0 +1,48 @@
+/*
+
+As3GameGears API - http://api.as3gamegears.com
+
+*/
+
+h1,h2,h3,h4 {
+	font-family: 'Cabin Sketch', cursive;
+	color: #000; 
+	font-size: 42px;
+}
+
+#overview {
+	background: #0000aa url('img/header.jpg');
+	padding: 20px 0 5px 0;
+	color: #000;
+	height: 100px; 
+}
+
+#overview h1 { 
+	font-size: 64px;
+}
+
+#overview p { 
+	font-size: 21px;
+	font-family: 'Cabin Sketch', cursive;
+}
+
+section {
+	margin-top: 25px;
+}
+
+.centered {
+	text-align: center;
+}
+
+#quick-start {
+	margin-top: 20px;
+}
+
+.social {
+	margin-top: 10px;
+	text-align: right;
+}
+
+.footer {
+	margin-bottom: 25px;
+}
