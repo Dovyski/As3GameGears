@@ -1,21 +1,21 @@
 <?php
 class Items {
-	const INVALID_NAME 					= 5001;
-	const NOTHING_FOUND 				= 5002;
-	
-	public function index($name="", $props="") {
+	public function index($category="", $license="") {
 		
-		if(empty($name)) {
-			throw new RestException(self::INVALID_NAME, "Name is empty or too short");
+		if(empty($category) || ($aCategory = Db::getCategoryBySlug($category)) == null) {
+			throw new RestException(400, "unknown category slug " . $category);
 		}
-		
-		$aItems = Db::findItemByName($name);
 
-		if(count($aItems) > 0) {
-			return Utils::createItem($aItems[0]);
-			 
-		} else {
-			throw new RestException(self::NOTHING_FOUND, "Nothing found");
+		$aItems 		= Db::findItemsByCategoryId($aCategory['id']);
+		
+		$aRet			= new stdClass();
+		$aRet->category = $category;
+		$aRet->items 	= array();
+		
+		foreach($aItems as $aItem) {
+			$aRet->items[] = Utils::createItem($aItem);
 		}
+		
+		return $aRet;
 	}
 }
