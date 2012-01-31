@@ -12,6 +12,7 @@ $r = new Restler();
 $r->setSupportedFormats('JsonFormat', 'XmlFormat');
 
 $r->addAPIClass('Items');
+$r->addAPIClass('Item');
 $r->addAPIClass('Categories');
 $r->addAPIClass('Licenses');
 $r->addAPIClass('Search');
