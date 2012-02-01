@@ -4,21 +4,25 @@ As3GameGears API - http://api.as3gamegears.com
 
 */
 
+a, a:visited, a:hover {
+	color: #CC6600;
+}
+
 h1,h2,h3,h4 {
 	font-family: 'Cabin Sketch', cursive;
 	color: #000; 
-	font-size: 42px;
+	font-size: 32px;
 }
 
 #overview {
-	background: #0000aa url('img/header.jpg');
+	background: #FF6600;
 	padding: 20px 0 5px 0;
 	color: #000;
-	height: 100px; 
+	height: 80px; 
 }
 
 #overview h1 { 
-	font-size: 64px;
+	font-size: 48px;
 }
 
 #overview p { 
@@ -26,23 +30,36 @@ h1,h2,h3,h4 {
 	font-family: 'Cabin Sketch', cursive;
 }
 
+#methods h2 { 
+	font-size: 23px;
+	margin-top: 20px;
+}
+
+.method-link { 
+	margin: 0 0 3px 40px;
+}
+
 section {
-	margin-top: 25px;
+	margin-top: 40px;
 }
 
 .centered {
 	text-align: center;
 }
 
-#quick-start {
-	margin-top: 20px;
-}
-
-.social {
-	margin-top: 10px;
-	text-align: right;
-}
-
 .footer {
 	margin-bottom: 25px;
+}
+
+/* Nice GitHub code highlight :) */
+pre,
+code {
+	font-family: 'Bitstream Vera Sans Mono','Courier', monospace;
+	background-color: #f8f8ff!important;
+	border:1px solid #dedede;
+	font-size:13px;
+	padding:0;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
 }

@@ -1,7 +1,7 @@
 DirectoryIndex index.php
 <IfModule mod_rewrite.c>
 	RewriteEngine On
-	RewriteRule /(.*)\.(php|html|gif|jpg|png|css|js)$ /site/$1.$2 [L]
+	RewriteRule /(.*)\.(php|html|gif|jpg|png|css|js|ico)$ /site/$1.$2 [L]
 	RewriteRule ^usage/(.+)$ /site/index.php?version=1.0&method=$1 [L]
 	RewriteRule ^usage/?$ /site/index.php?version=1.0 [L]
 	RewriteRule ^$ index.php [QSA,L]
