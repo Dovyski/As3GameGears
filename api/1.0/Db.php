@@ -92,6 +92,26 @@ class Db {
 	
 		return $aRet;
 	}
+
+	public static function findItems($thePage, $thePageSize, & $theTotal) {
+		$thePage		= (int)$thePage;
+		$thePageSize	= (int)$thePageSize;
+		$aRet 	 		= array();
+		
+		$aResult 		= self::execute("SELECT COUNT(*) AS total FROM ".self::TABLE_ITEMS." WHERE 1");
+		$aCount			= self::fetchAssoc($aResult);
+		$theTotal		= $aCount['total'];
+		$aResult 		= self::execute("SELECT * FROM ".self::TABLE_ITEMS." WHERE 1 ORDER BY id DESC LIMIT " . ($thePage * $thePageSize) . "," . $thePageSize);
+	
+		if(self::numRows($aResult) > 0) {
+			while($aRow = self::fetchAssoc($aResult)) {
+				Utils::castFields($aRow);
+				$aRet[] = $aRow;
+			}
+		}
+	
+		return $aRet;
+	}	
 	
 	public static function findItemsByCategoryId($theCategoryId) {
 		$theCategoryId	 = (int)$theCategoryId;
