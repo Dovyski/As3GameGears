@@ -5,8 +5,6 @@
  *
  */
 class Categories {
-	const INVALID_CATEGORY	= 6002;
-	
 	public function index($slug="") {
 		$aRet = "";
 
@@ -19,7 +17,7 @@ class Categories {
 			$aCategory = Db::getCategoryBySlug($slug);
 
 			if($aCategory == null) {
-				throw new RestException(self::INVALID_CATEGORY, "Unknown category " . $slug);
+				throw new RestException(400, "Unknown category " . $slug);
 			}
 			
 			$aRet				= new stdClass();

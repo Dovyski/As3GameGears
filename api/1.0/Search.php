@@ -5,12 +5,10 @@
  *
  */
 class Search {
-	const INVALID_QUERY	= 5001;
-	
 	public function index($text="") {
 		
 		if(empty($text)) {
-			throw new RestException(self::INVALID_QUERY, "Invalid query");
+			throw new RestException(400, "Invalid query");
 		}
 
 		$aRet			= new stdClass();
