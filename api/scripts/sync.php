@@ -149,8 +149,6 @@ if(mysql_num_rows($aResult) > 0) {
 	while($aItem = mysql_fetch_assoc($aResult)) {
 		$aData = array();
 		
-		echo "  Add " . $aItem['post_title'] . " ";
-		
 		$aData['id'] 			= $aItem['ID'];
 		$aData['name'] 			= $aItem['post_title'];
 		$aData['description'] 	= $aItem['post_content'];
@@ -186,17 +184,19 @@ if(mysql_num_rows($aResult) > 0) {
 				$aTermsTaxIds[] = $aTemp['term_taxonomy_id'];
 			}
 			mysql_free_result($aRes);
-			//var_dump($aTermsTaxIds);exit();
 			
 			$aResTaxonomies = dbQuery("SELECT term_taxonomy_id, term_id, taxonomy FROM ".WP_PREFIX."term_taxonomy WHERE term_taxonomy_id IN (" . implode(',', $aTermsTaxIds).") AND (taxonomy = 'category' OR taxonomy = 'post_tag')");
 			
 			if(mysql_num_rows($aResTaxonomies) > 0) {
 				while($aTemp = mysql_fetch_assoc($aResTaxonomies)) {
-					//var_dump($aTemp);
 					if($aTemp['taxonomy'] == 'category') {
-						// TODO: filter unwanted categories such as blog.
-						$aData['category'][] = $aTemp['term_taxonomy_id'];
-						
+						// We just add a category if it is a valid one.
+						// If the temp item has an inexistend category, it means
+						// this is an unwanted item such as a blog post or anything
+						// that belogns to a category we don't want.
+						if(isset($aCategories[$aTemp['term_taxonomy_id']])) {
+							$aData['category'][] = $aTemp['term_taxonomy_id'];
+						}
 					} else if($aTemp['taxonomy'] == 'post_tag') {
 						$aData['license'][] = $aTemp['term_taxonomy_id'];
 					}
@@ -208,24 +208,17 @@ if(mysql_num_rows($aResult) > 0) {
 			mysql_free_result($aResTaxonomies);			
 		}
 		
-		//var_dump($aData);
-		insetIntoDb($aData, $aCategories, $aLicenses);
+		if(count($aData['category']) > 0) {
+			echo "  Add " . $aData['name'] . " ";
+			insetIntoDb($aData, $aCategories, $aLicenses);
+		} else {
+			echo "  Skip ".$aData['name'];
+		}
+		
 		unset($aData);
 		
 		echo "\n";
 	}
 	echo "All done!\n";
-}	
-
-
-
-
-
-
-
-
-
-
-
-	
+}
 ?>
