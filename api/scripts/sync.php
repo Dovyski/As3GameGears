@@ -117,6 +117,53 @@ function findLicenses() {
 	return $aRet;
 }
 
+function extractProjectLink($theDescription) {
+	$aRet = "";
+	$aStart = strpos($theDescription, "href=");
+	
+	if($aStart !== false) {
+		$aStart += 5;
+		$aLen	 = strlen($theDescription); 
+		
+		if($theDescription[$aStart] == '"') {
+			$aStart++;
+		}
+		
+		while($theDescription[$aStart] != '"' && $theDescription[$aStart] != ' ' && $theDescription[$aStart] != '>' && $aStart < $aLen) {
+			$aRet .= $theDescription[$aStart];
+			$aStart++;
+		}
+	}
+	
+	return $aRet;
+}
+
+function extractAndDeleteCodeSample(& $theDescription) {
+	$aMatches = array();
+	preg_match('/<pre class="brush: as3">([\w\W]*?)<\/pre>/', $theDescription, $aMatches);
+	
+	if(isset($aMatches[1])) {
+		$theDescription = str_replace($aMatches[1], '', $theDescription);
+		$theDescription = str_replace("<strong>Sample</strong>\n", '', $theDescription);
+		$theDescription = str_replace('<pre class="brush: as3"></pre>', '', $theDescription);
+		$theDescription = trim($theDescription);
+	}
+	
+	return isset($aMatches[1]) ? $aMatches[1] : '';
+}
+
+function createExcerpt($theDescription) {
+	$aText = strip_tags($theDescription);
+	$aLimit1 = strpos($aText, '.');
+	$aLimit2 = strpos($aText, ':');
+	
+	$aLimit1 = $aLimit1 === false ? 9999 : $aLimit1;
+	$aLimit2 = $aLimit2 === false ? 9999 : $aLimit2;
+	
+	$aLimit  = min($aLimit1, $aLimit2);
+	return trim(substr($aText, 0, $aLimit)) . '.';
+}
+
 /**
  * Inserts all collected item into the database. This method organizes the item's properties
  * in a way they can be easily searched in a database query.
@@ -133,7 +180,6 @@ function insetIntoDb($theItem, $theCategories, $theLicenses) {
 	
 	dbQuery("INSERT IGNORE INTO ".Db::TABLE_ITEMS." (id, name, description, excerpt, category, category2, license, license2, site, repository, twitter, stats, sample) VALUES (".$theItem['id'].", '".addslashes($theItem['name'])."', '".addslashes($theItem['description'])."', '".addslashes($theItem['excerpt'])."', ".$aCategory.", ".$aCategory2.", ".$aLicense.", ".$aLicense2.", '".addslashes($theItem['site'])."', '".addslashes($theItem['repo'])."', '".addslashes($theItem['twitter'])."', '".addslashes($theItem['stats'])."', '".addslashes($theItem['sample'])."')", 1);
 }
-
 
 saveCategoriesAndLicenses(findCategories(), findLicenses());
 
@@ -152,13 +198,13 @@ if(mysql_num_rows($aResult) > 0) {
 		$aData['id'] 			= $aItem['ID'];
 		$aData['name'] 			= $aItem['post_title'];
 		$aData['description'] 	= $aItem['post_content'];
-		$aData['excerpt'] 		= ""; // TODO
+		$aData['excerpt'] 		= createExcerpt($aData['description']);
 		$aData['category'] 		= array();
 		$aData['license'] 		= array();
 		$aData['repo'] 			= '';
 		$aData['twitter'] 		= '';
 		$aData['stats'] 		= '';
-		$aData['sample'] 		= '';
+		$aData['sample'] 		= extractAndDeleteCodeSample($aData['description']);
 		
 		$aRes = dbQuery("SELECT meta_key, meta_value FROM ".WP_PREFIX."postmeta WHERE meta_key LIKE 'as3gg_%' AND post_id = " . $aItem['ID']);
 
@@ -170,9 +216,7 @@ if(mysql_num_rows($aResult) > 0) {
 		}
 		
 		mysql_free_result($aRes);
-		
-		// TODO: fill out site prop if not set.
-		$aData['site'] = empty($aData['site']) ? '' : $aData['site'];
+		$aData['site'] = empty($aData['site']) ? extractProjectLink($aData['description']) : $aData['site'];
 		
 		// Get item category
 		$aRes = dbQuery("SELECT term_taxonomy_id FROM ".WP_PREFIX."term_relationships WHERE object_id = " . $aItem['ID']);
