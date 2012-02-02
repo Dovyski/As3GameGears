@@ -10,7 +10,7 @@
  * This script is supposed to be run using a command line.
  */
 
-require_once dirname(__FILE__).'/../Db.php';
+require_once dirname(__FILE__).'/../1.0/Db.php';
 
 // TODO: use an INI file or something
 define('WP_PREFIX', 'wp_');
@@ -40,11 +40,14 @@ function dbQuery($theSql, $theConnectionId = 0) {
 			$aHost = "localhost";
 			$aUser = "root";
 			$aPass = "";
-			$aDb   = "api_as3gamegears";
+			$aDb   = "api_as3gamegears2";
 		}
 		
 		$sConnection[$theConnectionId] = mysql_connect($aHost, $aUser, $aPass, true) or die("Unable to connect to database");
 		mysql_select_db($aDb) or die("Unable to select database");
+		mysql_set_charset("utf8", $sConnection[$theConnectionId]);
+		
+		echo "The current character set is: ".mysql_client_encoding($sConnection[$theConnectionId])."\n";
 	}
 
 	$aRet = mysql_query($theSql, $sConnection[$theConnectionId]) or die("SQL error: " . mysql_error($sConnection[$theConnectionId]));
