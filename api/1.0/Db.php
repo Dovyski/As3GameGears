@@ -151,7 +151,7 @@ class Db {
 		if(self::numRows($aResult) > 0) {
 			while($aRow = self::fetchAssoc($aResult)) {
 				Utils::castFields($aRow);
-				$aRet[] = $aRow;
+				$aRet[$aRow['id']] = $aRow;
 			}
 		}
 		
@@ -165,7 +165,7 @@ class Db {
 		if(self::numRows($aResult) > 0) {
 			while($aRow = self::fetchAssoc($aResult)) {
 				Utils::castFields($aRow);
-				$aRet[] = $aRow;
+				$aRet[$aRow['id']] = $aRow;
 			}
 		}
 		

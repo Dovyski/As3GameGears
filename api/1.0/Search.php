@@ -14,9 +14,11 @@ class Search {
 		$aRet			= new stdClass();
 		$aRet->query	= $text;
 		$aRet->items	= array();
+		$aCategories	= Db::findCategories();
+		$aLicenses		= Db::findLicenses();
 
 		foreach(Db::search($text) as $aKey => $aInfo) {
-			$aRet->items[] = Utils::createItem($aInfo); 
+			$aRet->items[] = Utils::createItem($aInfo, $aCategories, $aLicenses);
 		}
 		
 		return $aRet;

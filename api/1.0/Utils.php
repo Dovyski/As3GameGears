@@ -1,7 +1,7 @@
 <?php
 
 class Utils {
-	public static function createItem($theData, $theCategories = array(), $theLicenses = array()) {
+	public static function createItem($theData, $theCategories, $theLicenses) {
 		$aResult = new stdClass();
 			
 		$aResult->id 			= (int)$theData['id'];
@@ -9,10 +9,14 @@ class Utils {
 		$aResult->description 	= $theData['description'];
 		$aResult->excerpt 		= $theData['excerpt'];
 		$aResult->sample 		= $theData['sample'];
-		$aResult->license 		= array((int)$theData['license']);
+		$aResult->license 		= array();
+
+		if(isset($theLicenses[$theData['license']])) {
+			$aResult->license[] = $theLicenses[$theData['license']];			
+		}
 		
-		if(!empty($theData['license2'])) {
-			$aResult->license[] = (int)$theData['license2'];			
+		if(!empty($theData['license2']) && isset($theLicenses[$theData['license2']])) {
+			$aResult->license[] = $theLicenses[$theData['license2']];			
 		}
 
 		$aResult->site 			= $theData['site'];
