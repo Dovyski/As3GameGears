@@ -3,7 +3,6 @@ class Items {
 	public function index($category="", $license="", $page=0, $size=50) {
 				
 		$aRet 			= new stdClass();
-		$aRet->items 	= array();
 		$aItems			= null;
 
 		if(empty($category)) {
@@ -22,6 +21,7 @@ class Items {
 		
 		$aLicenses		= Db::findLicenses();
 		$aCategories	= Db::findCategories();
+		$aRet->items 	= array();
 		
 		foreach($aItems as $aItem) {
 			$aRet->items[] = Utils::createItem($aItem, $aCategories, $aLicenses);
