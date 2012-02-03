@@ -173,8 +173,8 @@ function createExcerpt($theDescription) {
  * @param arra $theLicenses array of existing licenses, indexed by slug.
  */
 function insetIntoDb($theItem, $theCategories, $theLicenses) {
-	$aCategory 	= $theItem['category'][0];
-	$aCategory2 = $theCategories[$aCategory]['parent'] != 0 ? $theCategories[$aCategory]['parent'] : 'NULL';
+	$aCategory 	= isset($theItem['category'][0]) ? $theItem['category'][0] : 'NULL';
+	$aCategory2 = isset($theItem['category'][1]) ? $theItem['category'][1] : 'NULL'; 
 	$aLicense	= isset($theItem['license'][0]) ? $theItem['license'][0] : 'NULL'; 
 	$aLicense2 	= isset($theItem['license'][1]) ? $theItem['license'][1] : 'NULL';
 	
@@ -239,13 +239,11 @@ if(mysql_num_rows($aResult) > 0) {
 						// this is an unwanted item such as a blog post or anything
 						// that belogns to a category we don't want.
 						if(isset($aCategories[$aTemp['term_taxonomy_id']])) {
-							$aData['category'][] = $aTemp['term_taxonomy_id'];
+							$aData['category'][] = $aTemp['term_id'];
 						}
 					} else if($aTemp['taxonomy'] == 'post_tag') {
-						$aData['license'][] = $aTemp['term_taxonomy_id'];
+						$aData['license'][] = $aTemp['term_id'];
 					}
-					
-					//echo "term_id = " . $aTemp['term_id'] . " = ".getTerm($aTemp['term_id'])." (tax ".$aTemp['taxonomy'].")\n";
 				}
 			}
 			
