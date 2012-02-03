@@ -119,7 +119,7 @@ function saveCategoriesAndLicenses($theCategories, $theLicenses) {
 	
 	foreach($theCategories as $aId => $aInfo) {
 		echo "  Add ".$aInfo['slug'] . " (".$aInfo['name'].") ";
-		dbQuery("INSERT IGNORE INTO ".Db::TABLE_CATEGORIES." (id, name, slug, description, parent) VALUES (".$aId.", '".addslashes($aInfo['name'])."', '".addslashes($aInfo['slug'])."', '".addslashes($aInfo['description'])."', ".$aInfo['parent'].")", 1);
+		dbQuery("INSERT IGNORE INTO ".Db::TABLE_CATEGORIES."2 (id, name, slug, description, parent) VALUES (".$aId.", '".addslashes($aInfo['name'])."', '".addslashes($aInfo['slug'])."', '".addslashes($aInfo['description'])."', ".$aInfo['parent'].")", 1);
 		echo "\n";		
 	}
 	
@@ -127,7 +127,7 @@ function saveCategoriesAndLicenses($theCategories, $theLicenses) {
 	
 	foreach($theLicenses as $aSlug => $aInfo) {
 		echo "  Add ".$aInfo['slug'] . " (".$aInfo['name'].") ";
-		dbQuery("INSERT IGNORE INTO ".Db::TABLE_LICENSES." (id, name, slug) VALUES (".$aInfo['id'].", '".addslashes($aInfo['name'])."', '".addslashes($aInfo['slug'])."')", 1);
+		dbQuery("INSERT IGNORE INTO ".Db::TABLE_LICENSES."2 (id, name, slug) VALUES (".$aInfo['id'].", '".addslashes($aInfo['name'])."', '".addslashes($aInfo['slug'])."')", 1);
 		echo "\n";
 	}
 	
@@ -223,6 +223,70 @@ function insetIntoDb($theItem, $theCategories, $theLicenses) {
 	$aLicense	= isset($theItem['license'][0]) ? $theItem['license'][0] : 'NULL'; 
 	$aLicense2 	= isset($theItem['license'][1]) ? $theItem['license'][1] : 'NULL';
 	
-	dbQuery("INSERT IGNORE INTO ".Db::TABLE_ITEMS." (id, name, description, excerpt, category, category2, license, license2, site, repository, twitter, stats, sample) VALUES (".$theItem['id'].", '".addslashes($theItem['name'])."', '".addslashes($theItem['description'])."', '".addslashes($theItem['excerpt'])."', ".$aCategory.", ".$aCategory2.", ".$aLicense.", ".$aLicense2.", '".addslashes($theItem['site'])."', '".addslashes($theItem['repo'])."', '".addslashes($theItem['twitter'])."', '".addslashes($theItem['stats'])."', '".addslashes($theItem['sample'])."')", 1);
+	dbQuery("INSERT IGNORE INTO ".Db::TABLE_ITEMS."2 (id, name, description, excerpt, category, category2, license, license2, site, repository, twitter, stats, sample) VALUES (".$theItem['id'].", '".addslashes($theItem['name'])."', '".addslashes($theItem['description'])."', '".addslashes($theItem['excerpt'])."', ".$aCategory.", ".$aCategory2.", ".$aLicense.", ".$aLicense2.", '".addslashes($theItem['site'])."', '".addslashes($theItem['repo'])."', '".addslashes($theItem['twitter'])."', '".addslashes($theItem['stats'])."', '".addslashes($theItem['sample'])."')", 1);
+}
+
+function createNewTables() {
+	$aTables = array('categories', 'items', 'licenses');
+	
+	foreach($aTables as $aTable) {
+		dbQuery("CREATE TABLE IF NOT EXISTS ".$aTable." (`id` int(11) NOT NULL) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci");
+	}
+	
+	// Create the tables we will store the new data.
+	dbQuery("
+			CREATE TABLE IF NOT EXISTS `categories2` (
+			  `id` int(11) NOT NULL,
+			  `name` varchar(80) CHARACTER SET utf8 NOT NULL,
+			  `slug` varchar(80) CHARACTER SET utf8 NOT NULL,
+			  `description` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+			  `parent` int(11) NOT NULL,
+			  PRIMARY KEY (`id`),
+			  KEY `name` (`name`,`slug`)
+			) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci", 1);
+	
+	dbQuery("
+			CREATE TABLE IF NOT EXISTS `items2` (
+			  `id` int(11) NOT NULL AUTO_INCREMENT,
+			  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
+			  `description` text CHARACTER SET utf8 NOT NULL,
+			  `excerpt` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+			  `category` int(11) NOT NULL,
+			  `category2` int(11) DEFAULT NULL,
+			  `license` int(11) DEFAULT NULL,
+			  `license2` int(11) DEFAULT NULL,
+			  `site` varchar(255) CHARACTER SET utf8 NOT NULL,
+			  `repository` varchar(255) CHARACTER SET utf8 NOT NULL,
+			  `twitter` varchar(80) CHARACTER SET utf8 NOT NULL,
+			  `stats` varchar(80) CHARACTER SET utf8 NOT NULL,
+			  `sample` text CHARACTER SET utf8,
+			  PRIMARY KEY (`id`),
+			  UNIQUE KEY `name` (`name`),
+			  KEY `excerpt` (`excerpt`),
+			  KEY `category` (`category`,`category2`),
+			  KEY `license` (`license`,`license2`)
+			) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci", 1);
+	
+	dbQuery("
+			CREATE TABLE IF NOT EXISTS `licenses2` (
+			  `id` int(11) NOT NULL,
+			  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
+			  `slug` varchar(100) CHARACTER SET utf8 NOT NULL,
+			  PRIMARY KEY (`id`)
+			) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci", 1);
+}
+
+function destroyOldTables() {	
+	dbQuery("RENAME TABLE categories TO categories3, categories2 TO categories,
+						  items TO items3, items2 TO items,
+						  licenses TO licenses3, licenses2 TO licenses", 1);
+	
+	dbQuery("DROP TABLE IF EXISTS categories3, items3, licenses3", 1);
+}
+
+function buildIndexes() {
+	echo "Building indexes...";
+	// TODO: add indexes to db columns.
+	echo "[OK]\n";
 }
 ?>

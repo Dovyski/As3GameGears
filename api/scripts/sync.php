@@ -22,6 +22,7 @@ dbQuery("SELECT VERSION()", 0);
 dbQuery("SELECT VERSION()", 1);
 
 // And now, it's  show time!
+createNewTables();
 saveCategoriesAndLicenses(findCategories(), findLicenses());
 
 $aResult = dbQuery("SELECT ID, post_content, post_title, post_name FROM ".WP_PREFIX."posts WHERE post_status = 'publish' AND post_type = 'post'");
@@ -103,4 +104,7 @@ if(mysql_num_rows($aResult) > 0) {
 	}
 	echo "All done!\n";
 }
+
+destroyOldTables();
+buildIndexes();
 ?>
