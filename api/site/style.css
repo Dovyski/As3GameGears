@@ -30,6 +30,10 @@ h1,h2,h3,h4 {
 	font-family: 'Cabin Sketch', cursive;
 }
 
+#unknown {
+	height: 300px;
+}
+
 #methods h2 { 
 	font-size: 23px;
 	margin-top: 20px;
