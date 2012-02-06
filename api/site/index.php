@@ -147,7 +147,7 @@
 						</div>
 						<div class="row"> 
 							<div class="span12">
-								<p>It looks like you are tring to view an unknown method called <strong><?php echo htmlspecialchars($_GET['method']); ?></strong>. If you are sure this is the droid your are looking for, please <a href="http://twitter.com/as3gamegears" target="_blank">drop me a tweet</a> so I can fix the problem.</p>
+								<p>It looks like you are trying to view an unknown method called <strong><?php echo htmlspecialchars($_GET['method']); ?></strong>. If you are sure this is the droid your are looking for, please <a href="http://twitter.com/as3gamegears" target="_blank">drop me a tweet</a> so I can fix the problem.</p>
 								<p>You can check again the <a href="./">methods list</a> to find the method.</p>
 							</div>
 						</div><!-- /row -->
