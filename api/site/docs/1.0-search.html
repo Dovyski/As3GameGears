@@ -1,7 +1,87 @@
-<p>This is a placeholder <code>1.0</code>. Below you can find a list of all available methods. The term <code>slug</code> refers to the "non-spaced" version of a name. E.g. a category named <code>Augmented Reality</code> has as its slug <code>augmented-reality</code>. Every item, category and license on the site are indexed by their slug.</p>
-<p>
-	The API accepts different return types, such as <code>JSON</code> and <code>XML</code>. In order to specify a return type, use the syntax <code>/method.RETURN_TYPE/</code>. If no return type is specified, the default is <code>JSON</code>. E.g: <br /><br />
-	<code>http://api.as3gamegears.com/1.0/items.xml</code><br />
-	<code>http://api.as3gamegears.com/1.0/items.json</code><br />
-	<code>http://api.as3gamegears.com/1.0/items</code> (defaults to <code>JSON</code>)
-</p>
+<p>Queries the database looking for any text. The searched term is matched against the fields <code>name</code>, <code>description</code> and <code>excerpt</code> of all items. 
+<h2>Parameters</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>text</td>
+      <td>string</td>
+      <td>Text you want to find (case insensitive). E.g. <code>ui</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Return</h2>
+<p>Requesting <a href="/1.0/search/ui" target="_blank">http://api.as3gamegears.com/1.0/search/ui</a> will produce the following return:</p>
+<pre>
+
+{
+  "query": "ui",
+  "items": [
+    {
+      "id": 7,
+      "name": "QuickBox2D",
+      "description": "QuickBox2D is a mini-library created to work with Box2DFlashAS3(...)",
+      "excerpt": "QuickBox2D is a mini-library (...)",
+      "sample": "",
+      "license": [
+        {
+          "id": 46,
+          "name": "MIT",
+          "slug": "mit"
+        }
+      ],
+      "site": "http:\/\/actionsnippet.com\/?page_id=1391",
+      "repository": "http:\/\/quickbox2d.googlecode.com\/svn\/trunk\/",
+      "twitter": "zevanrosser",
+      "stats": "quickbox2d"
+    },
+    {
+      "id": 155,
+      "name": "FluidSolver",
+      "description": "FluidSolver is a class for solving real-time fluid dynamics simulations (...)",
+      "excerpt": "FluidSolver is a class for solving real-time(...)",
+      "sample": "",
+      "license": [
+        {
+          "id": 46,
+          "name": "MIT",
+          "slug": "mit"
+        }
+      ],
+      "site": "http:\/\/code.google.com\/p\/in-spirit\/wiki\/FluidSolver",
+      "repository": "http:\/\/in-spirit.googlecode.com\/svn\/trunk\/",
+      "twitter": "inspirit",
+      "stats": ""
+    },
+    
+    (...)
+    
+    {
+      "id": 264,
+      "name": "QuickB2",
+      "description": "QuickB2 is a complete abstraction of Box2D, providing grouped hierarchies(...)",
+      "excerpt": "QuickB2 is a complete abstraction of Box2D(...)",
+      "sample": "import QuickB2.* { (...)",
+      "license": [
+        {
+          "id": 46,
+          "name": "MIT",
+          "slug": "mit"
+        }
+      ],
+      "site": "http:\/\/code.google.com\/p\/quickb2",
+      "repository": "http:\/\/quickb2.googlecode.com\/svn\/trunk\/",
+      "twitter": "",
+      "stats": ""
+    }
+  ]
+}
+</pre>

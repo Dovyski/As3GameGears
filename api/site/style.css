@@ -34,6 +34,11 @@ h1,h2,h3,h4 {
 	height: 300px;
 }
 
+#description h2 {
+	font-size: 23px;
+	margin-top: 20px;	
+}
+
 #methods h2 { 
 	font-size: 23px;
 	margin-top: 20px;

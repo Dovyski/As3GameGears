@@ -1,7 +1,56 @@
-<p>This is a placeholder <code>1.0</code>. Below you can find a list of all available methods. The term <code>slug</code> refers to the "non-spaced" version of a name. E.g. a category named <code>Augmented Reality</code> has as its slug <code>augmented-reality</code>. Every item, category and license on the site are indexed by their slug.</p>
+<p>Gets information about an specific item. An item is indexed by a <code>slug</code>, which is the name of the item with spaces and punctuation signs replaced with <code>-</code> (hyphen).
+<h2>Parameters</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>name</td>
+      <td>string</td>
+      <td>The slug of the item. E.g. <code>flixel</code>.</td>
+    </tr>
+    <tr>
+      <td>props</td>
+      <td>string</td>
+      <td>A coma separated string containing the name fields of the item you want. E.g.: if you want the API to return just the <code>name</code> and <code>description</code> of an item, <code>props</code> would be <code>name,description</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Return</h2>
+<p>Requesting <a href="/1.0/item/flixel" target="_blank">http://api.as3gamegears.com/1.0/item/flixel</a> will produce the following return:</p>
+<pre>
+
+{
+  "id": 20,
+  "name": "Flixel",
+  "description": "Flixel is collection of AS3 (...)",
+  "excerpt": "Flixel is collection of AS3 files that helps organize, automate, and optimize Flash games.",
+  "sample": "package { import org.flixel.*; (...)",
+  "license": [
+    {
+      "id": 46,
+      "name": "MIT",
+      "slug": "mit"
+    }
+  ],
+  "site": "http:\/\/flixel.org",
+  "repository": "git:\/\/github.com\/AdamAtomic\/flixel.git",
+  "twitter": "flixation",
+  "stats": "flixel"
+}
+
+</pre>
+
+<h2>Demonstration</h2>
 <p>
-	The API accepts different return types, such as <code>JSON</code> and <code>XML</code>. In order to specify a return type, use the syntax <code>/method.RETURN_TYPE/</code>. If no return type is specified, the default is <code>JSON</code>. E.g: <br /><br />
-	<code>http://api.as3gamegears.com/1.0/items.xml</code><br />
-	<code>http://api.as3gamegears.com/1.0/items.json</code><br />
-	<code>http://api.as3gamegears.com/1.0/items</code> (defaults to <code>JSON</code>)
+	<a href="/1.0/item/flixel" target="_blank">http://api.as3gamegears.com/1.0/item/flixel</a><br />
+	<a href="/1.0/item/nape" target="_blank">http://api.as3gamegears.com/1.0/item/nape/name,description,site</a><br />
+	<a href="/1.0/item/nape" target="_blank">http://api.as3gamegears.com/1.0/item/nape/?props=name,description,site</a><br />
 </p>

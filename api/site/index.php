@@ -70,7 +70,8 @@
 						    <p>
 							    The API accepts different return types, such as <code>JSON</code> and <code>XML</code>. In order to specify a return type, use the syntax <code>/method.RETURN_TYPE/</code>. If no return type is specified, the default is <code>JSON</code>. E.g: <br /><br />
 							    <code>http://api.as3gamegears.com/1.0/items.xml</code><br />
-							    <code>http://api.as3gamegears.com/1.0/items.json</code><br />
+							    <code>http://api.as3gamegears.com/1.0/items.xml/param</code><br />
+							    <code>http://api.as3gamegears.com/1.0/items.json/param?foo=bar</code><br />
 							    <code>http://api.as3gamegears.com/1.0/items</code> (defaults to <code>JSON</code>)
 					    	</p>
 					    </div>
@@ -105,7 +106,7 @@
     	} else {
 
 			$aVersions 	= array('1.0');
-			$aMethods	= array('item', 'items', 'licenses', 'search');
+			$aMethods	= array('item', 'items', 'licenses', 'search', 'categories');
 		
 			$aVersion 	= isset($_GET['version']) && in_array($_GET['version'], $aVersions) ? $_GET['version'] : '';
 			$aMethod 	= isset($_GET['method']) ? strtolower($_GET['method']) : '';

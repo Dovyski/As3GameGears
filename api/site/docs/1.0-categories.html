@@ -1,0 +1,63 @@
+<p>Lists the existing categories. You can get information about an specific category using its <code>slug</code>, which is the name of the category with spaces and punctuation signs replaced with <code>-</code> (hyphen). If no <code>slug</code> is provided, the method returns all known categories.
+<h2>Parameters</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>slug</td>
+      <td>string</td>
+      <td>The slug of the category. E.g. <code>2d-physics</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Return</h2>
+<p>Requesting <a href="/1.0/categories/2d-physics" target="_blank">http://api.as3gamegears.com/1.0/categories/2d-physics</a> will produce the following return:</p>
+<pre>
+
+{
+  "id": 31,
+  "name": "2D",
+  "slug": "2d-physics",
+  "description": "2D physics engines\/tools.",
+  "parent": 23
+}
+
+</pre>
+
+<p>Requesting <a href="/1.0/categories" target="_blank">http://api.as3gamegears.com/1.0/categories</a> will produce the following return:</p>
+<pre>
+{
+  "1": {
+    "id": 1,
+    "name": "Uncategorized",
+    "slug": "uncategorized",
+    "description": "",
+    "parent": 0
+  },
+  "4": {
+    "id": 4,
+    "name": "Augmented Reality",
+    "slug": "augmented-reality",
+    "description": "Tools to implement augmented reality.",
+    "parent": 0
+  },
+  
+  (...)
+  
+  "33": {
+    "id": 33,
+    "name": "3D",
+    "slug": "3d-physics",
+    "description": "3D physics engines\/tools.",
+    "parent": 23
+  }
+}
+</pre>

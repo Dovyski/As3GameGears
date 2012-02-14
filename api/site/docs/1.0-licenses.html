@@ -1,7 +1,55 @@
-<p>This is a placeholder <code>1.0</code>. Below you can find a list of all available methods. The term <code>slug</code> refers to the "non-spaced" version of a name. E.g. a category named <code>Augmented Reality</code> has as its slug <code>augmented-reality</code>. Every item, category and license on the site are indexed by their slug.</p>
-<p>
-	The API accepts different return types, such as <code>JSON</code> and <code>XML</code>. In order to specify a return type, use the syntax <code>/method.RETURN_TYPE/</code>. If no return type is specified, the default is <code>JSON</code>. E.g: <br /><br />
-	<code>http://api.as3gamegears.com/1.0/items.xml</code><br />
-	<code>http://api.as3gamegears.com/1.0/items.json</code><br />
-	<code>http://api.as3gamegears.com/1.0/items</code> (defaults to <code>JSON</code>)
-</p>
+<p>Lists the licenses used by the tools in the site. You can get information about an specific license using its <code>slug</code>, which is the name of the license with spaces and punctuation signs replaced with <code>-</code> (hyphen). If no <code>slug</code> is provided, the method returns all known licenses.
+<h2>Parameters</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>slug</td>
+      <td>string</td>
+      <td>The slug of the license. E.g. <code>simplified-bsd</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Return</h2>
+<p>Requesting <a href="/1.0/licenses/simplified-bsd" target="_blank">http://api.as3gamegears.com/1.0/licenses/simplified-bsd</a> will produce the following return:</p>
+<pre>
+
+{
+  "id": 49,
+  "name": "Simplified BSD",
+  "slug": "simplified-bsd"
+}
+
+</pre>
+
+<p>Requesting <a href="/1.0/licenses" target="_blank">http://api.as3gamegears.com/1.0/licenses</a> will produce the following return:</p>
+<pre>
+{
+  "34": {
+    "id": 34,
+    "name": "AGPL3",
+    "slug": "agpl3"
+  },
+  "35": {
+    "id": 35,
+    "name": "Apache License 2.0",
+    "slug": "apache-license-2-0"
+  },
+  
+  (...)
+  
+  "52": {
+    "id": 52,
+    "name": "zlib",
+    "slug": "zlib"
+  }
+}
+</pre>
