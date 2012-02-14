@@ -60,6 +60,10 @@ section {
 	margin-bottom: 25px;
 }
 
+.param-type {
+	font-style: italic; 
+}
+
 /* Nice GitHub code highlight :) */
 pre,
 code {

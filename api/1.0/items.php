@@ -1,14 +1,15 @@
 <?php
 class Items {
-	public function index($category="", $license="", $page=0, $size=50) {
+	// TODO: paginate BOTH results
+	public function index($category="", $license="", $page=0, $pagesize=50) {
 				
 		$aRet 			= new stdClass();
 		$aItems			= null;
 
 		if(empty($category)) {
-			$aItems 		= Db::findItems($page, $size, $aRet->total);
+			$aItems 		= Db::findItems($page, $pagesize, $aRet->total);
 			$aRet->page 	= (int)$page;
-			$aRet->pagesize	= (int)$size;
+			$aRet->pagesize	= (int)$pagesize;
 			
 		} else {
 			if(($aCategory = Db::getCategoryBySlug($category)) == null) {

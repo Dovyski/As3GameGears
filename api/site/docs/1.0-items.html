@@ -1,7 +1,88 @@
-<p>This is a placeholder <code>1.0</code>. Below you can find a list of all available methods. The term <code>slug</code> refers to the "non-spaced" version of a name. E.g. a category named <code>Augmented Reality</code> has as its slug <code>augmented-reality</code>. Every item, category and license on the site are indexed by their slug.</p>
-<p>
-	The API accepts different return types, such as <code>JSON</code> and <code>XML</code>. In order to specify a return type, use the syntax <code>/method.RETURN_TYPE/</code>. If no return type is specified, the default is <code>JSON</code>. E.g: <br /><br />
-	<code>http://api.as3gamegears.com/1.0/items.xml</code><br />
-	<code>http://api.as3gamegears.com/1.0/items.json</code><br />
-	<code>http://api.as3gamegears.com/1.0/items</code> (defaults to <code>JSON</code>)
-</p>
+<p>Gets a set of items. The returned set can be quit big, so it is paginated.
+<h2>Parameters</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>category</td>
+      <td class="param-type">string</td>
+      <td>The slug of a category. If this param is set, the method will return the items from that specific category. If no category is provided, the method returns all known items.</td>
+    </tr>
+    <tr>
+      <td>license</td>
+      <td class="param-type">string</td>
+      <td>The slug of a license. If this param is set, the resulting set is filted to contain items with the provided license only. If no license is provided, no license filtering is performed.</td>
+    </tr>
+    <tr>
+      <td>page</td>
+      <td class="param-type">int</td>
+      <td>Number of the page to be returned. The result is paginated accoring to <code>pagesize</code>. If this param is not set, the default value <code>0</code> (first page) will be used.</td>
+    </tr>
+    <tr>
+      <td>pagesize</td>
+      <td class="param-type">int</td>
+      <td>The amount of items a returned page must have. If this param is not set, the default value <code>50</code> will be used.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Return</h2>
+<p>Requesting <a href="/1.0/items/engines" target="_blank">http://api.as3gamegears.com/1.0/items/engines</a> will produce the following return:</p>
+<pre>
+
+{
+  "total": "18",
+  "page": 0,
+  "pagesize": 50,
+  "category": "engines",
+  "items": [
+    {
+	  "id": 20,
+	  "name": "Flixel",
+	  "description": "Flixel is collection of AS3 (...)",
+	  "excerpt": "Flixel is collection of AS3 files that helps organize, automate, and optimize Flash games.",
+	  "sample": "package { import org.flixel.*; (...)",
+	  "license": [
+	    {
+	      "id": 46,
+	      "name": "MIT",
+	      "slug": "mit"
+	    }
+	  ],
+	  "site": "http:\/\/flixel.org",
+	  "repository": "git:\/\/github.com\/AdamAtomic\/flixel.git",
+	  "twitter": "flixation",
+	  "stats": "flixel"
+	},
+	
+	(...)
+	
+    {
+      "id": 65,
+      "name": "PixelBlitz",
+      "description": "PixelBlitz Engine is a game framework for Actionscript3 created by (...)",
+      "excerpt": "PixelBlitz Engine is a game framework for Actionscript3 (...)",
+      "sample": "",
+      "license": [
+        {
+          "id": 46,
+          "name": "MIT",
+          "slug": "mit"
+        }
+      ],
+      "site": "http:\/\/code.google.com\/p\/pixelblitz",
+      "repository": "http:\/\/pixelblitz.googlecode.com\/svn\/trunk\/",
+      "twitter": "",
+      "stats": "pixelblitz"
+    }
+  ]
+}
+
+</pre>
