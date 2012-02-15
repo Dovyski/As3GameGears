@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>As3GameGears API Usage</title>
-    <meta name="title" content="As3GameGears API Usage">    
+    <meta name="title" content="As3GameGears API">    
     <meta name="description" content="Usage information for As3GameGears API">
     <meta name="author" content="Fernando Bevilacqua">
 
@@ -27,10 +27,10 @@
     <link rel="apple-touch-icon" sizes="114x114" href="img/ico/agg-apple-114x114.png">
     
 	<script type="text/javascript">
-	
 	  var _gaq = _gaq || [];
-	  //_gaq.push(['_setAccount', 'UA-10567379-5']);
-	  //_gaq.push(['_trackPageview']);
+	  _gaq.push(['_setAccount', 'UA-10567379-3']);
+	  _gaq.push(['_setDomainName', 'as3gamegears.com']);
+	  _gaq.push(['_trackPageview']);
 	
 	  (function() {
 	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
