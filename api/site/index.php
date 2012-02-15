@@ -111,7 +111,7 @@
 			$aVersion 	= isset($_GET['version']) && in_array($_GET['version'], $aVersions) ? $_GET['version'] : '';
 			$aMethod 	= isset($_GET['method']) ? strtolower($_GET['method']) : '';
 			$aMethod 	= in_array($aMethod, $aMethods) ? $aMethod : '';
-			$aFile		= dirname(__FILE__) . './docs/' . $aVersion .'-'. $aMethod . '.html';
+			$aFile		= dirname(__FILE__) . '/docs/' . $aVersion .'-'. $aMethod . '.html';
 			
 			if(!empty($aMethod)) {
 	?>
@@ -124,11 +124,8 @@
 						<div class="row">
 							<div class="span16">
 								<?php 
-									$aContent = @file_get_contents($aFile);
-									if($aContent !== false) {
-										echo $aContent;
-										
-									} else {
+									$aContent = @include $aFile;
+									if(!$aContent) {
 										echo 'Oops, no description available for this method now. Sorry!'; 
 									}
 								?>

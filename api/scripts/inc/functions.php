@@ -12,7 +12,11 @@ define('WP_PREFIX', 'wp_');
 global $gDbConfig;
 
 function printCommandLineHelp() {
-	echo "Usage...\n";	
+	echo "Usage:\n";
+	echo "  sync.php -o <origin> -d <dest>\n\n\n";
+	echo "Params:\n";
+	echo "  <origin> source db info in the format user:passwd@host/database_name.\n";	
+	echo "  <dest>   destination db info in the format user:passwd@host/database_name.\n";
 }
 
 function parseCommandLineParams() {
@@ -230,7 +234,7 @@ function createNewTables() {
 	$aTables = array('categories', 'items', 'licenses');
 	
 	foreach($aTables as $aTable) {
-		dbQuery("CREATE TABLE IF NOT EXISTS ".$aTable." (`id` int(11) NOT NULL) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci");
+		dbQuery("CREATE TABLE IF NOT EXISTS ".$aTable." (`id` int(11) NOT NULL) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci", 1);
 	}
 	
 	// Create the tables we will store the new data.
