@@ -1,4 +1,4 @@
-<p>Gets a set of items. The returned set can be quit big, so it is paginated.
+<p>Gets a set of items. The returned set can be quite big, so it is paginated.
 <h2>Parameters</h2>
 
 <table class="table table-striped">
@@ -18,12 +18,12 @@
     <tr>
       <td>license</td>
       <td class="param-type">string</td>
-      <td>The slug of a license. If this param is set, the resulting set is filted to contain items with the provided license only. If no license is provided, no license filtering is performed.</td>
+      <td>The slug of a license. If this param is set, the resulting set is filted to contain items with the provided license only. If no license is provided, the filtering is not performed.</td>
     </tr>
     <tr>
       <td>page</td>
       <td class="param-type">int</td>
-      <td>Number of the page to be returned. The result is paginated accoring to <code>pagesize</code>. If this param is not set, the default value <code>0</code> (first page) will be used.</td>
+      <td>Number of the page to be returned. If this param is not set, the default value <code>0</code> (first page) will be used.</td>
     </tr>
     <tr>
       <td>pagesize</td>
@@ -44,23 +44,23 @@
   "category": "engines",
   "items": [
     {
-	  "id": 20,
-	  "name": "Flixel",
-	  "description": "Flixel is collection of AS3 (...)",
-	  "excerpt": "Flixel is collection of AS3 files that helps organize, automate, and optimize Flash games.",
-	  "sample": "package { import org.flixel.*; (...)",
-	  "license": [
+	"id": 20,
+	"name": "Flixel",
+	"description": "Flixel is collection of AS3 (...)",
+	"excerpt": "Flixel is collection of AS3 files that helps organize, automate, and optimize Flash games.",
+	"sample": "package { import org.flixel.*; (...)",
+	"license": [
 	    {
 	      "id": 46,
 	      "name": "MIT",
 	      "slug": "mit"
 	    }
 	  ],
-	  "site": "http:\/\/flixel.org",
-	  "repository": "git:\/\/github.com\/AdamAtomic\/flixel.git",
-	  "twitter": "flixation",
-	  "stats": "flixel"
-	},
+	"site": "http:\/\/flixel.org",
+	"repository": "git:\/\/github.com\/AdamAtomic\/flixel.git",
+	"twitter": "flixation",
+	"stats": "flixel"
+    },
 	
 	(...)
 	
