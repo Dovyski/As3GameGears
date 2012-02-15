@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -91,7 +90,7 @@
 					    <p class="method-link"><a href="./item">/item</a> - get information about a specific item.</p>
 					    
 					    <h2>Search</h2>
-					    <p class="method-link"><a href="./search" target="_blank">/search</a> - search for items using an arbitrary text query.</p>
+					    <p class="method-link"><a href="./search">/search</a> - search for items using an arbitrary text query.</p>
 					    
 					    <h2>Extra</h2>
 					    <p class="method-link"><a href="./categories">/categories</a> - list all categories.</p>
