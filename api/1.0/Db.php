@@ -94,15 +94,22 @@ class Db {
 		return $aRet;
 	}
 
-	public static function findItems($thePage, $thePageSize, & $theTotal) {
+	public static function findItems($theCategoryId, $theLicenseId, $thePage, $thePageSize, & $theTotal) {
 		$thePage		= (int)$thePage;
 		$thePageSize	= (int)$thePageSize;
 		$aRet 	 		= array();
 		
-		$aResult 		= self::execute("SELECT COUNT(*) AS total FROM ".self::TABLE_ITEMS." WHERE 1");
+		$aCatFilter		= empty($theCategoryId) ? "" : "(category = ".(int)$theCategoryId." OR category2 = ".(int)$theCategoryId.")";
+		$aLicFilter		= empty($theLicenseId)  ? "" : "(license = ".(int)$theLicenseId." OR license2 = ".(int)$theLicenseId.")";
+		
+		$aLicFilter		= $aCatFilter != "" && $aLicFilter != "" ? " AND " . $aLicFilter : "";
+		$aWhere			= $aCatFilter == "" && $aLicFilter == "" ? "1" : $aCatFilter." ".$aLicFilter;   
+		
+		$aResult 		= self::execute("SELECT COUNT(*) AS total FROM ".self::TABLE_ITEMS." WHERE ".$aWhere);
 		$aCount			= self::fetchAssoc($aResult);
 		$theTotal		= $aCount['total'];
-		$aResult 		= self::execute("SELECT * FROM ".self::TABLE_ITEMS." WHERE 1 ORDER BY id DESC LIMIT " . ($thePage * $thePageSize) . "," . $thePageSize);
+
+		$aResult 		= self::execute("SELECT * FROM ".self::TABLE_ITEMS." WHERE ".$aWhere." ORDER BY id DESC LIMIT " . ($thePage * $thePageSize) . "," . $thePageSize);
 	
 		if(self::numRows($aResult) > 0) {
 			while($aRow = self::fetchAssoc($aResult)) {
