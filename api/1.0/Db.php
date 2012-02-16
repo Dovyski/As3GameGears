@@ -3,6 +3,7 @@ class Db {
 	const TABLE_ITEMS 		= "items"; 
 	const TABLE_CATEGORIES 	= "categories";
 	const TABLE_LICENSES 	= "licenses";
+	const TABLE_LOGS 		= "logs";
 	
 	private static $mConnection = null;	
 	
@@ -21,7 +22,7 @@ class Db {
 	private static function connect() {
 		// TODO: get these from config file or equivalent.
 		self::$mConnection = mysql_connect("localhost", "root", "") or self::error();
-		mysql_select_db("api_as3gamegears2") or self::error();
+		mysql_select_db("api_as3gamegears") or self::error();
 		mysql_set_charset ( "utf8", self::$mConnection);
 	}
 	
@@ -177,5 +178,9 @@ class Db {
 		}
 		
 		return $aRet;
+	}
+	
+	public static function trackRequest() {
+		self::execute("INSERT INTO ".self::TABLE_LOGS." (ip, date, user_agent, uri) VALUES ('".addslashes($_SERVER['REMOTE_ADDR'])."', ".time().", '".addslashes($_SERVER['HTTP_USER_AGENT'])."', '".addslashes($_SERVER['REQUEST_URI'])."')");
 	}
 }

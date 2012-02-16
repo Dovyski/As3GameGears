@@ -238,6 +238,14 @@ function createNewTables() {
 	}
 	
 	// Create the tables we will store the new data.
+	dbQuery("CREATE TABLE IF NOT EXISTS `logs` (
+					  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+					  `ip` varchar(16) CHARACTER SET utf8 NOT NULL,
+					  `date` int(11) NOT NULL,
+					  `user_agent` varchar(255) CHARACTER SET utf8 NOT NULL,
+					  `uri` varchar(255) CHARACTER SET utf8 NOT NULL
+					) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci", 1);
+	
 	dbQuery("
 			CREATE TABLE IF NOT EXISTS `categories2` (
 			  `id` int(11) NOT NULL,

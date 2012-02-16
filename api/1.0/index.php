@@ -14,6 +14,8 @@ require_once dirname(__FILE__).'/Items.php';
 require_once dirname(__FILE__).'/Licenses.php';
 require_once dirname(__FILE__).'/Search.php';
 
+Db::trackRequest();
+
 spl_autoload_register('spl_autoload');
 
 $r = new Restler();
@@ -26,3 +28,5 @@ $r->addAPIClass('Licenses');
 $r->addAPIClass('Search');
 
 $r->handle();
+
+?>
