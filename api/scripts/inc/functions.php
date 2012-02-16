@@ -6,17 +6,15 @@
 
 require_once dirname(__FILE__).'/../../1.0/Db.php';
 
-// TODO: use an INI file or something
-define('WP_PREFIX', 'wp_');
-
 global $gDbConfig;
 
 function printCommandLineHelp() {
 	echo "Usage:\n";
-	echo "  sync.php -o <origin> -d <dest>\n\n\n";
+	echo "  sync.php -o <origin> -d <dest> -p <wp-prefix>\n\n\n";
 	echo "Params:\n";
-	echo "  <origin> source db info in the format user:passwd@host/database_name.\n";	
-	echo "  <dest>   destination db info in the format user:passwd@host/database_name.\n";
+	echo "  <origin>     source db info in the format user:passwd@host/database_name.\n";	
+	echo "  <dest>       destination db info in the format user:passwd@host/database_name.\n";
+	echo "  <wp-prefix>  prefix for Wordpress tables. Default is \"wp_\"\n";
 }
 
 function parseCommandLineParams() {
@@ -26,7 +24,8 @@ function parseCommandLineParams() {
 	
 	$aParams = array(
 		'-o' => '',
-		'-d' => ''
+		'-d' => '',
+		'-p' => 'wp_'
 	);
 	
 	for($i = 0; $i < $argc; $i++) {
@@ -44,7 +43,11 @@ function parseCommandLineParams() {
 		}
 	}
 	
+	define('WP_PREFIX', $aParams['-p']);
+	
 	foreach($aParams as $aKey => $aValue) {
+		if($aKey != '-o' && $aKey != '-d') continue;
+		
 		$aTemp 		= array();
 		$aTarget 	= $aKey == '-o' ? 'source' : 'destination'; 
 		 
