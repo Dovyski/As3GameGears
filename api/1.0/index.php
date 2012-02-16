@@ -1,11 +1,11 @@
 <?php
 /**
- * api.as3gamegears.com
- * 
+ * api.as3gamegears.com 
  */
 
 require_once './restler/restler.php';
 
+require_once dirname(__FILE__).'/config.php';
 require_once dirname(__FILE__).'/Utils.php';
 require_once dirname(__FILE__).'/Db.php';
 require_once dirname(__FILE__).'/Categories.php';

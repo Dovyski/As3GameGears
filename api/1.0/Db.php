@@ -20,10 +20,9 @@ class Db {
 	}
 	
 	private static function connect() {
-		// TODO: get these from config file or equivalent.
-		self::$mConnection = mysql_connect("localhost", "root", "") or self::error();
-		mysql_select_db("api_as3gamegears") or self::error();
-		mysql_set_charset ( "utf8", self::$mConnection);
+		self::$mConnection = mysql_connect(DB_HOST, DB_USER, DB_PASSWD) or self::error();
+		mysql_select_db(DB_NAME) or self::error();
+		mysql_set_charset("utf8", self::$mConnection);
 	}
 	
 	private static function query($theSql) {
