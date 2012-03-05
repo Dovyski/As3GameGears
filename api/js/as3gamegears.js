@@ -23,7 +23,7 @@
  * IN THE SOFTWARE.
  */
 $(function() {
-	$("[data-agg=item]").each(function(index) {
+	$("[rel=as3gamegears]").each(function(index) {
 	    $(this).popover({title: "", trigger: "manual", content: function() {return "Loading..."} });
 	    
    		$(this).hover(
@@ -36,7 +36,7 @@ $(function() {
 				);
 				
 	        	$.ajax({
-	    			url: "http://api-dev.as3gamegears.com/1.0/item/Flixel",
+	    			url: "http://api-dev.as3gamegears.com/1.0/item/" + $(this).data('agg'),
 	    			context: document.body,		    		    
 	    			success: function(data){
 						$(".as3gg-popover h3").html(data.name);
