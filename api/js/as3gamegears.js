@@ -24,19 +24,21 @@
  */
 $(function() {
 	$("[rel=as3gamegears]").each(function(index) {
-	    $(this).popover({title: "", trigger: "manual", content: function() {return "Loading..."} });
+		var aTarget = $(this);
+		var aItem 	= aTarget.data('agg-item') == null ? aTarget.html() : aTarget.data('agg-item');
+
+		aTarget.popover({title: "", trigger: "manual", content: function() {return "Loading..."} });
 	    
-		var aItem = $(this).data('agg-item') == null ? $(this).html() : $(this).data('agg-item');
-	    
-   		$(this).hover(
+		aTarget.hover(
 			function () {
+				// Fadeout any active tooltip then show
+				// the current hover'd tooltip.
 				$(".as3gg-popover").fadeOut();
-				$(this).popover('show');
-				
-				$(".as3gg-popover").hover(
-					function() { },
-					function() { $(this).fadeOut('fast'); }
-				);
+				aTarget.popover('show');
+
+				// While we load the content, display a loading message.
+				$(".as3gg-popover").find("h3").html('Loading');
+				$(".as3gg-popover").find("p").html('<img title="Loading..." src="data:image/gif;base64,R0lGODlhEAALAPQAAP///wAAANra2tDQ0Orq6gYGBgAAAC4uLoKCgmBgYLq6uiIiIkpKSoqKimRkZL6+viYmJgQEBE5OTubm5tjY2PT09Dg4ONzc3PLy8ra2tqCgoMrKyu7u7gAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCwAAACwAAAAAEAALAAAFLSAgjmRpnqSgCuLKAq5AEIM4zDVw03ve27ifDgfkEYe04kDIDC5zrtYKRa2WQgAh+QQJCwAAACwAAAAAEAALAAAFJGBhGAVgnqhpHIeRvsDawqns0qeN5+y967tYLyicBYE7EYkYAgAh+QQJCwAAACwAAAAAEAALAAAFNiAgjothLOOIJAkiGgxjpGKiKMkbz7SN6zIawJcDwIK9W/HISxGBzdHTuBNOmcJVCyoUlk7CEAAh+QQJCwAAACwAAAAAEAALAAAFNSAgjqQIRRFUAo3jNGIkSdHqPI8Tz3V55zuaDacDyIQ+YrBH+hWPzJFzOQQaeavWi7oqnVIhACH5BAkLAAAALAAAAAAQAAsAAAUyICCOZGme1rJY5kRRk7hI0mJSVUXJtF3iOl7tltsBZsNfUegjAY3I5sgFY55KqdX1GgIAIfkECQsAAAAsAAAAABAACwAABTcgII5kaZ4kcV2EqLJipmnZhWGXaOOitm2aXQ4g7P2Ct2ER4AMul00kj5g0Al8tADY2y6C+4FIIACH5BAkLAAAALAAAAAAQAAsAAAUvICCOZGme5ERRk6iy7qpyHCVStA3gNa/7txxwlwv2isSacYUc+l4tADQGQ1mvpBAAIfkECQsAAAAsAAAAABAACwAABS8gII5kaZ7kRFGTqLLuqnIcJVK0DeA1r/u3HHCXC/aKxJpxhRz6Xi0ANAZDWa+kEAA7AAAAAAAAAAAA" />');
 				
 	        	$.ajax({
 	    			url: "http://api-dev.as3gamegears.com/1.0/item/" + aItem,
@@ -73,8 +75,14 @@ $(function() {
 						
 	    				aContent += '</div>';
 	    				
-						$(".as3gg-popover h3").html(data.name);
-						$(".as3gg-popover p").html(aContent);
+						$('.as3gg-popover h3').html(data.name);
+						$('.as3gg-popover p').html(aContent);
+						aTarget.popover('show');
+						
+						$('.as3gg-popover').hover(
+							function() { $(this).fadeIn(); },
+							function() { $(this).fadeOut(); }
+						);
 	    			},
 	    			error: function() {
 	    				// TODO: show loading error
