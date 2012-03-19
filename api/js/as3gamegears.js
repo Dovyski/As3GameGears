@@ -26,8 +26,11 @@ $(function() {
 	$("[rel=as3gamegears]").each(function(index) {
 	    $(this).popover({title: "", trigger: "manual", content: function() {return "Loading..."} });
 	    
+		var aItem = $(this).data('agg-item') == null ? $(this).html() : $(this).data('agg-item');
+	    
    		$(this).hover(
 			function () {
+				$(".as3gg-popover").fadeOut();
 				$(this).popover('show');
 				
 				$(".as3gg-popover").hover(
@@ -36,7 +39,7 @@ $(function() {
 				);
 				
 	        	$.ajax({
-	    			url: "http://api-dev.as3gamegears.com/1.0/item/" + $(this).data('agg-item'),
+	    			url: "http://api-dev.as3gamegears.com/1.0/item/" + aItem,
 	    			context: document.body,		    		    
 	    			success: function(data){
 	    				var aContent = '', aLicenses = '';
