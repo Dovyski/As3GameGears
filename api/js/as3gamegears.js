@@ -23,6 +23,8 @@
  * IN THE SOFTWARE.
  */
 $(function() {
+	aggAjax = null;
+	
 	$("[rel=as3gamegears]").each(function(index) {
 		var aTarget = $(this);
 		var aItem 	= aTarget.data('agg-item') == null ? aTarget.html() : aTarget.data('agg-item');
@@ -31,16 +33,39 @@ $(function() {
 	    
 		aTarget.hover(
 			function () {
-				// Fadeout any active tooltip then show
-				// the current hover'd tooltip.
-				$(".as3gg-popover").fadeOut();
+				// Fadeout any active tooltip
+				$(".as3gg-popover").fadeOut('fast');
+				
+				// Show the tooltip for the current target
 				aTarget.popover('show');
 
-				// While we load the content, display a loading message.
+				// If target already has any loaded content,
+				// there is nothing else to do.
+				var aLoadedData = aTarget.data('agg-loaded');
+				
+				if(aLoadedData != null && aLoadedData != '') {
+					console.log(aLoadedData);
+					$('.as3gg-popover').html(aLoadedData).hover(
+						function() {},
+						function() { $(this).fadeOut(); }
+					);
+					return;
+				}				
+				
+				// Ok, the current target never displayed any tooltip.
+				// Let's load some nice content. While we load it,
+				// display a loading message.
 				$(".as3gg-popover").find("h3").html('Loading');
 				$(".as3gg-popover").find("p").html('<img title="Loading..." src="data:image/gif;base64,R0lGODlhEAALAPQAAP///wAAANra2tDQ0Orq6gYGBgAAAC4uLoKCgmBgYLq6uiIiIkpKSoqKimRkZL6+viYmJgQEBE5OTubm5tjY2PT09Dg4ONzc3PLy8ra2tqCgoMrKyu7u7gAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCwAAACwAAAAAEAALAAAFLSAgjmRpnqSgCuLKAq5AEIM4zDVw03ve27ifDgfkEYe04kDIDC5zrtYKRa2WQgAh+QQJCwAAACwAAAAAEAALAAAFJGBhGAVgnqhpHIeRvsDawqns0qeN5+y967tYLyicBYE7EYkYAgAh+QQJCwAAACwAAAAAEAALAAAFNiAgjothLOOIJAkiGgxjpGKiKMkbz7SN6zIawJcDwIK9W/HISxGBzdHTuBNOmcJVCyoUlk7CEAAh+QQJCwAAACwAAAAAEAALAAAFNSAgjqQIRRFUAo3jNGIkSdHqPI8Tz3V55zuaDacDyIQ+YrBH+hWPzJFzOQQaeavWi7oqnVIhACH5BAkLAAAALAAAAAAQAAsAAAUyICCOZGme1rJY5kRRk7hI0mJSVUXJtF3iOl7tltsBZsNfUegjAY3I5sgFY55KqdX1GgIAIfkECQsAAAAsAAAAABAACwAABTcgII5kaZ4kcV2EqLJipmnZhWGXaOOitm2aXQ4g7P2Ct2ER4AMul00kj5g0Al8tADY2y6C+4FIIACH5BAkLAAAALAAAAAAQAAsAAAUvICCOZGme5ERRk6iy7qpyHCVStA3gNa/7txxwlwv2isSacYUc+l4tADQGQ1mvpBAAIfkECQsAAAAsAAAAABAACwAABS8gII5kaZ7kRFGTqLLuqnIcJVK0DeA1r/u3HHCXC/aKxJpxhRz6Xi0ANAZDWa+kEAA7AAAAAAAAAAAA" />');
 				
-	        	$.ajax({
+				// Allow only a single ajax call to be running at a time, so if there
+				// is a pending ajax call abort it before performing the new one.
+				if(aggAjax != null) {
+					aggAjax.abort();
+				}
+				
+				// Now fetch data from api.as3gamegears.com
+				aggAjax = $.ajax({
 	    			url: "http://api-dev.as3gamegears.com/1.0/item/" + aItem,
 	    			context: document.body,		    		    
 	    			success: function(data){
@@ -77,15 +102,29 @@ $(function() {
 	    				
 						$('.as3gg-popover h3').html(data.name);
 						$('.as3gg-popover p').html(aContent);
-						aTarget.popover('show');
 						
+						// Mark target as loaded, which means it already
+						// loaded content and doesn't need to perform any
+						// ajax calls in the future.
+						aTarget.data('agg-loaded', $('.as3gg-popover').html());
+						
+						// Call this method to correctly align the tooltip
+						// with the current target.
+						aTarget.popover('show');
+						aTarget.fadeIn('fast');
+						
+						// Ensure the tooptip will fade out if the user
+						// mouses the pointer away from it.
 						$('.as3gg-popover').hover(
-							function() { $(this).fadeIn(); },
+							function() {},
 							function() { $(this).fadeOut(); }
 						);
 	    			},
-	    			error: function() {
-	    				// TODO: show loading error
+	    			error: function(jqXHR, textStatus) {
+						if(textStatus != "abort") {
+		    				$('.as3gg-popover h3').html(aItem);
+							$('.as3gg-popover p').html('No information available. Sorry!');							
+						}
 	    			}
 	        	}); 
 			}, 
