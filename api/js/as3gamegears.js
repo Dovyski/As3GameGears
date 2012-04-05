@@ -22,7 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-$(function() {
+
+jQuery(document).ready(function($) {
 	aggAjax = null;
 	
 	$("[rel=as3gamegears]").each(function(index) {
@@ -44,7 +45,6 @@ $(function() {
 				var aLoadedData = aTarget.data('agg-loaded');
 				
 				if(aLoadedData != null && aLoadedData != '') {
-					console.log(aLoadedData);
 					$('.as3gg-popover').html(aLoadedData).hover(
 						function() {},
 						function() { $(this).fadeOut(); }
@@ -66,7 +66,7 @@ $(function() {
 				
 				// Now fetch data from api.as3gamegears.com
 				aggAjax = $.ajax({
-	    			url: "http://api-dev.as3gamegears.com/1.0/item/" + aItem,
+	    			url: "http://api.as3gamegears.com/1.0/item/" + aItem,
 	    			context: document.body,		    		    
 	    			success: function(data){
 	    				var aContent = '', aLicenses = '';

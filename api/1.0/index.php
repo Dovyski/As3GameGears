@@ -3,6 +3,8 @@
  * api.as3gamegears.com 
  */
 
+header('Access-Control-Allow-Origin: *');
+
 require_once './restler/restler.php';
 
 require_once dirname(__FILE__).'/config.php';
