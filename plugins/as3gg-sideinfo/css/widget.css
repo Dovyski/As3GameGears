@@ -1,5 +1,31 @@
 /* This stylesheet is used to style the public view of the widget. */
 
+#widget-as3gg-sideinfo {
+	text-align: center;
+	color: #000;
+	margin-bottom: 100px;
+}
+#widget-as3gg-sideinfo div img {
+	float: left;
+	margin: 0 2px 0 0;
+}
+
+#widget-as3gg-sideinfo p {	
+	text-align: left;
+	text-decoration: none;
+	color: #666;
+}
+
+#widget-as3gg-sideinfo p strong,
+#widget-as3gg-sideinfo a:link,
+#widget-as3gg-sideinfo a:hover,
+#widget-as3gg-sideinfo a:active,
+#widget-as3gg-sideinfo a:visited {
+	font-weight: bold;
+	text-align: left;
+	color: #000;
+}
+
 /* Awesome buttons from: http://www.zurb.com/blog_uploads/0000/0617/buttons-03.html */
 .awesome, .awesome:visited {
 	display: inline-block; 
