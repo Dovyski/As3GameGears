@@ -87,15 +87,16 @@ body, input, textarea, .page-title span, .pingback a.url{
 	background: #FF6C0A url(img/splash_pointer.png) no-repeat 90% 0;
 }
 #masthead{
-	width: 70%; /*640px;*/
+	width: 75%; /*640px;*/
 	margin: 0 auto;
 }
 #branding{
 }
 #site-title {
-	margin: 0px 0 9px;
+	width: 80%;
+	margin: 30px 0 9px;
 	color: #000; 
-	font: normal 90px  "Cabin Sketch", Helvetica, Arial, Sans-Serif;
+	font: normal 80px  "Cabin Sketch", Helvetica, Arial, Sans-Serif;
 	line-height: 80px;
 	padding: 10px 0 0 0;
 }
@@ -150,15 +151,18 @@ body, input, textarea, .page-title span, .pingback a.url{
 	line-height: 160%;
 }
 #content .post{	
-	padding: 0 0 0 80px;
+	padding: 0 0 0 10px;
 	margin-bottom: 30px;
 }
 #content .page{
 	padding: 0;
 }
 #content .entry-title{
-	font: normal 30px/120%  "Arvo", Helvetica, Arial, Sans-Serif;
+	/*font: normal 30px/120%  "Arvo", Helvetica, Arial, Sans-Serif;*/
+	font: bold 35px/120%  "Cabin Sketch", Helvetica, Arial, Sans-Serif;
+	line-height: 10px;	
 }
+/*
 #content .post,
 #content .tag-text{
 	background: url(img/text.png) no-repeat 0 20px;
@@ -181,6 +185,7 @@ body, input, textarea, .page-title span, .pingback a.url{
 #content .tag-video{
 	background: url(img/video.png) no-repeat 0 20px;
 }
+*/
 #content h1, #content h2, #content h3, #content h4, #content h5, #content h6{
 	font-family:   "Arvo", Helvetica, Arial, Sans-Serif;
 }
@@ -340,14 +345,37 @@ a,
 a:link,
 a:visited,
 a:active{
-	color: #6699cc;
-	text-decoration: none;
+	color: #000;
+	font-weight: normal;
+	text-decoration: underline;
 }
 a:hover{
-	color: #336699 !important;
+	color: #0c0c0c !important;
 	text-decoration: none !important;
 	text-shadow: 1px 1px 1px #ddd;
 }
+
+.entry-utility a,
+.entry-utility a:link,
+.entry-utility a:visited,
+.entry-utility a:active{
+	font-weight: normal;
+	text-decoration: none !important;
+}
+
 .clear{
 	clear: both;
+}
+
+/* Nice GitHub code highlight :) */
+pre,
+code {
+	font-family: 'Bitstream Vera Sans Mono','Courier', monospace;
+	background-color: #f8f8ff!important;
+	border:1px solid #dedede;
+	font-size:13px;
+	padding:0;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
 }

@@ -19,7 +19,7 @@ get_header(); ?>
 					<h1 class="entry-title"><?php the_title(); ?></h1>
 
 					<div class="entry-meta">
-						<?php twentyten_posted_on(); ?>
+						<?php //twentyten_posted_on(); ?>
 					</div><!-- .entry-meta -->
 
 					<div class="entry-content">
