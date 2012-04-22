@@ -152,7 +152,7 @@ body, input, textarea, .page-title span, .pingback a.url{
 }
 #content .post{	
 	padding: 0 0 0 10px;
-	margin-bottom: 30px;
+	margin-bottom: 60px;
 }
 #content .page{
 	padding: 0;
@@ -160,7 +160,8 @@ body, input, textarea, .page-title span, .pingback a.url{
 #content .entry-title{
 	/*font: normal 30px/120%  "Arvo", Helvetica, Arial, Sans-Serif;*/
 	font: bold 35px/120%  "Cabin Sketch", Helvetica, Arial, Sans-Serif;
-	line-height: 10px;	
+	line-height: 5px;
+	margin-bottom: 10px;	
 }
 /*
 #content .post,
@@ -292,14 +293,6 @@ h3#comments-title em{
 #footer-widget-area #third{
 	margin-right: 0px;
 }
-.widget-area ul ul{
-	margin-left: 0px;	
-}
-.widget-area ul ul li{
-	list-style: none;
-	border-bottom: 1px solid #ccc;
-	padding: 5px 0;
-}
 #footer .textwidget img{
 	margin: 0 10px 0 0;
 }
@@ -366,6 +359,64 @@ a:hover{
 .clear{
 	clear: both;
 }
+
+/* =Widget Areas
+-------------------------------------------------------------- */
+
+.widget-area ul ul{
+	margin-left: 0px;	
+}
+.widget-area ul ul li{
+	list-style: square;
+	/*border-bottom: 1px solid #efefef;*/
+	padding: 2px 0;
+}
+.widget_search #s { /* This keeps the search inputs in line */
+	width: 60%;
+}
+/*
+.widget_search #searchsubmit {
+	width:51px;
+	height:41px;
+	background: url("images/icons/search.png") top left no-repeat;
+	border: none;
+}*/
+.widget_search label {
+	display:none;
+}
+.widget-container {
+	margin: 0 0 18px 0;
+}
+.widget-title {
+	font: bold 30px/120%  "Cabin Sketch", Helvetica, Arial, Sans-Serif;
+	line-height: 20px;
+	margin-bottom: 15px;
+}
+.widget-area a:link,
+.widget-area a:visited {
+	text-decoration: none;
+}
+.widget-area a:active,
+.widget-area a:hover {
+	text-decoration: underline;
+}
+.widget-area .entry-meta {
+	font-size: 11px;
+}
+
+/*
+.widget-title {
+	font: bold 30px/120%  "Cabin Sketch", Helvetica, Arial, Sans-Serif;
+	line-height: 20px;
+	margin-bottom: 15px;	
+}
+*/
+/*
+.cat-item {
+	margin-top: 0;
+	font-weight: bold;	
+}
+*/
 
 /* Nice GitHub code highlight :) */
 pre,
