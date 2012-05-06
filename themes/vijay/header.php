@@ -61,7 +61,7 @@
 <body <?php body_class(); ?>>
 <div id="outer-wrapper">
 <div id="wrapper" class="hfeed">
-	<div id="header">
+	<div id="header" <?php vijay_header_class(); ?>>
 		<div id="masthead">
 
 			<div id="access" role="navigation">
@@ -83,6 +83,7 @@
 <div class="clear"></div>
 			<div id="branding" role="banner">
 			<?php
+			
 				if(is_category()) {
 					$aCat = get_category( get_query_var( 'cat' ) );
 
@@ -92,6 +93,18 @@
 						echo '</span>';
 					echo '</div>';
 					echo '<div id="site-description">'.$aCat->description .'</div>';
+					
+				} else if(is_single()){
+					global $post;
+					$aCat = get_the_category($post->ID);
+					
+					//vaR_dump($aCat);
+					echo '<div id="site-title">';
+						echo '<span>';
+							echo '<a href="http://localhost/wordpress/" title="Dovyski" rel="home">'.$post->post_title.'</a>';
+						echo '</span>';
+					echo '</div>';
+					echo '<div id="site-description">'.$aCat[0]->name.'</div>';
 				} else {
 			?>			
 				<?php $heading_tag = ( is_home() || is_front_page() ) ? 'h1' : 'div'; ?>

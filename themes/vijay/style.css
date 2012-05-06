@@ -81,10 +81,18 @@ body, input, textarea, .page-title span, .pingback a.url{
 	padding: 0;
 }
 #header {
+	position: relative;
 	width: 100%;
 	height: 300px;
 	margin: 0; 
-	background: #FF6C0A url(img/splash_pointer.png) no-repeat 90% 0;
+	background: #ff6c0a url(img/splash_agg_small.png) no-repeat 90% -60px;
+	border-bottom: 3px #000 solid;
+}
+.header-item {
+	background: #ff6c0a url(img/splash_info_small.png) no-repeat 90% -60px !important;
+}
+.header-category {
+	background-color: #cfcfcf !important;
 }
 #masthead{
 	width: 75%; /*640px;*/
@@ -108,8 +116,9 @@ body, input, textarea, .page-title span, .pingback a.url{
 	color: #000;
 }
 #access{
+	float: left;
 	background-color: transparent;
-	width: 450px;
+	width: 300px;
 }
 #access .menu-header, div.menu{
 	margin-left: 0px;
@@ -138,14 +147,22 @@ body, input, textarea, .page-title span, .pingback a.url{
 	color: #111;
 }
 .header-search{
-	position: absolute;
-	right: 10px;
-	top: 10px;
-	padding: 5px 0 0 0;
+	/*position: absolute;
+	right: -30%;*/
+	float: left;
+	padding: 1px 0 1px 0;
+	/*background: #000;*/
+	width: 300px;
+	height: 28px;
 }
 .header-search input{
 	vertical-align: middle;
 }
+
+.search-text {
+	width: 250px;
+}
+
 #content, #content input, #content textarea{
 	font-size: 16px;
 	line-height: 160%;
@@ -157,7 +174,7 @@ body, input, textarea, .page-title span, .pingback a.url{
 #content .page{
 	padding: 0;
 }
-#content .entry-title{
+#content .entry-title, #content .entry-title a {
 	/*font: normal 30px/120%  "Arvo", Helvetica, Arial, Sans-Serif;*/
 	font: bold 35px/120%  "Cabin Sketch", Helvetica, Arial, Sans-Serif;
 	line-height: 5px;
@@ -227,7 +244,8 @@ blockquote{
 	color: #999 !important;
 }
 .entry-utility{
-	line-height: 160%;
+	/*line-height: 160%;*/
+	margin-top: 20px;
 }
 .meta-prep,
 .entry-meta .meta-sep,

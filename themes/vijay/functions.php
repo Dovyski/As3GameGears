@@ -28,6 +28,24 @@ function twentyten_posted_on() {
 }
 endif;
 
+if ( ! function_exists( 'vijay_header_class' ) ) :
+/**
+ * 
+ *
+ * @since Twenty Ten 1.0
+ */
+function vijay_header_class() {
+	$aClass = '';
+	
+	if(is_category()) {
+		$aClass = 'header-category';
+	} else if(is_single()) {
+		$aClass = 'header-item';
+	}
+	echo 'class="'.$aClass.'"';
+}
+endif;
+
 if ( ! function_exists( 'twentyten_posted_in' ) ) :
 /**
  * Prints HTML with meta information for the current post (category, tags and permalink).
