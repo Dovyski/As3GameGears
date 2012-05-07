@@ -83,38 +83,16 @@
 <div class="clear"></div>
 			<div id="branding" role="banner">
 			<?php
-			
-				if(is_category()) {
-					$aCat = get_category( get_query_var( 'cat' ) );
-
-					echo '<div id="site-title" class="site-title-category">';
+				if(vijay_has_custom_site_title()) {
+					$aInfo = vijay_get_site_title_info();
+					
+					echo '<div id="site-title" class="'.$aInfo['class'].'">';
 						echo '<span>';
-							echo $aCat->name;
+							echo $aInfo['title'];
 						echo '</span>';
 					echo '</div>';
-					echo '<div id="site-description">'.$aCat->description .'</div>';
+					echo '<div id="site-description">'.$aInfo['desc'].'</div>';
 					
-				} else if(is_single()){
-					global $post;
-					$aCat = get_the_category($post->ID);
-
-					echo '<div id="site-title">';
-						echo '<span>';
-							echo '<a href="http://localhost/wordpress/" title="Dovyski" rel="home">'.$post->post_title.'</a>';
-						echo '</span>';
-					echo '</div>';
-					//echo '<div id="site-description">'.$aCat[0]->name.'</div>';
-
-				} else if(is_page()){
-					global $post;
-					
-					echo '<h1 id="site-title">';
-					//echo '<span>';
-					//echo '<a href="http://localhost/wordpress/" title="Dovyski" rel="home">'.''.'</a>';
-					echo $post->post_title;
-					//echo '</span>';
-					echo '</h1>';
-					echo '<div id="site-description">'.$post->post_excerpt.'</div>';
 				} else {
 			?>			
 				<?php $heading_tag = ( is_home() || is_front_page() ) ? 'h1' : 'div'; ?>

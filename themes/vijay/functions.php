@@ -35,14 +35,67 @@ if ( ! function_exists( 'vijay_header_class' ) ) :
  * @since Twenty Ten 1.0
  */
 function vijay_header_class() {
+	global $post;
 	$aClass = '';
 	
 	if(is_category()) {
-		$aClass = 'header-category';
+		$aClass = 'header-bg-category';
 	} else if(is_single()) {
-		$aClass = 'header-item';
+		$aClass = 'header-bg-item';
+	} else if(is_page()) {
+		$aClass = 'header-bg-' . $post->post_name;
+	} else if(is_search()) {
+		$aClass = 'header-bg-search';
 	}
+	
 	echo 'class="'.$aClass.'"';
+}
+endif;
+
+
+if ( ! function_exists( 'vijay_has_custom_site_title' ) ) :
+/**
+ *
+*
+* @since Twenty Ten 1.0
+*/
+function vijay_has_custom_site_title() {
+	return is_category() || is_single() || is_page() || is_search() || is_home();
+}
+endif;
+
+
+if ( ! function_exists( 'vijay_get_site_title_info' ) ) :
+/**
+ *
+*
+* @since Twenty Ten 1.0
+*/
+function vijay_get_site_title_info() {
+	global $post;
+	$aRet = array('title' => '', 'desc' => '', 'class' => '');	
+
+	if(is_category()) {
+		$aCat 			= get_category( get_query_var( 'cat' ) );
+		$aRet['title']  = $aCat->name;
+		$aRet['desc']	= $aCat->description;
+		$aRet['class']	= 'site-title-category';
+		
+	} else if(is_single()){
+		$aRet['title']  = $post->post_title;
+	
+	} else if(is_page()){
+		$aRet['title']  = $post->post_title;
+		$aRet['desc']	= $post->post_excerpt;
+		
+	} else if(is_search()) {
+		$aRet['title']  = 'Search';
+		
+	} else if(is_home()) {
+		$aRet['title']  = 'Blog';
+	}
+	
+	return $aRet;
 }
 endif;
 

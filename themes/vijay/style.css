@@ -94,10 +94,10 @@ body, input, textarea, .page-title span, .pingback a.url{
 	background: #9ff0000;
 }
 
-.header-item {
-	background: #ff6c0a url(img/splash_info_alpha.png) no-repeat 90% -120px !important;
+.header-bg-item {
+	background: #ff6c0a url(img/splash_info_alpha.png) no-repeat 95% -120px !important;
 }
-.header-category {
+.header-bg-category {
 	background-color: #cfcfcf !important;
 }
 #masthead{
@@ -110,13 +110,13 @@ body, input, textarea, .page-title span, .pingback a.url{
 }
 #site-title {
 	width: 80%;
-	margin: 80px 0 9px;
+	margin: 85px 0 9px;
 	color: #000; 
 	font: bold 80px  "Cabin Sketch", Helvetica, Arial, Sans-Serif;
 	line-height: 80px;
 }
 .site-title-category {
-	margin: 25px 0 9px !important;
+	margin: 30px 0 9px !important;
 }
 #site-description{
 	font: normal 25px  "Cabin Sketch", Helvetica, Arial, Sans-Serif;
@@ -164,7 +164,7 @@ body, input, textarea, .page-title span, .pingback a.url{
 	text-align: right;
 	padding: 10px 0 1px 0;
 	/*background: #000;*/
-	width: 200px;
+	width: 250px;
 	height: 28px;
 }
 .header-search input{
@@ -172,7 +172,7 @@ body, input, textarea, .page-title span, .pingback a.url{
 }
 
 .search-text {
-	width: 150px;
+	width: 200px;
 }
 
 .entry-content {
@@ -235,7 +235,6 @@ body, input, textarea, .page-title span, .pingback a.url{
 #content h1.page-title,
 #content h1.page-title span{
 	font: normal 16px  "Arvo", Helvetica, Arial, Sans-Serif !important;
-	border-top: 1px solid #ccc;
 	padding: 20px 0 0 0;
 }
 #content img,
