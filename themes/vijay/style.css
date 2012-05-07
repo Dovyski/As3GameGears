@@ -81,32 +81,42 @@ body, input, textarea, .page-title span, .pingback a.url{
 	padding: 0;
 }
 #header {
-	position: relative;
 	width: 100%;
-	height: 300px;
+	height: 250px;
 	margin: 0; 
-	background: #ff6c0a url(img/splash_agg_small.png) no-repeat 90% -60px;
+	background: #ff6c0a url(img/splash_agg_alpha.png) no-repeat 100% -150px;
 	border-bottom: 3px #000 solid;
 }
+#logo {
+	float: left;
+	width: 350px;
+	height: 70px;
+	background: #9ff0000;
+}
+
 .header-item {
-	background: #ff6c0a url(img/splash_info_small.png) no-repeat 90% -60px !important;
+	background: #ff6c0a url(img/splash_info_alpha.png) no-repeat 90% -120px !important;
 }
 .header-category {
 	background-color: #cfcfcf !important;
 }
 #masthead{
-	width: 75%; /*640px;*/
+	position: relative;
+	top: -25px;
+	width: 80%; /*640px;*/
 	margin: 0 auto;
 }
 #branding{
 }
 #site-title {
 	width: 80%;
-	margin: 30px 0 9px;
+	margin: 80px 0 9px;
 	color: #000; 
-	font: normal 80px  "Cabin Sketch", Helvetica, Arial, Sans-Serif;
+	font: bold 80px  "Cabin Sketch", Helvetica, Arial, Sans-Serif;
 	line-height: 80px;
-	padding: 10px 0 0 0;
+}
+.site-title-category {
+	margin: 25px 0 9px !important;
 }
 #site-description{
 	font: normal 25px  "Cabin Sketch", Helvetica, Arial, Sans-Serif;
@@ -117,8 +127,9 @@ body, input, textarea, .page-title span, .pingback a.url{
 }
 #access{
 	float: left;
+	padding-top: 10px;
 	background-color: transparent;
-	width: 300px;
+	width: 230px;
 }
 #access .menu-header, div.menu{
 	margin-left: 0px;
@@ -149,10 +160,11 @@ body, input, textarea, .page-title span, .pingback a.url{
 .header-search{
 	/*position: absolute;
 	right: -30%;*/
-	float: left;
-	padding: 1px 0 1px 0;
+	float: right;
+	text-align: right;
+	padding: 10px 0 1px 0;
 	/*background: #000;*/
-	width: 300px;
+	width: 200px;
 	height: 28px;
 }
 .header-search input{
@@ -160,7 +172,11 @@ body, input, textarea, .page-title span, .pingback a.url{
 }
 
 .search-text {
-	width: 250px;
+	width: 150px;
+}
+
+.entry-content {
+	padding-top: 0;
 }
 
 #content, #content input, #content textarea{
@@ -168,17 +184,18 @@ body, input, textarea, .page-title span, .pingback a.url{
 	line-height: 160%;
 }
 #content .post{	
-	padding: 0 0 0 10px;
-	margin-bottom: 60px;
+	/*padding: 0 0 0 10px;*/
+	padding: 0;
+	margin: 0 0 60px 0 !important;
 }
 #content .page{
 	padding: 0;
 }
 #content .entry-title, #content .entry-title a {
 	/*font: normal 30px/120%  "Arvo", Helvetica, Arial, Sans-Serif;*/
-	font: bold 35px/120%  "Cabin Sketch", Helvetica, Arial, Sans-Serif;
-	line-height: 5px;
-	margin-bottom: 10px;	
+	font: bold 28px/120%  "Cabin Sketch", Helvetica, Arial, Sans-Serif;
+	line-height: 20px;
+	margin-bottom: 5px;	
 }
 /*
 #content .post,
@@ -245,7 +262,7 @@ blockquote{
 }
 .entry-utility{
 	/*line-height: 160%;*/
-	margin-top: 20px;
+	margin-top: 10px;
 }
 .meta-prep,
 .entry-meta .meta-sep,
@@ -347,7 +364,8 @@ h3#comments-title em{
 	width: auto;
 }
 #main {
-	width: 80%; /*710px*/
+	width: 83%; /*710px*/
+	padding-top: 20px;
 }
 #colophon{
 	width: 640px;
