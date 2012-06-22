@@ -184,7 +184,7 @@ class As3ggSideinfo extends WP_Widget {
 	
 	private function make_pretty_website_link($url) {
 		$return 	= '';
-		$url_limit 	= 18; 
+		$url_limit 	= 16; 
 		
 		if($url != '') {
 			$parts = explode('.', $url);
