@@ -53,5 +53,6 @@
 
 	wp_footer();
 ?>
+<script src="http://api.as3gamegears.com/js/as3gamegears.js"></script>
 </body>
 </html>

@@ -11,15 +11,40 @@
 		<div id="primary" class="widget-area" role="complementary">
 			<ul class="xoxo">
 
-<?php if ( ! is_single() ) : ?>
-			<li id=socialinv class="widget-container">
-				<p>
-					<a href="http://twitter.com/as3gamegears" target="_blank"><img src="<?php bloginfo('template_directory'); ?>/images/icons/twitter.png" border="0" width="50" height="50" title="Follow us on Twitter!" /></a>
-					<a href="<?php bloginfo('rss2_url'); ?>" target="_blank"><img src="<?php bloginfo('template_directory'); ?>/images/icons/rss.png" border="0" width="50" height="50" title="RSS feed" /></a>					
-					<a href="http://www.linkedin.com/in/fernandobevilacqua" target="_blank"><img src="<?php bloginfo('template_directory'); ?>/images/icons/linkedin.png" border="0" width="50" height="50" title="My LinkedIn profile" /></a>
-				</p>		
+<?php 
+	$aCategory 	 = get_the_category();
+	$aCategory 	 = $aCategory[0];
+	$aIsBlogPost = $aCategory->slug == 'blog';
+	
+	if ( !is_single() || $aIsBlogPost) :
+?>
+			<li id="socialinv" class="widget-container">
+				<div class="widget-as3gg-sidebar">
+					<?php if($aIsBlogPost) { ?>
+						<div>
+							<img src="<?php bloginfo('template_directory'); ?>/images/icons/post.png" border="0" width="50" height="50" title="Blog post" />
+							<p><strong>Blog post</strong><br />by <?php echo get_the_author(); ?> on <?php echo date('M d, Y', strtotime($post->post_date));?></p>
+						</div>
+					<?php } ?>
+					<div>
+						<a href="http://twitter.com/as3gamegears" target="_blank">
+							<img src="<?php bloginfo('template_directory'); ?>/images/icons/twitter.png" border="0" width="50" height="50" title="Follow us on Twitter!" />
+							<p><strong>@As3GameGears</strong><br />Follow us on Twitter!</p>
+						</a>
+					</div>
+					<div>
+						<a href="<?php bloginfo('rss2_url'); ?>" target="_blank">
+							<img src="<?php bloginfo('template_directory'); ?>/images/icons/rss.png" border="0" width="50" height="50" title="RSS feed" />
+							<p><strong>RSS</strong><br />Subscribe now!</p>
+						</a>
+					</div>
+				</div>		
 			</li>
 <?php endif; ?>
+
+<?php
+	
+?>
 
 <?php
 	/* When we call the dynamic_sidebar() function, it'll spit out

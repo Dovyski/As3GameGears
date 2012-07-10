@@ -9,7 +9,7 @@
  * @since AS3 Game Gears 1.0
  */
 ?><!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?>  prefix="og: http://ogp.me/ns#">
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <title><?php
@@ -23,9 +23,32 @@
 	?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link  href="http://fonts.googleapis.com/css?family=IM+Fell+DW+Pica|IM+Fell+English:regular" rel="stylesheet" type="text/css" >
-<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>?ver=1.7" />
+<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>?ver=1.8" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <meta name="google-site-verification" content="O6lUCx7d2YEg3kHVlg-BCeWPQxLQa5k7VBJdWTMRU8E" />
+
+<!-- SEO stuff -->
+<meta property="og:image" content="<?php bloginfo('template_directory'); ?>/images/as3gamegears.png"/>
+<meta property="og:site_name" content="As3GameGears"/>
+<meta property="og:type" content="website"/>
+<?php if ( is_single()) {
+	$aText = @explode('.', strip_tags($post->post_content), 2);
+	$aDesc = isset($aText[0]) ? $aText[0].'.' : '';
+?>
+<meta property="og:title" content="<?php echo $post->post_title;?>"/>
+<meta property="og:url" content="<?php echo get_permalink(); ?>"/>
+<meta property="og:description" content="<?php echo $aDesc; ?>"/>
+<meta name="description" content="<?php echo $aDesc; ?>" />
+<?php } else { ?>
+<meta property="og:title" content="As3GameGears"/>
+<meta property="og:url" content="<?php echo home_url('/'); ?>"/>
+<meta property="og:description" content="AS3GameGears is the right place to find tools, libraries and engines to build your game. There is no need to reinvent the wheel for every new Flash game you create, all you need is a place to search for the tools that best fit your needs."/>
+<meta name="description" content="AS3GameGears is the right place to find tools, libraries and engines to build your game. There is no need to reinvent the wheel for every new Flash game you create, all you need is a place to search for the tools that best fit your needs." />
+<?php } ?>
+<meta name="keywords" content="as3, engine, games, game, game engine, physica, graphics, tweening, isometric, 2D, 3D, engines, 2D games, 3D games, multiplayer, smartfox, particles, path-finding, path finding, profiling, adobe, flash, as3, actionscript, starling, stage3D, ane, native extension, air, ios, android" />
+<meta name="author" content="Fernando Bevilacqua" />
+<!-- /SEO stuff -->
+
 <?php
 	/* We add some JavaScript to pages with the comment form
 	 * to support sites with threaded comments (when in use).
