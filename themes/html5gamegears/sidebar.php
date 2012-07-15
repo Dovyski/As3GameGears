@@ -27,9 +27,9 @@
 						</div>
 					<?php } ?>
 					<div>
-						<a href="http://twitter.com/as3gamegears" target="_blank">
+						<a href="http://twitter.com/html5gamegears" target="_blank">
 							<img src="<?php bloginfo('template_directory'); ?>/images/icons/twitter.png" border="0" width="50" height="50" title="Follow us on Twitter!" />
-							<p><strong>@As3GameGears</strong><br />Follow us on Twitter!</p>
+							<p><strong>@Html5GameGears</strong><br />Follow us on Twitter!</p>
 						</a>
 					</div>
 					<div>

@@ -28,8 +28,8 @@
 <meta name="google-site-verification" content="O6lUCx7d2YEg3kHVlg-BCeWPQxLQa5k7VBJdWTMRU8E" />
 
 <!-- SEO stuff -->
-<meta property="og:image" content="<?php bloginfo('template_directory'); ?>/images/as3gamegears.png"/>
-<meta property="og:site_name" content="As3GameGears"/>
+<meta property="og:image" content="<?php bloginfo('template_directory'); ?>/images/html5gamegears.png"/>
+<meta property="og:site_name" content="Html5GameGears"/>
 <meta property="og:type" content="website"/>
 <?php if ( is_single()) {
 	$aText = @explode('.', strip_tags($post->post_content), 2);
@@ -40,12 +40,12 @@
 <meta property="og:description" content="<?php echo $aDesc; ?>"/>
 <meta name="description" content="<?php echo $aDesc; ?>" />
 <?php } else { ?>
-<meta property="og:title" content="As3GameGears"/>
+<meta property="og:title" content="Html5GameGears"/>
 <meta property="og:url" content="<?php echo home_url('/'); ?>"/>
-<meta property="og:description" content="AS3GameGears is the right place to find tools, libraries and engines to build your game. There is no need to reinvent the wheel for every new Flash game you create, all you need is a place to search for the tools that best fit your needs."/>
-<meta name="description" content="AS3GameGears is the right place to find tools, libraries and engines to build your game. There is no need to reinvent the wheel for every new Flash game you create, all you need is a place to search for the tools that best fit your needs." />
+<meta property="og:description" content="Html5GameGears is the right place to find tools, libraries and engines to build your HTML5 game. There is no need to reinvent the wheel for every new HTML5 game you create, all you need is a place to search for the tools that best fit your needs."/>
+<meta name="description" content="Html5GameGears is the right place to find tools, libraries and engines to build your HTML5 game. There is no need to reinvent the wheel for every new HTML5 game you create, all you need is a place to search for the tools that best fit your needs." />
 <?php } ?>
-<meta name="keywords" content="as3, engine, games, game, game engine, physica, graphics, tweening, isometric, 2D, 3D, engines, 2D games, 3D games, multiplayer, smartfox, particles, path-finding, path finding, profiling, adobe, flash, as3, actionscript, starling, stage3D, ane, native extension, air, ios, android" />
+<meta name="keywords" content="html5, html, css, javascript, js, engine, games, game, game engine, physics, graphics, tweening, isometric, 2D, 3D, engines, 2D games, 3D games, multiplayer, smartfox, particles, path-finding, path finding, profiling, canvas, webgl, ios, android" />
 <meta name="author" content="Fernando Bevilacqua" />
 <!-- /SEO stuff -->
 
