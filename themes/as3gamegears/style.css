@@ -66,7 +66,7 @@ DESCRIPTION: Two-column fixed layout with one sidebar right of content
 	width: 100%;
 }
 #content {
-	margin: 0 280px 0 20px;
+	margin: 0 260px 0 20px;
 }
 #primary,
 #secondary {
@@ -374,7 +374,7 @@ a:hover {
 }
 
 #branding.christmas {
-	background-image: url('images/main-header-christmas.png') !important;
+	background-image: url('images/main-header-christmas.png?ver=1.9') !important;
 	height: 330px;
 }
 
@@ -916,6 +916,7 @@ div.menu li {
 	line-height: 18px;
 	overflow: hidden;
 	color: #888;
+	clear:left;
 }
 .navigation a:link,
 .navigation a:visited {
@@ -1406,6 +1407,20 @@ img#wpstats {
 }
 
 
+/* As3GameGears exclusive
+-------------------------------------------------------------- */
+
+div.post {
+	float: left;
+	width: 180px;
+	height: 300px;
+	margin-right: 35px;
+	overflow: hidden;
+}
+
+#category-container {
+	clear: both;
+}
 
 /* Mobile Safari ( iPad, iPhone and iPod Touch )
 -------------------------------------------------------------- */

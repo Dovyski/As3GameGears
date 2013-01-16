@@ -23,7 +23,7 @@
 	?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link  href="http://fonts.googleapis.com/css?family=IM+Fell+DW+Pica|IM+Fell+English:regular" rel="stylesheet" type="text/css" >
-<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>?ver=1.8" />
+<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>?ver=1.9" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <meta name="google-site-verification" content="O6lUCx7d2YEg3kHVlg-BCeWPQxLQa5k7VBJdWTMRU8E" />
 
