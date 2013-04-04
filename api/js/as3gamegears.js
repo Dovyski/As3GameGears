@@ -66,67 +66,73 @@ jQuery(document).ready(function($) {
 				
 				// Now fetch data from api.as3gamegears.com
 				aggAjax = $.ajax({
-	    			url: "http://api.as3gamegears.com/1.0/item/" + aItem,
-	    			context: document.body,		    		    
-	    			success: function(data){
-	    				var aContent = '', aLicenses = '';
-	    				
-	    				aContent += '<div class="as3gg-sideinfo">';
-	    				aContent += '<p>'+data.excerpt+'</p>';
+	    			url: "http://api.as3gamegears.com/1.0/search/" + aItem,
+					dataType: "json",
+	    			context: document.body
+					
+				}).done(function(data){
+					var aContent = 'No information available. Sorry!', aLicenses = '';
+					
+					if(data.items.length != 0) {
+						aContent = '';
+						data = data.items[0];
 						
-	    				aContent += '<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBAQFBAYFBQYJBgUGCQsIBgYICwwKCgsKCgwQDAwMDAwMEAwODxAPDgwTExQUExMcGxsbHCAgICAgICAgICD/2wBDAQcHBw0MDRgQEBgaFREVGiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD/wAARCAAoADIDAREAAhEBAxEB/8QAHAAAAgIDAQEAAAAAAAAAAAAAAAcDCAEEBQIG/8QALRAAAQQBAwMDAgYDAAAAAAAAAQIDBAURAAYSBxMhFCIxFUEIFiMyM1FDYYH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AtToNedPiQY635K+LbaFuEAFayltPJXFCApaiAPhIJ0CZR+IKv3rLfoNhyfRXSZCWmF2EVxXqGx/IWg2VFjz4C3kYH3xoN1XWV/ZbNTTbzYdlXli4lqC3ET3Mslzth1+QT2CsD9yULWfGTjOgadNcRLaA3NjJdQ05y4pfbWyv2nB9qwDj/fxoN7QGgNBTG82hvKR1EtJ3UK6s1tbbgTLQWcPilx5uJIbRxrhyQiMrD6MnHg/34Og6lfv613nIn0Lm236aplssrn7mrZSI1g3Ga/T71pYPBDUpJ/yIUUZx4OdBmmno2Ht+Q/tR9PUenLhXYBBDlfWBK8ocNYS7I7hCQTIOE4/vQSs9UmLeut+o1OJ1XYx3Pp91XvyHZTUhLrDzrBiPDiGex23CAW+IzoLQbWjOxtvV7Tsl+Y4GUqMiWrm+rn7v1FDGSM40HU0BoK+70+vKf3H+bKpT1Z+WrUquYvD1CWPWjgw27lTeVISF8FA4OPjzoFTuDaryehLztHaO7gqk3aZq/TsupU0yInHhKZyvtdtXk/Kc/B850Hz3QWispm92raE26zCgwLA2U9ZIjM9yC+hvuLSPAJUk8fn74OgZ/Rqsbo6CXWbWK5ls7btxZk+wZU1wdbhvKU7DirSothtKyCt/9ySc8PGgtHAQW4UdBWXCltILhOSo4+cjx50E+gNAnN1125aKHvqVZRGpe0/pM6TFg9xZjvqK1vKQ6ElDjSuC+OUfP9/bQK6hejW3R913pzImxbAWrq2KqVLQiciT6NP6MF8FHqMABYGApQyME6CLp2nqFbTJu493d+q2jWV9g2GDGRFw8YbqH3IsRCGe48kqUVr4jz4J+2gcs6gnbir0VUKOWIcmW0bZ31GS7FLLTnJ5TZHu4nilA8f8GgaaUhKQkfAGBoM6A0Hlxtt1tTbiQttYKVoUMgg/IIPzoFdvvoZSWe0Z9Ntppqq9Q+5PEVA4MqldngjiU/xDkAfHjQcHo/0r3kmO/M33LlOuLbfhpakyXHpK2nEdhXNzPtRxHswc/f76B1w4cWHFaixWksx2UhDTSBgJSkYAGgm0BoP/2Q=="/>';
-	    				aContent += '<p>';
-	    				
-	    				for(var i = 0; i < data.license.length; i++) {
-	    					aLicenses += '<strong><a href="http://www.as3gamegears.com/tag/'+data.license[i].slug+'/">'+data.license[i].name+'</a></strong>, ';
-	    				}
-	    				aLicenses = aLicenses.substring(0, aLicenses.length - 2);
-	    				aContent += aLicenses + '<br/>License</p>';
+						aContent += '<div class="as3gg-sideinfo">';
+						aContent += '<p>'+data.excerpt+'</p>';
 						
-	    				if(data.site != '') {
-		    				aContent += '<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBAQFBAYFBQYJBgUGCQsIBgYICwwKCgsKCgwQDAwMDAwMEAwODxAPDgwTExQUExMcGxsbHCAgICAgICAgICD/2wBDAQcHBw0MDRgQEBgaFREVGiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD/wAARCAAoADIDAREAAhEBAxEB/8QAGwAAAgIDAQAAAAAAAAAAAAAAAAYFBwIDBAj/xAAvEAABBAAGAAYABQUBAAAAAAABAgMEBQAGBxESExQhIjFBYRUXMlGxFiMzNFKB/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APVOA47i4q6atkWdrKbhV8VPORJeVxQlP2f4HzgK3RrDf3t5EqMn5Ydd8U2ZQsLZfg2xDCuAk9GynuDivJvnxKvgbeeA2NapZhhU9PZ2ECNatXTyo0VqsV0vKebUsLS2l9xbTh4tkpT2hSvjAOuU84Uuaa1U6rU6npcLEuLJaWxIYeR+pp5pYCkqG+Am8AYAwFU58yhqLmfO8SXGaqnsr0XW7ArrRb/VJmK35yHEMg7ljYJbC/LzKsBAaataxWarnO0MZeU9mOUUh2V47cRoCjGaQ0E+zXoWtIPmSrc4AyFBz/ZaaRFS2KiRSxi9Or1oU/8AiCZEaW46lwcU9PLkk8eJH84B2pLnOF9UV+Zqv8OTXWEeNMJQh7xLgJ3daW2d079fpHr9Kv3GAfx5jAGAMAq3rOozLb6Muqq3EbAsLsjJ7NyFFzl1eXvtx2+MBX2kCdXPyvoPwhWXxE8MfDolJm9v6z/kKDty5b77DAc2jw1gOmdMKQZeFaUyesTvGl7fxTu/Lq2Ttvvt9YCT0Qj6lwtP6xieirRTMtPdSFeLamhIec3DgUOI+v2GAtqDIbkRG3m1BaFjdKk77Ef+4DfgDAV3mTM+dKHPrENa4v8ATV63wrJkltzrjTmm/wDXdcbPpD59SSofBA88As6Y/mrVw7nJrCKVuZl6Uvr7/Gdamp5MppbZHu1ycUgfI47HARmnV/qVV6R19hGbp1Vh7GYDDQkmYp1yWprYJJ6ieZUR9YB9FzeMXjOS++BJddZVyTHU+ZLERKEjuknzCCvc8f8Ao+2AfWmkNNIabGyEAJSPoYDPAGA0TYMOdFciTGUSIzo2cZcHJJ89/MH7GASoWms6ltXbWkvJLj3StmNDsld7SUqUpxLRdADpbSs+kKKuA9sBHZD07zpV0sGsurCAyzV8zARWtqc4uOrLinSqQlI5jmQPR7feAe6rLtLUvzZMCI2zKsXO+wkgf3X3Ntgpxfudh7D4wElgDAf/2Q=="/>';
-		    				aContent += '<p><strong><a href="'+data.site+'" target="_blank">'+data.site+'</a></strong><br/>Website</p>';
-	    				}
+						aContent += '<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBAQFBAYFBQYJBgUGCQsIBgYICwwKCgsKCgwQDAwMDAwMEAwODxAPDgwTExQUExMcGxsbHCAgICAgICAgICD/2wBDAQcHBw0MDRgQEBgaFREVGiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD/wAARCAAoADIDAREAAhEBAxEB/8QAHAAAAgIDAQEAAAAAAAAAAAAAAAcDCAEEBQIG/8QALRAAAQQBAwMDAgYDAAAAAAAAAQIDBAURAAYSBxMhFCIxFUEIFiMyM1FDYYH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AtToNedPiQY635K+LbaFuEAFayltPJXFCApaiAPhIJ0CZR+IKv3rLfoNhyfRXSZCWmF2EVxXqGx/IWg2VFjz4C3kYH3xoN1XWV/ZbNTTbzYdlXli4lqC3ET3Mslzth1+QT2CsD9yULWfGTjOgadNcRLaA3NjJdQ05y4pfbWyv2nB9qwDj/fxoN7QGgNBTG82hvKR1EtJ3UK6s1tbbgTLQWcPilx5uJIbRxrhyQiMrD6MnHg/34Og6lfv613nIn0Lm236aplssrn7mrZSI1g3Ga/T71pYPBDUpJ/yIUUZx4OdBmmno2Ht+Q/tR9PUenLhXYBBDlfWBK8ocNYS7I7hCQTIOE4/vQSs9UmLeut+o1OJ1XYx3Pp91XvyHZTUhLrDzrBiPDiGex23CAW+IzoLQbWjOxtvV7Tsl+Y4GUqMiWrm+rn7v1FDGSM40HU0BoK+70+vKf3H+bKpT1Z+WrUquYvD1CWPWjgw27lTeVISF8FA4OPjzoFTuDaryehLztHaO7gqk3aZq/TsupU0yInHhKZyvtdtXk/Kc/B850Hz3QWispm92raE26zCgwLA2U9ZIjM9yC+hvuLSPAJUk8fn74OgZ/Rqsbo6CXWbWK5ls7btxZk+wZU1wdbhvKU7DirSothtKyCt/9ySc8PGgtHAQW4UdBWXCltILhOSo4+cjx50E+gNAnN1125aKHvqVZRGpe0/pM6TFg9xZjvqK1vKQ6ElDjSuC+OUfP9/bQK6hejW3R913pzImxbAWrq2KqVLQiciT6NP6MF8FHqMABYGApQyME6CLp2nqFbTJu493d+q2jWV9g2GDGRFw8YbqH3IsRCGe48kqUVr4jz4J+2gcs6gnbir0VUKOWIcmW0bZ31GS7FLLTnJ5TZHu4nilA8f8GgaaUhKQkfAGBoM6A0Hlxtt1tTbiQttYKVoUMgg/IIPzoFdvvoZSWe0Z9Ntppqq9Q+5PEVA4MqldngjiU/xDkAfHjQcHo/0r3kmO/M33LlOuLbfhpakyXHpK2nEdhXNzPtRxHswc/f76B1w4cWHFaixWksx2UhDTSBgJSkYAGgm0BoP/2Q=="/>';
+						aContent += '<p>';
 						
-	    				if(data.twitter != '') {
-		    				aContent += '<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBAQFBAYFBQYJBgUGCQsIBgYICwwKCgsKCgwQDAwMDAwMEAwODxAPDgwTExQUExMcGxsbHCAgICAgICAgICD/2wBDAQcHBw0MDRgQEBgaFREVGiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD/wAARCAAoADIDAREAAhEBAxEB/8QAGwAAAgIDAQAAAAAAAAAAAAAABwgABAEFBgP/xAAuEAABAwMDAwMCBgMAAAAAAAACAQMEBQYRABIhBxMxCBQiMkEVFiNCUXEzYZH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AanQCzq51/t/p08xFchnVJrqr3GW3O0jaYzyW0+V/jGg42merUqiyLzNoOi0riArhy1ENp/SoksZEIl5+KaDbS/VLbgstxoNNKdcDrqNtUkHlHuCp7EJuQrXbVcc7dBtbb9QUGroUyTQpVMojJdmTUpBjgHyNAENm0dyc53CuNAWUVFTKcovhdBnQTQI/1/tC4IfVV2ZXmVl06dUG1hyGxLtezkOmQsG55Qx5Tb/zQM71msWTcHS6ZQLehNrPZ9v+EsptaRrtOhnYS8DhrcmgANtdCuq1MuVusVO2256xyU2HEnNd1DzlCL7H/XHnQe/57qiVas2fUynRArChEqEWeLZOw5L0kWm1iNp8O2gGioiFhM5TQNZQYSwKHToKkZrFjMsqbvLi9ttByfn5LjnQXtBNAsvqSi3FUp7bQNe5h0qpMyQBksK2z2kM3HG8ruwp8LoDp1JvT8l2TUrn9mtQSnCB+1Q+3uQ3Bb+vaeMb8+NAFad6wXqhwxZ6gatqYI5PREMv2gGGMqRfZNBxdt3bWK/1IuS4LljxoUp9lpp6nPNl3o7Uc07bTYOByZEApuX93KaBtaBICTQqdIBtWgeisuC0p9xRQm0Xap/uxnz99Bf0E0CmdVrrqr14XLT6tEkRxcGe3Q5EWO5uMmG+w1g18rxlVHjnQGHpN1Dtnqn0+SBU2hcme3SDXaZIRUQy27SIc43CeMphcpoLEf069JoziHHpBNYIDERkP7UJpciqZPjC6Ac3I5a8Tq5PdI2JT9ONgFdec/XR4WCfFN68oqOEmVHjwn86BhqWmKZETCp+i3wpIa/Snkkwi/3oLWgmg5uv2Db1cnNz5zRHLZEhYNTc2gpY+QghIOcon20A1onpkg06LNiuV9x9mapuGCRkaHuuIXzVEdXON3CcYxoNnafQV23oTsVbhOeB/wCP3Ec1QFXGVx7hc5xoPOo+nG36rex3NVJvdB0t78FhlWd6oKCm53uEuPjzxoC8IiIoIpgU4RP9aDOg/9k="/>';
-		    				aContent += '<p><strong><a href="http://twitter.com/'+data.twitter+'" target="_blank">@'+data.twitter+'</a></strong><br/>Twitter</p>';
-	    				}
-
-	    				if(data.repository != '') {
-		    				aContent += '<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBAQFBAYFBQYJBgUGCQsIBgYICwwKCgsKCgwQDAwMDAwMEAwODxAPDgwTExQUExMcGxsbHCAgICAgICAgICD/2wBDAQcHBw0MDRgQEBgaFREVGiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD/wAARCAAoADIDAREAAhEBAxEB/8QAGwAAAgIDAQAAAAAAAAAAAAAABgcABQMECAH/xAAvEAABBAEDAgMGBwEAAAAAAAACAQMEBQYAERIHIRMUIggjMUFRYRUWJDJicYFy/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AHfm/UO3pshr8YpaIrG5tmidhSZLwRIHu12MSe9ZKYp34CG6poNIcD6iZAvPMctOJFL40uNisJr/AJOYfOSaL89lHQU1xVp0nyStyCnB38jWCN1mTRiNx/yp8l8tYc3FM9ubnB1VX57/AB0DfEhIUIV3Fe6KnwVNB7oJoJoAjrLSwbPAZ7kmzGkfrFCyrrcy4jGlxV5smq9+yl6dkRV79u+gSi+17azWGa+FUNV9iLYNzbCeSq0MjbYyFkeCoG/f1FoFBlvVjP72S/8Ajt29YNRpfAYjRI1XuAO+4qyzwQv7XfQU1T1NySgsGnquxso8NAFCgJMfAf5cSEtv6VR/zQdC9OvaWjTCjxisUdNdherL1xuPJ3+ZRrIBbjO/Zt8G1+hLoH/j2TVt9CSVD8RvuoEy+PhuIQ7cvqJInJPUCqP0XQW2gBrhnzmRTvzaI/lOJ5Fa2O80KxnJRny5unuSkrboigoooiffQTP+jeA500blpCRmyIeLdvDXwZSfTcx7Gn2NFTQcldaeiEjpoMeWVqFo1OeUYqdmn+DY7kpterfjv3NO3dProNnpb7Nt91BpYd15iLUU7xGhy0PzDznE+KoLArsCpsqLzJPku2g6ApvZR6UV1FLr3Yzs+fMYJlbaSfJ5oiTZHGATZsCFe6enf/NBd9OcZgLTt1NjEbrchxx8mZiVhFGZdLcTCV4bezf6ptAcIdl2Vdl0DK0GGaCHDeBU33Ak2/zQLekxK0WC3d4fffh1u4KLbVT36usekonr8VjkhsOKv7jaIfqqLoBzrHiD8HpFmN7dPhOyafHaSRKFPdR2vHa/SxOXqFlFTfv3Je66DD0+g5XhlPjdhiNP+P4/klTEKxr2HG4/gWYMAnnfEc2RG5Dae8/km/z0BpZvZ+eKK/kk6DQSH5Ai4NeZqjTJkiCCyHOO5r3RVEU+PbQE+K4Xj+LwkiVLJinqUn33XJDxKZcjUnHVIvUXddBeaCaAFybpLT2Vo5f0c2TjGUGiIVtWlxR3imwpKjl7l8U/km/30C962zupcDpHf1eTQWbluQ0Dbd3TgQI2guCZOS47iqoJsP7gVU+2gI+juS5XOwGiroONyILEKviRhtbNRZbcMGkEjajoqum329K9t9Ab12LzXqx2Llk4L9x59H0RWBYZaQFRWwAB3X0Km/JV3XQEWgmg/9k="/>';
-		    				aContent += '<p><strong><a href="'+data.repository+'" target=_blank>GitHub</a></strong><br/>Code Repository</p>';
-	    				}
-						
-	    				aContent += '</div>';
-	    				
-						$('.as3gg-popover h3').html(data.name);
-						$('.as3gg-popover p').html(aContent);
-						
-						// Mark target as loaded, which means it already
-						// loaded content and doesn't need to perform any
-						// ajax calls in the future.
-						aTarget.data('agg-loaded', $('.as3gg-popover').html());
-						
-						// Call this method to correctly align the tooltip
-						// with the current target.
-						aTarget.popover('show');
-						aTarget.fadeIn('fast');
-						
-						// Ensure the tooptip will fade out if the user
-						// mouses the pointer away from it.
-						$('.as3gg-popover').hover(
-							function() {},
-							function() { $(this).fadeOut(); }
-						);
-	    			},
-	    			error: function(jqXHR, textStatus) {
-						if(textStatus != "abort") {
-		    				$('.as3gg-popover h3').html(aItem);
-							$('.as3gg-popover p').html('No information available. Sorry!');							
+						for(var i = 0; i < data.license.length; i++) {
+							aLicenses += '<strong><a href="http://www.as3gamegears.com/tag/'+data.license[i].slug+'/">'+data.license[i].name+'</a></strong>, ';
 						}
-	    			}
-	        	}); 
+						aLicenses = aLicenses.substring(0, aLicenses.length - 2);
+						aContent += aLicenses + '<br/>License</p>';
+						
+						if(data.site != '') {
+							aContent += '<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBAQFBAYFBQYJBgUGCQsIBgYICwwKCgsKCgwQDAwMDAwMEAwODxAPDgwTExQUExMcGxsbHCAgICAgICAgICD/2wBDAQcHBw0MDRgQEBgaFREVGiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD/wAARCAAoADIDAREAAhEBAxEB/8QAGwAAAgIDAQAAAAAAAAAAAAAAAAYFBwIDBAj/xAAvEAABBAAGAAYABQUBAAAAAAABAgMEBQAGBxESExQhIjFBYRUXMlGxFiMzNFKB/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APVOA47i4q6atkWdrKbhV8VPORJeVxQlP2f4HzgK3RrDf3t5EqMn5Ydd8U2ZQsLZfg2xDCuAk9GynuDivJvnxKvgbeeA2NapZhhU9PZ2ECNatXTyo0VqsV0vKebUsLS2l9xbTh4tkpT2hSvjAOuU84Uuaa1U6rU6npcLEuLJaWxIYeR+pp5pYCkqG+Am8AYAwFU58yhqLmfO8SXGaqnsr0XW7ArrRb/VJmK35yHEMg7ljYJbC/LzKsBAaataxWarnO0MZeU9mOUUh2V47cRoCjGaQ0E+zXoWtIPmSrc4AyFBz/ZaaRFS2KiRSxi9Or1oU/8AiCZEaW46lwcU9PLkk8eJH84B2pLnOF9UV+Zqv8OTXWEeNMJQh7xLgJ3daW2d079fpHr9Kv3GAfx5jAGAMAq3rOozLb6Muqq3EbAsLsjJ7NyFFzl1eXvtx2+MBX2kCdXPyvoPwhWXxE8MfDolJm9v6z/kKDty5b77DAc2jw1gOmdMKQZeFaUyesTvGl7fxTu/Lq2Ttvvt9YCT0Qj6lwtP6xieirRTMtPdSFeLamhIec3DgUOI+v2GAtqDIbkRG3m1BaFjdKk77Ef+4DfgDAV3mTM+dKHPrENa4v8ATV63wrJkltzrjTmm/wDXdcbPpD59SSofBA88As6Y/mrVw7nJrCKVuZl6Uvr7/Gdamp5MppbZHu1ycUgfI47HARmnV/qVV6R19hGbp1Vh7GYDDQkmYp1yWprYJJ6ieZUR9YB9FzeMXjOS++BJddZVyTHU+ZLERKEjuknzCCvc8f8Ao+2AfWmkNNIabGyEAJSPoYDPAGA0TYMOdFciTGUSIzo2cZcHJJ89/MH7GASoWms6ltXbWkvJLj3StmNDsld7SUqUpxLRdADpbSs+kKKuA9sBHZD07zpV0sGsurCAyzV8zARWtqc4uOrLinSqQlI5jmQPR7feAe6rLtLUvzZMCI2zKsXO+wkgf3X3Ntgpxfudh7D4wElgDAf/2Q=="/>';
+							aContent += '<p><strong><a href="'+data.site+'" target="_blank">'+data.site+'</a></strong><br/>Website</p>';
+						}
+						
+						if(data.twitter != '') {
+							aContent += '<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBAQFBAYFBQYJBgUGCQsIBgYICwwKCgsKCgwQDAwMDAwMEAwODxAPDgwTExQUExMcGxsbHCAgICAgICAgICD/2wBDAQcHBw0MDRgQEBgaFREVGiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD/wAARCAAoADIDAREAAhEBAxEB/8QAGwAAAgIDAQAAAAAAAAAAAAAABwgABAEFBgP/xAAuEAABAwMDAwMCBgMAAAAAAAACAQMEBQYRABIhBxMxCBQiMkEVFiNCUXEzYZH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AanQCzq51/t/p08xFchnVJrqr3GW3O0jaYzyW0+V/jGg42merUqiyLzNoOi0riArhy1ENp/SoksZEIl5+KaDbS/VLbgstxoNNKdcDrqNtUkHlHuCp7EJuQrXbVcc7dBtbb9QUGroUyTQpVMojJdmTUpBjgHyNAENm0dyc53CuNAWUVFTKcovhdBnQTQI/1/tC4IfVV2ZXmVl06dUG1hyGxLtezkOmQsG55Qx5Tb/zQM71msWTcHS6ZQLehNrPZ9v+EsptaRrtOhnYS8DhrcmgANtdCuq1MuVusVO2256xyU2HEnNd1DzlCL7H/XHnQe/57qiVas2fUynRArChEqEWeLZOw5L0kWm1iNp8O2gGioiFhM5TQNZQYSwKHToKkZrFjMsqbvLi9ttByfn5LjnQXtBNAsvqSi3FUp7bQNe5h0qpMyQBksK2z2kM3HG8ruwp8LoDp1JvT8l2TUrn9mtQSnCB+1Q+3uQ3Bb+vaeMb8+NAFad6wXqhwxZ6gatqYI5PREMv2gGGMqRfZNBxdt3bWK/1IuS4LljxoUp9lpp6nPNl3o7Uc07bTYOByZEApuX93KaBtaBICTQqdIBtWgeisuC0p9xRQm0Xap/uxnz99Bf0E0CmdVrrqr14XLT6tEkRxcGe3Q5EWO5uMmG+w1g18rxlVHjnQGHpN1Dtnqn0+SBU2hcme3SDXaZIRUQy27SIc43CeMphcpoLEf069JoziHHpBNYIDERkP7UJpciqZPjC6Ac3I5a8Tq5PdI2JT9ONgFdec/XR4WCfFN68oqOEmVHjwn86BhqWmKZETCp+i3wpIa/Snkkwi/3oLWgmg5uv2Db1cnNz5zRHLZEhYNTc2gpY+QghIOcon20A1onpkg06LNiuV9x9mapuGCRkaHuuIXzVEdXON3CcYxoNnafQV23oTsVbhOeB/wCP3Ec1QFXGVx7hc5xoPOo+nG36rex3NVJvdB0t78FhlWd6oKCm53uEuPjzxoC8IiIoIpgU4RP9aDOg/9k="/>';
+							aContent += '<p><strong><a href="http://twitter.com/'+data.twitter+'" target="_blank">@'+data.twitter+'</a></strong><br/>Twitter</p>';
+						}
+
+						if(data.repository != '') {
+							aContent += '<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBAQFBAYFBQYJBgUGCQsIBgYICwwKCgsKCgwQDAwMDAwMEAwODxAPDgwTExQUExMcGxsbHCAgICAgICAgICD/2wBDAQcHBw0MDRgQEBgaFREVGiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD/wAARCAAoADIDAREAAhEBAxEB/8QAGwAAAgIDAQAAAAAAAAAAAAAABgcABQMECAH/xAAvEAABBAEDAgMGBwEAAAAAAAACAQMEBQYAERIHIRMUIggjMUFRYRUWJDJicYFy/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AHfm/UO3pshr8YpaIrG5tmidhSZLwRIHu12MSe9ZKYp34CG6poNIcD6iZAvPMctOJFL40uNisJr/AJOYfOSaL89lHQU1xVp0nyStyCnB38jWCN1mTRiNx/yp8l8tYc3FM9ubnB1VX57/AB0DfEhIUIV3Fe6KnwVNB7oJoJoAjrLSwbPAZ7kmzGkfrFCyrrcy4jGlxV5smq9+yl6dkRV79u+gSi+17azWGa+FUNV9iLYNzbCeSq0MjbYyFkeCoG/f1FoFBlvVjP72S/8Ajt29YNRpfAYjRI1XuAO+4qyzwQv7XfQU1T1NySgsGnquxso8NAFCgJMfAf5cSEtv6VR/zQdC9OvaWjTCjxisUdNdherL1xuPJ3+ZRrIBbjO/Zt8G1+hLoH/j2TVt9CSVD8RvuoEy+PhuIQ7cvqJInJPUCqP0XQW2gBrhnzmRTvzaI/lOJ5Fa2O80KxnJRny5unuSkrboigoooiffQTP+jeA500blpCRmyIeLdvDXwZSfTcx7Gn2NFTQcldaeiEjpoMeWVqFo1OeUYqdmn+DY7kpterfjv3NO3dProNnpb7Nt91BpYd15iLUU7xGhy0PzDznE+KoLArsCpsqLzJPku2g6ApvZR6UV1FLr3Yzs+fMYJlbaSfJ5oiTZHGATZsCFe6enf/NBd9OcZgLTt1NjEbrchxx8mZiVhFGZdLcTCV4bezf6ptAcIdl2Vdl0DK0GGaCHDeBU33Ak2/zQLekxK0WC3d4fffh1u4KLbVT36usekonr8VjkhsOKv7jaIfqqLoBzrHiD8HpFmN7dPhOyafHaSRKFPdR2vHa/SxOXqFlFTfv3Je66DD0+g5XhlPjdhiNP+P4/klTEKxr2HG4/gWYMAnnfEc2RG5Dae8/km/z0BpZvZ+eKK/kk6DQSH5Ai4NeZqjTJkiCCyHOO5r3RVEU+PbQE+K4Xj+LwkiVLJinqUn33XJDxKZcjUnHVIvUXddBeaCaAFybpLT2Vo5f0c2TjGUGiIVtWlxR3imwpKjl7l8U/km/30C962zupcDpHf1eTQWbluQ0Dbd3TgQI2guCZOS47iqoJsP7gVU+2gI+juS5XOwGiroONyILEKviRhtbNRZbcMGkEjajoqum329K9t9Ab12LzXqx2Llk4L9x59H0RWBYZaQFRWwAB3X0Km/JV3XQEWgmg/9k="/>';
+							aContent += '<p><strong><a href="'+data.repository+'" target=_blank>GitHub</a></strong><br/>Code Repository</p>';
+						}
+						
+						aContent += '</div>';
+					}
+					
+					$('.as3gg-popover h3').html(data.name);
+					$('.as3gg-popover p').html(aContent);
+					
+					// Mark target as loaded, which means it already
+					// loaded content and doesn't need to perform any
+					// ajax calls in the future.
+					aTarget.data('agg-loaded', $('.as3gg-popover').html());
+					
+					// Call this method to correctly align the tooltip
+					// with the current target.
+					aTarget.popover('show');
+					aTarget.fadeIn('fast');
+					
+					// Ensure the tooptip will fade out if the user
+					// mouses the pointer away from it.
+					$('.as3gg-popover').hover(
+						function() {},
+						function() { $(this).fadeOut(); }
+					);
+					
+	    		}).fail(function(jqXHR, textStatus, errorThrown) {
+					if(textStatus != "abort") {
+						$('.as3gg-popover h3').html(aItem);
+						$('.as3gg-popover p').html('Something wrong just happened. Sorry!');
+					}
+	    		});
 			}, 
 			function () {
 			});
