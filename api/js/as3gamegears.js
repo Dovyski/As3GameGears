@@ -43,8 +43,23 @@ As3GameGears.getRepoOrg = function(theRepoURL) {
 	return aOrg ? aOrg[2].charAt(0).toUpperCase() + aOrg[2].slice(1) : "Unknown";
 };
 
+As3GameGears.getSocialRepoStuff = function(theRepoURL) {
+	var aContent = '';
+	var aMatches = theRepoURL.match(/.*github.com\/(.+)\/(.+)\.git/);
+	
+	if(aMatches != null) {
+		var aUser = aMatches[1];
+		var aRepo = aMatches[2];
+		
+		aContent += '<div class="github"><iframe src="http://ghbtns.com/github-btn.html?user='+aUser+'&repo='+aRepo+'&type=watch&count=true&size=small" allowtransparency="true" frameborder="0" scrolling="0" style="border: 0; width: 100px; height: 30px; overflow: hidden; margin-top: 10px;"></iframe>';
+		aContent += '<iframe src="http://ghbtns.com/github-btn.html?user='+aUser+'&repo='+aRepo+'&type=fork&count=true&size=small" allowtransparency="true" frameborder="0" scrolling="0" style="border: 0; width: 100px; height: 30px; overflow: hidden; margin-top: 10px;"></iframe></div>';
+	}
+
+	return aContent;
+};
+
 As3GameGears.tooltip = function(config) { jQuery(function($) {
-	$.extend(As3GameGears.config, config);
+	$.extend(As3GameGears.config, config || {});
 	aggAjax = null;
 	
 	$(As3GameGears.config.query).each(function(index) {
@@ -135,12 +150,14 @@ As3GameGears.tooltip = function(config) { jQuery(function($) {
 							aContent += '<p><img src="http://www.ohloh.net/p/'+data.stats+'/analyses/latest/commits_spark.png" width="179" style="display: block;"/><br /></p>';
 						}
 						
+						aContent += As3GameGears.getSocialRepoStuff(data.repository);
+						
 						aContent += '</div>';
 						aName = data.name;
 					}
 					
 					if(As3GameGears.config.showFooter) {
-						aContent += '<p class="source">By As3GameGears</p><br />';
+						aContent += '<p class="source"><a href="http://as3gamegears.com" target="_blank">By As3GameGears</a></p><br />';
 					}
 					
 					$('.as3gg-popover h3').html(aName);
@@ -171,7 +188,7 @@ As3GameGears.tooltip = function(config) { jQuery(function($) {
 			});
 	});
 	
-	$('head').append($('<style type="text/css"> .as3gg-popover p { margin: 0 0 9px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; } .as3gg-popover { position: absolute; top: 0; left: 0; z-index: 1010; display: none; padding: 5px; } .as3gg-popover.top { margin-top: -5px; } .as3gg-popover.right { margin-left: 5px; } .as3gg-popover.bottom { margin-top: 5px; } .as3gg-popover.left { margin-left: -5px; } .as3gg-popover.top .arrow { bottom: 0; left: 50%; margin-left: -5px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid #000000; } .as3gg-popover.right .arrow { top: 50%; left: 0; margin-top: -5px; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-right: 5px solid #000000; } .as3gg-popover.bottom .arrow { top: 0; left: 50%; margin-left: -5px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 5px solid #000000; } .as3gg-popover.left .arrow { top: 50%; right: 0; margin-top: -5px; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 5px solid #000000; } .as3gg-popover .arrow { position: absolute; width: 0; height: 0; } .as3gg-popover-inner { padding: 3px; width: 280px; overflow: hidden; background: #000000; background: rgba(0, 0, 0, 0.8); -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3); box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3); } .as3gg-popover-title { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 18px; margin: 0; font-weight: bold; color: #333333; text-rendering: optimizelegibility; padding: 9px 15px; line-height: 1; background-color: #f5f5f5; border-bottom: 1px solid #eee; -webkit-border-radius: 3px 3px 0 0; -moz-border-radius: 3px 3px 0 0; border-radius: 3px 3px 0 0; } .as3gg-popover-content { padding: 14px; background-color: #ffffff; -webkit-border-radius: 0 0 3px 3px; -moz-border-radius: 0 0 3px 3px; border-radius: 0 0 3px 3px; -webkit-background-clip: padding-box; -moz-background-clip: padding-box; background-clip: padding-box; } .as3gg-popover-content p, .as3gg-popover-content ul, .as3gg-popover-content ol { margin-bottom: 0; } .as3gg-sideinfo { color: #000; } .as3gg-sideinfo img { display: block; float: left; margin: 0 2px 0 0; } .as3gg-sideinfo p { text-align: left; text-decoration: none; color: #666; margin-bottom: 15px; } .as3gg-sideinfo p strong, a:link, a:hover, a:active, a:visited { text-align: left; color: #000; } .as3gg-popover p.source { font-size: 9px; float: right;} </style>'));
+	$('head').append($('<style type="text/css"> .as3gg-popover p { margin: 0 0 9px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; } .as3gg-popover { position: absolute; top: 0; left: 0; z-index: 1010; display: none; padding: 5px; } .as3gg-popover.top { margin-top: -5px; } .as3gg-popover.right { margin-left: 5px; } .as3gg-popover.bottom { margin-top: 5px; } .as3gg-popover.left { margin-left: -5px; } .as3gg-popover.top .arrow { bottom: 0; left: 50%; margin-left: -5px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid #000000; } .as3gg-popover.right .arrow { top: 50%; left: 0; margin-top: -5px; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-right: 5px solid #000000; } .as3gg-popover.bottom .arrow { top: 0; left: 50%; margin-left: -5px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 5px solid #000000; } .as3gg-popover.left .arrow { top: 50%; right: 0; margin-top: -5px; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 5px solid #000000; } .as3gg-popover .arrow { position: absolute; width: 0; height: 0; } .as3gg-popover-inner { padding: 3px; width: 280px; overflow: hidden; background: #000000; background: rgba(0, 0, 0, 0.8); -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3); box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3); } .as3gg-popover-title { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 18px; margin: 0; font-weight: bold; color: #333333; text-rendering: optimizelegibility; padding: 9px 15px; line-height: 1; background-color: #f5f5f5; border-bottom: 1px solid #eee; -webkit-border-radius: 3px 3px 0 0; -moz-border-radius: 3px 3px 0 0; border-radius: 3px 3px 0 0; } .as3gg-popover-content { padding: 14px; background-color: #ffffff; -webkit-border-radius: 0 0 3px 3px; -moz-border-radius: 0 0 3px 3px; border-radius: 0 0 3px 3px; -webkit-background-clip: padding-box; -moz-background-clip: padding-box; background-clip: padding-box; } .as3gg-popover-content p, .as3gg-popover-content ul, .as3gg-popover-content ol { margin-bottom: 0; } .as3gg-sideinfo { color: #000; } .as3gg-sideinfo img { display: block; float: left; margin: 0 2px 0 0; } .as3gg-sideinfo p { text-align: left; text-decoration: none; color: #666; margin-bottom: 15px; position: relative;} .as3gg-sideinfo p strong, a:link, a:hover, a:active, a:visited { text-align: left; color: #000; } .as3gg-popover p.source { font-size: 9px; float: right;} .as3gg-popover span {position: absolute; top: 0; right: 0; width: 20px; height: 20px;} .github { margin-bottom: 2px !important; line-height: 10px !important;}</style>'));
 })};
 
 
