@@ -5,8 +5,8 @@
 </head>
 
 <body>
-	<div style="margin: 0 auto; padding-top: 200px; width: 300px;">
-		<a title="Flixel" href="http://www.as3gamegears.com/engines/flixel/" target="_blank" rel="as3gamegears">Flixel</a> (existing)<br/>
+	<div style="margin: 0 auto; padding-top: 250px; width: 300px;">
+		<a title="Flixel" href="http://www.as3gamegears.com/engines/flixel/" target="_blank" rel="as3gamegears">Flixel</a> is an open source game-making library that is completely free for personal or commercial use. Written entirely in Actionscript 3, and designed to be used with free development tools, Flixel is easy to learn, extend and customize.<br/><br/>
 		<a title="Foxhole" href="http://www.as3gamegears.com/ui/foxhole/" target="_blank" rel="as3gamegears">gaforflash</a>.</p>
 		<a title="Foxhole" href="http://www.as3gamegears.com/ui/foxhole/" target="_blank" rel="as3gamegears">Foxhole</a>.</p>
 		<a title="other" href="http://www.as3gamegears.com/ui/foxhole/" target="_blank">Axel</a> (no rel="").</p>
@@ -14,7 +14,19 @@
 	
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="./as3gamegears.js"></script>
-	<script>As3GameGears.tooltip({showFooter: false, query: "[rel=as3gamegears]"});</script>
+	<script>As3GameGears.tooltip({
+		"query": "[rel=as3gamegears]",
+		"footer": true,
+		"icons": false,
+		"description": true,
+		"license": true,
+		"website": true,
+		"twitter": true,
+		"repo": true,
+		"stats": true,
+		"socialCode": true
+	});
+	</script>
 </body>
 
 </html>
