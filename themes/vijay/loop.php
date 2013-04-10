@@ -17,6 +17,23 @@
  * @subpackage Twenty_Ten
  * @since Twenty Ten 1.0
  */
+ 
+ function custom_excerpt_length( $length ) {
+	return 28;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+
+function new_excerpt_more( $more ) {
+	return '...';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
+
+add_filter('get_the_excerpt', 'exc');
+
+function exc($param) {
+    return ucfirst(preg_replace("/.*is an? /", "", $param, 1));
+}
+ 
 ?>
 
 <?php /* Display navigation to next/previous pages when applicable */ ?>
@@ -128,7 +145,18 @@
 			<div class="entry-meta">
 				<?php //twentyten_posted_on(); ?>
 			</div><!-- .entry-meta -->
-
+			
+	<?php if ( is_archive() || is_search() ) : // Only display excerpts for archives and search. ?>
+			<div class="entry-summary">
+				<?php the_excerpt(); ?>
+			</div><!-- .entry-summary -->
+	<?php else : ?>
+			<div class="entry-content">
+				<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyten' ) ); ?>
+				<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'twentyten' ), 'after' => '</div>' ) ); ?>
+			</div><!-- .entry-content -->
+	<?php endif; ?>
+	
 			<div class="entry-utility">
 				<?php if ( count( get_the_category() ) ) : ?>
 					<span class="cat-links">
@@ -148,17 +176,8 @@
 				<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'twentyten' ), __( '1 Comment', 'twentyten' ), __( '% Comments', 'twentyten' ) ); ?></span>
 				
 			</div><!-- .entry-utility -->
-			
-	<?php if ( is_archive() || is_search() ) : // Only display excerpts for archives and search. ?>
-			<div class="entry-summary">
-				<?php the_excerpt(); ?>
-			</div><!-- .entry-summary -->
-	<?php else : ?>
-			<div class="entry-content">
-				<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyten' ) ); ?>
-				<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'twentyten' ), 'after' => '</div>' ) ); ?>
-			</div><!-- .entry-content -->
-	<?php endif; ?>
+
+	
 		</div><!-- #post-## -->
 
 		<?php comments_template( '', true ); ?>
