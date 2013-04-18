@@ -10,7 +10,7 @@
 get_header(); ?>
 
 		<div id="container">
-			<div id="content" role="main">
+			<div id="content" role="main" class="thumb-tools">
 				<?php
 					//$category_description = category_description();
 
