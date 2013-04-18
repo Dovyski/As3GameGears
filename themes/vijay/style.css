@@ -475,6 +475,14 @@ a:hover{
 	margin: 0 0 30px 0;
 }
 
+.author-info {
+	margin: 20px 0 5px 0;
+}
+
+.author-info img {
+	border: 2px solid #c0c0c0;
+}
+
 /* Nice GitHub code highlight :) */
 pre,
 code {

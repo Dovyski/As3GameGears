@@ -73,7 +73,7 @@ if ( ! function_exists( 'vijay_get_site_title_info' ) ) :
 */
 function vijay_get_site_title_info() {
 	global $post;
-	$aRet = array('title' => '', 'desc' => '', 'class' => '');	
+	$aRet = array('title' => '', 'desc' => '', 'class' => '', 'style' => '');	
 
 	if(is_category()) {
 		$aCat 			= get_category( get_query_var( 'cat' ) );
@@ -94,6 +94,9 @@ function vijay_get_site_title_info() {
 	} else if(is_home()) {
 		$aRet['title']  = 'Blog';
 	}
+	
+	$aRet['style'] = strlen($aRet['title']) >= 20 ? 'font-size: 50px !important;' : $aRet['style'];
+	$aRet['style'] = strlen($aRet['title']) >= 30 ? 'font-size: 40px !important;' : $aRet['style'];
 	
 	return $aRet;
 }

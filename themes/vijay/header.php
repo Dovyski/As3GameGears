@@ -86,7 +86,7 @@
 				if(vijay_has_custom_site_title()) {
 					$aInfo = vijay_get_site_title_info();
 					
-					echo '<div id="site-title" class="'.$aInfo['class'].'">';
+					echo '<div id="site-title" class="'.$aInfo['class'].'" style="'.$aInfo['style'].'">';
 						echo '<span>';
 							echo $aInfo['title'];
 						echo '</span>';

@@ -15,22 +15,20 @@
 	$aCategory 	 = get_the_category();
 	$aCategory 	 = $aCategory[0];
 	$aIsBlogPost = $aCategory->slug == 'blog';
-	
-	if (true || !is_single() || $aIsBlogPost) :
 ?>
-			<div id="social-panel">
-				<?php if($aIsBlogPost) { ?>
-					<div>
-						<img src="<?php bloginfo('stylesheet_directory'); ?>/img/icons/post.png" border="0" width="50" height="50" title="Blog post" />
-						<p><strong>Blog post</strong><br />by <?php echo get_the_author(); ?> on <?php echo date('M d, Y', strtotime($post->post_date));?></p>
-					</div>
-				<?php } ?>
-				<span><a href="<?php bloginfo('rss2_url'); ?>" target="_blank"><img src="<?php bloginfo('stylesheet_directory'); ?>/img/social/social_rss.png" border="0" width="32" height="32" title="Follow us on Twitter!" /></a></span>
-				<span><a href="http://twitter.com/as3gamegears" target="_blank"><img src="<?php bloginfo('stylesheet_directory'); ?>/img/social/social_twitter.png" border="0" width="32" height="32" title="Follow us on Twitter!" /></a></span>
-				<span><a href="https://plus.google.com/b/111818559667570233761/111818559667570233761" target="_blank"><img src="<?php bloginfo('stylesheet_directory'); ?>/img/social/social_gplus.png" border="0" width="32" height="32" title="Follow us on Twitter!" /></a></span>
-				<span><a href="http://facebook.com/As3GameGears" target="_blank"><img src="<?php bloginfo('stylesheet_directory'); ?>/img/social/social_facebook.png" border="0" width="32" height="32" title="Follow us on Twitter!" /></a></span>
+	<div id="social-panel">
+		<span><a href="<?php bloginfo('rss2_url'); ?>" target="_blank"><img src="<?php bloginfo('stylesheet_directory'); ?>/img/social/social_rss.png" border="0" width="32" height="32" title="Follow us on Twitter!" /></a></span>
+		<span><a href="http://twitter.com/as3gamegears" target="_blank"><img src="<?php bloginfo('stylesheet_directory'); ?>/img/social/social_twitter.png" border="0" width="32" height="32" title="Follow us on Twitter!" /></a></span>
+		<span><a href="https://plus.google.com/b/111818559667570233761/111818559667570233761" target="_blank"><img src="<?php bloginfo('stylesheet_directory'); ?>/img/social/social_gplus.png" border="0" width="32" height="32" title="Follow us on Twitter!" /></a></span>
+		<span><a href="http://facebook.com/As3GameGears" target="_blank"><img src="<?php bloginfo('stylesheet_directory'); ?>/img/social/social_facebook.png" border="0" width="32" height="32" title="Follow us on Twitter!" /></a></span>
+		
+		<?php if($aIsBlogPost) { ?>
+			<div class="author-info">
+				<img src="http://avatars.io/facebook/<?php echo get_the_author(); ?>?size=medium" border="0" title="Blog post" />
+				<p>Post by <strong><?php echo get_the_author(); ?></strong><br/>on <?php echo date('M d, Y', strtotime($post->post_date));?></p>
 			</div>
-<?php endif; ?>
+		<?php } ?>
+	</div>
 
 <?php
 	
