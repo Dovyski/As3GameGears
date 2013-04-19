@@ -14,7 +14,7 @@
 <?php 
 	$aCategory 	 = get_the_category();
 	$aCategory 	 = $aCategory[0];
-	$aIsBlogPost = $aCategory->slug == 'blog';
+	$aIsBlogPost = $aCategory->slug == 'blog' && is_single();
 ?>
 	<div id="social-panel">
 		<span><a href="<?php bloginfo('rss2_url'); ?>" target="_blank"><img src="<?php bloginfo('stylesheet_directory'); ?>/img/social/social_rss.png" border="0" width="32" height="32" title="Follow us on Twitter!" /></a></span>
@@ -26,6 +26,7 @@
 			<div class="author-info">
 				<img src="http://avatars.io/facebook/<?php echo get_the_author(); ?>?size=medium" border="0" title="Blog post" />
 				<p>Post by <strong><?php echo get_the_author(); ?></strong><br/>on <?php echo date('M d, Y', strtotime($post->post_date));?></p>
+				<p><?php the_tags('Tags: <br/>', ', ', '<br />'); ?></p>
 			</div>
 		<?php } ?>
 	</div>
