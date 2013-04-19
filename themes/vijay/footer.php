@@ -22,23 +22,13 @@
 	get_sidebar( 'footer' );
 ?>
 
-
-
-		</div><!-- #colophon -->
 		<div id="foot">
-		<div id="colophon">
-			<div id="site-info">
-				<a href="<?php echo home_url( '/' ) ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-					<?php bloginfo( 'name' ); ?>
-				</a>
-			</div><!-- #site-info -->
-
-			<div id="site-generator">
-				<?php do_action( 'twentyten_credits' ); ?>
-				<a href="http://wordpress.org" target="_blank">WordPress</a> &nbsp; Theme based on Salju, by <a class="wpcharity" href="http://wpcharity.com" target="_blank">WPCharity</a>
-			</div><!-- #site-generator -->
-			</div><!-- #colophon -->
-			</div><!-- foot -->
+			<p>
+				&copy; <?php echo date('Y');?> As3GameGears - Boost your tools!<br/>
+				Powered by <a href="http://wordpress.org" target="_blank">WordPress</a> with theme based on Salju, by <a class="wpcharity" href="http://wpcharity.com" target="_blank">WPCharity</a>
+			</p>
+		</div><!-- foot -->
+		</div><!-- #colophon -->
 	</div><!-- #footer -->
 
 </div><!-- #wrapper -->
