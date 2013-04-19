@@ -5,6 +5,20 @@ function childtheme_favicon() { ?>
 add_action('wp_head', 'childtheme_favicon');
 
 
+function test( $post_id ) {
+    echo '<div id="comment-switch" style="margin-bottom: 40px;"><a href="#"><h3 id="reply-title"><span>Click here to post a comment</span></h3></a></div>';
+	echo "<script type=\"text/javascript\">
+            jQuery(document).ready(function () {
+				jQuery('#comment-switch').on('hover', function() {
+					jQuery('#comment-switch').hide();
+					jQuery('#respond').slideDown();
+				});  
+			});
+        </script>";
+}
+add_action( 'comment_form_before', 'test' );
+
+
 if ( ! function_exists( 'twentyten_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post—date/time and author.

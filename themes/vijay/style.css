@@ -315,6 +315,9 @@ blockquote{
 }
 #respond{
 	border: 0px;
+	display: none;
+}
+#commentform {
 }
 #comments{
 	border-top: 1px solid #ccc;
