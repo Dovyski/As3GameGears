@@ -513,6 +513,31 @@ a:hover{
 	border: 2px solid #c0c0c0;
 }
 
+/* Styles for pagination */
+/*.wp-paginate {padding:0; margin:0;}*/
+/*.wp-paginate li {display:inline; list-style:none;}*/
+.wp-paginate {
+	margin-top: 10px !important;
+}
+
+.wp-paginate a {
+	background: #000 !important;
+	border:1px solid #000 !important;
+	color:#fff !important;
+	padding:8px 12px !important;
+}
+.wp-paginate a:hover, .wp-paginate a:active {
+	background:#ff6c0a !important;
+	color:#000 !important;
+}
+.wp-paginate .current {
+	background:#ff6c0a !important;
+	color:#000 !important;
+	border:2px solid #000 !important;
+	padding:10px 14px !important;
+}
+
+
 /* Nice GitHub code highlight :) */
 pre,
 code {
