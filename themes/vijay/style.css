@@ -342,7 +342,7 @@ h3#comments-title em{
 }
 #footer {
 	background: #000;
-	color: #cfcfcf;
+	color: #8f8f8f;
 }
 #footer-widget-area {
 }
@@ -502,7 +502,7 @@ a:hover{
 */
 
 #social-panel {
-	margin: 0 0 30px 0;
+	margin: 0 0 30px 10px;
 }
 
 .author-info {
@@ -537,6 +537,20 @@ a:hover{
 	padding:10px 14px !important;
 }
 
+/* Asset author bio */
+
+.asset-author {
+	background-color: #f1f1f1;
+	padding: 3px;
+	overflow: auto;
+}
+
+.asset-author img {
+	width: 90px;
+	height: 90px;
+	float: left;
+	margin: 10px;
+}
 
 /* Nice GitHub code highlight :) */
 pre,
