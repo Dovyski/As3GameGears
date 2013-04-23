@@ -390,7 +390,7 @@ h3#comments-title em{
 */
 #foot {
 	margin-top: 10px;
-	font-size: 12px;
+	font-size: 11px;
 	color: #525252;
 }
 
@@ -550,6 +550,38 @@ a:hover{
 	height: 90px;
 	float: left;
 	margin: 10px;
+}
+
+/*Front page rules */
+
+.home-banner {
+	width: 275px;
+	height: 374px;
+	float: left;
+	text-align: center !important;
+	padding-right: 20px;
+	position: relative;
+}
+
+.home-banner-last {
+	padding-right: 0 !important;
+}
+
+.home-banner img {
+	border: 0px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.home-banner p {
+	position: absolute;
+	bottom: -5px;
+	left: 10px;
+	z-index: 2;
+	width: 255px;
+	text-align: center !important;
 }
 
 /* Nice GitHub code highlight :) */

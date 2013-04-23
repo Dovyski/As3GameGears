@@ -1,7 +1,16 @@
 <?php
-function childtheme_favicon() { ?>
-	<link rel="shortcut icon" href="<?php echo bloginfo('stylesheet_directory') ?>/img/wpcharity.png" >
-<?php }
+
+add_theme_support( 'post-thumbnails' );
+
+function childtheme_favicon() { 
+	?>
+	<!-- Favicons -->
+	<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/as3gamegears.png"/>
+	<link rel=icon type="image/png" href="<?php bloginfo('stylesheet_directory'); ?>/img/as3gamegears.png"/>
+	<link rel=apple-touch-icon href="<?php bloginfo('stylesheet_directory'); ?>/img/as3gamegears.png"/>
+	<?php
+}
+
 add_action('wp_head', 'childtheme_favicon');
 
 

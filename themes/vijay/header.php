@@ -36,11 +36,7 @@
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-
-<!-- Favicons -->
-<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/ico/favicon.ico"/>
-<link rel=icon type="image/png" href="<?php bloginfo('stylesheet_directory'); ?>/img/ico/favicon.ico"/>
-<link rel=apple-touch-icon href="<?php bloginfo('stylesheet_directory'); ?>/img/ico/apple-touch-icon.png"/>
+<meta name="google-site-verification" content="O6lUCx7d2YEg3kHVlg-BCeWPQxLQa5k7VBJdWTMRU8E" />
 
 <?php
 	/* We add some JavaScript to pages with the comment form
