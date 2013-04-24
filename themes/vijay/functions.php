@@ -1,14 +1,22 @@
 <?php
 
+// Prevent Jetpack from adding Open Graph tags
+// http://yoast.com/jetpack-and-wordpress-seo/
+add_filter( 'jetpack_enable_opengraph', '__return_false', 99 );
+
+
 add_theme_support( 'post-thumbnails' );
 
 function childtheme_favicon() { 
-	?>
-	<!-- Favicons -->
-	<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/as3gamegears.png"/>
-	<link rel=icon type="image/png" href="<?php bloginfo('stylesheet_directory'); ?>/img/as3gamegears.png"/>
-	<link rel=apple-touch-icon href="<?php bloginfo('stylesheet_directory'); ?>/img/as3gamegears.png"/>
-	<?php
+?>
+
+<!-- Favicons by Vijay -->
+<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/as3gamegears.png"/>
+<link rel="icon" type="image/png" href="<?php bloginfo('stylesheet_directory'); ?>/img/as3gamegears.png"/>
+<link rel="apple-touch-icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/as3gamegears.png"/>
+<!-- /Favicons by Vijay -->
+
+<?php
 }
 
 add_action('wp_head', 'childtheme_favicon');

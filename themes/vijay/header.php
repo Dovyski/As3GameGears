@@ -39,6 +39,36 @@
 <meta name="google-site-verification" content="O6lUCx7d2YEg3kHVlg-BCeWPQxLQa5k7VBJdWTMRU8E" />
 
 <?php
+	$aText 			= @explode('.', strip_tags($post->post_content), 2);
+	$aDesc 			= isset($aText[0]) && !empty($aText[0]) ? $aText[0].'.' : '';
+	$aDescDefault 	= 'AS3GameGears is the right place to find tools, libraries and engines to build your game. There is no need to reinvent the wheel for every new Flash game you create, all you need is a place to search for the tools that best fit your needs.';
+	
+	if(is_category()) {
+		$aCategory 	= get_term( get_query_var('cat'), 'category' ); 
+		$aDesc 		= $aCategory->description;
+	}
+?>
+
+<!-- SEO stuff by Vijay -->
+<meta property="og:image" content="<?php bloginfo('stylesheet_directory'); ?>/img/as3gamegears.png"/>
+<meta property="og:site_name" content="As3GameGears"/>
+<meta property="og:type" content="website"/>
+<?php if ( is_single()) { ?>
+<meta property="og:title" content="<?php echo $post->post_title;?>"/>
+<meta property="og:url" content="<?php echo get_permalink(); ?>"/>
+<meta property="og:description" content="<?php echo $aDesc; ?>"/>
+<meta name="description" content="<?php echo $aDesc; ?>" />
+<?php } else { ?>
+<meta property="og:title" content="As3GameGears"/>
+<meta property="og:url" content="<?php echo get_permalink( $post->ID ); ?>"/>
+<meta property="og:description" content="<?php echo !empty($aDesc) ? $aDesc : $aDescDefault; ?>"/>
+<meta name="description" content="<?php echo !empty($aDesc) ? $aDesc : $aDescDefault; ?>" />
+<?php } ?>
+<meta name="keywords" content="as3, engine, games, game, game engine, physica, graphics, tweening, isometric, 2D, 3D, engines, 2D games, 3D games, multiplayer, smartfox, particles, path-finding, path finding, profiling, adobe, flash, actionscript, starling, stage3D, ane, native extension, air, ios, android" />
+<meta name="author" content="Fernando Bevilacqua" />
+<!-- /SEO stuff by Vijay -->
+
+<?php
 	/* We add some JavaScript to pages with the comment form
 	 * to support sites with threaded comments (when in use).
 	 */
