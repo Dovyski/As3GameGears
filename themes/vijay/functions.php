@@ -5,14 +5,13 @@
 add_filter( 'jetpack_enable_opengraph', '__return_false', 99 );
 
 
-add_theme_support( 'post-thumbnails' );
-
-
-function setup_theme_admin_menus() {  
-    add_menu_page('Theme settings', 'Vijay', 'manage_options', 'tut_theme_settings', 'theme_settings_page');  
+function vijay_setup_admin_menus() {  
+    add_menu_page('Theme settings', 'Vijay', 'manage_options', 'tut_theme_settings', 'vijay_theme_settings_page');  
 }
 
-function theme_settings_page() {  
+add_action("admin_menu", "vijay_setup_admin_menus"); 
+
+function vijay_theme_settings_page() {  
 	$aProps = get_option("vijay_props");
 	
 	if (!is_array($aProps)) {
@@ -49,13 +48,8 @@ function theme_settings_page() {
     </div>  
 <?php  
 }
-  
-// This tells WordPress to call the function named "setup_theme_admin_menus"  
-// when it's time to create the menu pages.  
-add_action("admin_menu", "setup_theme_admin_menus"); 
 
-
-function childtheme_favicon() { 
+function vijay_change_favicon() { 
 	$aProps = get_option("vijay_props");
 	
 	if(isset($aProps['favicons']) && $aProps['favicons']) {
@@ -69,10 +63,10 @@ function childtheme_favicon() {
 	}
 }
 
-add_action('wp_head', 'childtheme_favicon');
+add_action('wp_head', 'vijay_change_favicon');
 
 
-function test( $post_id ) {
+function vijay_hide_comments_form( $post_id ) {
     echo '<div id="comment-switch" style="margin-bottom: 40px;"><a href="#"><h3 id="reply-title"><span>Click here to post a comment</span></h3></a></div>';
 	echo "<script type=\"text/javascript\">
             jQuery(document).ready(function () {
@@ -83,7 +77,7 @@ function test( $post_id ) {
 			});
         </script>";
 }
-add_action( 'comment_form_before', 'test' );
+add_action( 'comment_form_before', 'vijay_hide_comments_form' );
 
 
 if ( ! function_exists( 'twentyten_posted_on' ) ) :

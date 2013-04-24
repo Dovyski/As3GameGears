@@ -43,14 +43,16 @@
 	$aDesc 			= isset($aText[0]) && !empty($aText[0]) ? $aText[0].'.' : '';
 	$aDescDefault 	= 'AS3GameGears is the right place to find tools, libraries and engines to build your game. There is no need to reinvent the wheel for every new Flash game you create, all you need is a place to search for the tools that best fit your needs.';
 	$aTitle			= $post->post_title;
-	
+	$aLink			= get_permalink($post->ID);
+
 	if (is_category()) {
 		$aCategory 	= get_term( get_query_var('cat'), 'category' ); 
 
 		$aDesc 		= $aCategory->description;
 		$aTitle		= $aCategory->name;
+		$aLink 		= get_category_link(get_cat_ID($aCategory->name));
 	}
-	
+
 	$aProps = get_option("vijay_props");
 	if(isset($aProps['open_graph']) && $aProps['open_graph']) {
 ?>
@@ -63,7 +65,7 @@
 		<?php if ( is_single()) { ?>
 		<meta property="og:url" content="<?php echo get_permalink(); ?>"/>
 		<?php } else { ?>
-		<meta property="og:url" content="<?php echo get_permalink( $post->ID ); ?>"/>
+		<meta property="og:url" content="<?php echo $aLink; ?>"/>
 		<?php } ?>
 		<meta name="description" content="<?php echo !empty($aDesc) ? $aDesc : $aDescDefault; ?>" />
 		<meta name="keywords" content="as3, engine, games, game, game engine, physics, physic, graphics, tweening, isometric, 2D, 3D, engines, 2D games, 3D games, multiplayer, smartfox, particles, path-finding, path finding, profiling, adobe, flash, actionscript, starling, stage3D, ane, native extension, air, ios, android" />
