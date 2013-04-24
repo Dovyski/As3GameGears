@@ -7,16 +7,66 @@ add_filter( 'jetpack_enable_opengraph', '__return_false', 99 );
 
 add_theme_support( 'post-thumbnails' );
 
+
+function setup_theme_admin_menus() {  
+    add_menu_page('Theme settings', 'Vijay', 'manage_options', 'tut_theme_settings', 'theme_settings_page');  
+}
+
+function theme_settings_page() {  
+	$aProps = get_option("vijay_props");
+	
+	if (!is_array($aProps)) {
+		$aProps = array();
+	}
+	
+	if (isset($_POST["update_settings"])) {  
+		$aProps['open_graph'] 	= isset($_POST["open_graph"]);
+		$aProps['favicons'] 	= isset($_POST["favicons"]);
+		
+		update_option("vijay_props", $aProps);
+		
+		echo '<div id="message" class="updated">Settings saved</div>';
+	}
+?>  
+    <div class="wrap">  
+        <?php screen_icon('themes'); ?> <h2>Vijay Configuration</h2>  
+  
+        <form method="POST" action="">  
+			<input type="hidden" name="update_settings" value="Y" />
+			<h3>Header</h3>
+            <table class="form-table">  
+                <tr valign="top">  
+                    <th scope="row"><label for="num_elements">Open Graph tags</label></th>  
+                    <td><input type="checkbox" name="open_graph" <?php echo isset($aProps['open_graph']) && $aProps['open_graph'] ? 'checked="checked"' : ''; ?>/></td>
+				</tr>
+				<tr valign="top">
+					<th scope="row"><label for="num_elements">Favicons</label></th>  
+                    <td><input type="checkbox" name="favicons"  <?php echo isset($aProps['favicons']) && $aProps['favicons'] ? 'checked="checked"' : ''; ?>/></td>  
+                </tr>  
+            </table>  
+			<p style="margin-top: 30px;"><input type="submit" value="Save settings" class="button-primary"/></p> 
+        </form>  
+    </div>  
+<?php  
+}
+  
+// This tells WordPress to call the function named "setup_theme_admin_menus"  
+// when it's time to create the menu pages.  
+add_action("admin_menu", "setup_theme_admin_menus"); 
+
+
 function childtheme_favicon() { 
+	$aProps = get_option("vijay_props");
+	
+	if(isset($aProps['favicons']) && $aProps['favicons']) {
 ?>
-
-<!-- Favicons by Vijay -->
-<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/as3gamegears.png"/>
-<link rel="icon" type="image/png" href="<?php bloginfo('stylesheet_directory'); ?>/img/as3gamegears.png"/>
-<link rel="apple-touch-icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/as3gamegears.png"/>
-<!-- /Favicons by Vijay -->
-
+		<!-- Favicons by Vijay -->
+		<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/as3gamegears.png"/>
+		<link rel="icon" type="image/png" href="<?php bloginfo('stylesheet_directory'); ?>/img/as3gamegears.png"/>
+		<link rel="apple-touch-icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/as3gamegears.png"/>
+		<!-- /Favicons by Vijay -->
 <?php
+	}
 }
 
 add_action('wp_head', 'childtheme_favicon');
