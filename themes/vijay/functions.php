@@ -19,8 +19,9 @@ function vijay_theme_settings_page() {
 	}
 	
 	if (isset($_POST["update_settings"])) {  
-		$aProps['open_graph'] 	= isset($_POST["open_graph"]);
-		$aProps['favicons'] 	= isset($_POST["favicons"]);
+		$aProps['open_graph'] 		= isset($_POST["open_graph"]);
+		$aProps['favicons'] 		= isset($_POST["favicons"]);
+		$aProps['code_highlight'] 	= isset($_POST["code_highlight"]);
 		
 		update_option("vijay_props", $aProps);
 		
@@ -28,11 +29,11 @@ function vijay_theme_settings_page() {
 	}
 ?>  
     <div class="wrap">  
-        <?php screen_icon('themes'); ?> <h2>Vijay Configuration</h2>  
+        <?php screen_icon(); ?> <h2>Vijay Configuration</h2>  
   
         <form method="POST" action="">  
 			<input type="hidden" name="update_settings" value="Y" />
-			<h3>Header</h3>
+			<h3>Features</h3>
             <table class="form-table">  
                 <tr valign="top">  
                     <th scope="row"><label for="num_elements">Open Graph tags</label></th>  
@@ -42,6 +43,10 @@ function vijay_theme_settings_page() {
 					<th scope="row"><label for="num_elements">Favicons</label></th>  
                     <td><input type="checkbox" name="favicons"  <?php echo isset($aProps['favicons']) && $aProps['favicons'] ? 'checked="checked"' : ''; ?>/></td>  
                 </tr>  
+				<tr valign="top">
+					<th scope="row"><label for="num_elements">Code Highlight</label></th>  
+                    <td><input type="checkbox" name="code_highlight"  <?php echo isset($aProps['code_highlight']) && $aProps['code_highlight'] ? 'checked="checked"' : ''; ?>/></td>  
+                </tr>
             </table>  
 			<p style="margin-top: 30px;"><input type="submit" value="Save settings" class="button-primary"/></p> 
         </form>  
@@ -78,6 +83,28 @@ function vijay_hide_comments_form( $post_id ) {
         </script>";
 }
 add_action( 'comment_form_before', 'vijay_hide_comments_form' );
+
+
+function vijay_code_highlight() {
+	$aProps = get_option("vijay_props");
+	
+	if(isset($aProps['code_highlight']) && $aProps['code_highlight']) {
+?>
+		<!-- Code highlight by Vijay -->
+		<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/js/styles/github.css">
+		<script src="<?php bloginfo('stylesheet_directory'); ?>/js/highlight.pack.js"></script>
+		<script>
+			hljs.tabReplace = '  ';
+			jQuery(document).ready(function() {
+				jQuery('pre').each(function(i, e) {hljs.highlightBlock(e)});
+			});
+		</script>
+		<!-- /Code highlight by Vijay -->
+<?php
+	}
+}
+
+add_action('wp_footer', 'vijay_code_highlight');
 
 
 if ( ! function_exists( 'twentyten_posted_on' ) ) :
