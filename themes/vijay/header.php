@@ -45,7 +45,6 @@
 	$aTitle			= $post->post_title;
 	
 	if (is_category()) {
-	echo 'dsdsd';
 		$aCategory 	= get_term( get_query_var('cat'), 'category' ); 
 
 		$aDesc 		= $aCategory->description;
