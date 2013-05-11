@@ -537,6 +537,23 @@ a:hover{
 	padding:10px 14px !important;
 }
 
+.not-found {
+	width: 100% !important;
+	position: relative;
+	height: 400px;
+	margin-top: 10px;
+}
+
+.not-found img {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#texting {
+	padding-top: 30px;
+}
+
 /* Asset author bio */
 
 .asset-author {

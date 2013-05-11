@@ -162,7 +162,7 @@ if ( ! function_exists( 'vijay_has_custom_site_title' ) ) :
 * @since Twenty Ten 1.0
 */
 function vijay_has_custom_site_title() {
-	return is_category() || is_single() || is_page() || is_search() || is_home();
+	return is_category() || is_single() || is_page() || is_search() || is_home() || is_404();
 }
 endif;
 
@@ -195,6 +195,9 @@ function vijay_get_site_title_info() {
 		
 	} else if(is_home()) {
 		$aRet['title']  = 'Blog';
+		
+	} else if(is_404()) {
+		$aRet['title']  = 'Oops!';
 	}
 	
 	$aRet['style'] = strlen($aRet['title']) >= 20 ? 'font-size: 50px !important;' : $aRet['style'];
