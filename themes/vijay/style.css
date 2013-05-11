@@ -522,6 +522,7 @@ a:hover{
 	background: #e5e5e5 no-repeat url(img/div_idea_small.png) 10px 0;
 	padding: 20px 0 5px 95px;
 	overflow: auto;
+	border: 2px #cfcfcf solid;
 }
 
 /* Nice GitHub code highlight :) */
