@@ -17,10 +17,10 @@
 	$aIsBlogPost = $aCategory->slug == 'blog' && is_single();
 ?>
 	<div id="social-panel">
-		<span><a href="<?php bloginfo('rss2_url'); ?>" target="_blank"><img src="<?php bloginfo('stylesheet_directory'); ?>/img/social/social_rss.png" border="0" width="32" height="32" title="Follow us on Twitter!" /></a></span>
+		<span><a href="<?php bloginfo('rss2_url'); ?>" target="_blank"><img src="<?php bloginfo('stylesheet_directory'); ?>/img/social/social_rss.png" border="0" width="32" height="32" title="RSS feed" /></a></span>
 		<span><a href="http://twitter.com/as3gamegears" target="_blank"><img src="<?php bloginfo('stylesheet_directory'); ?>/img/social/social_twitter.png" border="0" width="32" height="32" title="Follow us on Twitter!" /></a></span>
-		<span><a href="https://plus.google.com/b/111818559667570233761/111818559667570233761" target="_blank"><img src="<?php bloginfo('stylesheet_directory'); ?>/img/social/social_gplus.png" border="0" width="32" height="32" title="Follow us on Twitter!" /></a></span>
-		<span><a href="http://facebook.com/As3GameGears" target="_blank"><img src="<?php bloginfo('stylesheet_directory'); ?>/img/social/social_facebook.png" border="0" width="32" height="32" title="Follow us on Twitter!" /></a></span>
+		<span><a href="https://plus.google.com/b/111818559667570233761/111818559667570233761" target="_blank"><img src="<?php bloginfo('stylesheet_directory'); ?>/img/social/social_gplus.png" border="0" width="32" height="32" title="Follow us on Google Plus!" /></a></span>
+		<span><a href="http://facebook.com/As3GameGears" target="_blank"><img src="<?php bloginfo('stylesheet_directory'); ?>/img/social/social_facebook.png" border="0" width="32" height="32" title="Follow us on Facebook!" /></a></span>
 		
 		<?php if($aIsBlogPost) { ?>
 			<div class="author-info">

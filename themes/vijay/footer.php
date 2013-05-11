@@ -35,7 +35,7 @@
 </div><!-- #outer-wrapper -->
 
 <!-- As3GameGears Tooltip - api.as3gamegears.com/#js -->
-<script src="http://api.as3gamegears.com/js/as3gamegears.js"></script>
+<script src="http://api.as3gamegears.com/js/as3gamegears.min.js"></script>
 <script>As3GameGears.tooltip();</script>
 <?php
 	/* Always have wp_footer() just before the closing </body>

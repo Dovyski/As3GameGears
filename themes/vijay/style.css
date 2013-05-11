@@ -1,67 +1,14 @@
 /*
 Theme Name: Vijay
 Description: Lite and customized version of Salju, a free WordPress Twenty Ten Child Theme from WPCharity.com
-Theme URI: http://dovyski.com
+Theme URI: http://as3gamegears.com
 Author: Fernando Bevilacqua
 Author URI: http://dovyski.com
 Template: vijay
 Version: 1.0.0
 */
 @import url(../twentyten/style.css);
-@import url('http://fonts.googleapis.com/css?family=Arvo');
-@import url('http://fonts.googleapis.com/css?family=Cabin+Sketch');
-
-/* one column madness http://www.iandanielstewart.com/2010/05/28/one-column-madness/ by @ianstewart */
-/*
-#branding {
-	width: 640px;
-}
-#container {
-	float: none;
-	margin: 0;
-	width: 680px;
-}
-#content {
-	margin: 0 0 0 40px;
-}
-.home .sticky {
-	margin-left: 0;
-	margin-right: 0;
-}
-#primary,
-#secondary {
-	float: left;
-	overflow: hidden;
-	width: 220px;
-	display: none;
-}
-#secondary {
-	clear: left;
-}
-#footer {
-	clear: both;
-	width: 100%;
-}
-#colophon {
-	margin-top: 36px;
-	width: 640px;
-}
-#site-info {
-	width: 300px;
-}
-#site-generator {
-	width: auto;
-}
-
-.one-column #content {
-	margin: 0 auto;
-	width: 100%;
-}
-
-.single-attachment #content {
-	margin: 0 auto;
-	width: 100%;
-}*/
+@import url('http://fonts.googleapis.com/css?family=Arvo|Cabin+Sketch');
 
 /* Salju by @wpcharity */
 body{
@@ -158,12 +105,9 @@ body, input, textarea, .page-title span, .pingback a.url{
 	color: #111;
 }
 .header-search{
-	/*position: absolute;
-	right: -30%;*/
 	float: right;
 	text-align: right;
 	padding: 10px 0 1px 0;
-	/*background: #000;*/
 	width: 250px;
 	height: 28px;
 }
@@ -184,9 +128,7 @@ body, input, textarea, .page-title span, .pingback a.url{
 	line-height: 160%;
 }
 .thumb-tools .post{	
-	/*padding: 0 0 0 10px;*/
 	padding: 0;
-	/*margin: 0 0 60px 0 !important;*/
 	margin: 30px 30px 10px 0 !important;
 	width: 250px;
 	height: 180px;
@@ -209,35 +151,10 @@ body, input, textarea, .page-title span, .pingback a.url{
 	padding: 0;
 }
 #content .entry-title, #content .entry-title a {
-	/*font: normal 30px/120%  "Arvo", Helvetica, Arial, Sans-Serif;*/
 	font: bold 28px/120%  "Cabin Sketch", Helvetica, Arial, Sans-Serif;
 	line-height: 20px;
 	margin-bottom: 5px;	
 }
-/*
-#content .post,
-#content .tag-text{
-	background: url(img/text.png) no-repeat 0 20px;
-}
-#content .tag-photo{
-	background: url(img/photo.png) no-repeat 0 20px;
-}
-#content .tag-quote{
-	background: url(img/quote.png) no-repeat 0 20px;
-}
-#content .tag-link{
-	background: url(img/link.png) no-repeat 0 20px;
-}
-#content .tag-chat{
-	background: url(img/chat.png) no-repeat 0 20px;
-}
-#content .tag-audio{
-	background: url(img/audio.png) no-repeat 0 20px;
-}
-#content .tag-video{
-	background: url(img/video.png) no-repeat 0 20px;
-}
-*/
 #content h1, #content h2, #content h3, #content h4, #content h5, #content h6{
 	font-family:   "Arvo", Helvetica, Arial, Sans-Serif;
 }
@@ -278,7 +195,6 @@ blockquote{
 	color: #999 !important;
 }
 .entry-utility{
-	/*line-height: 160%;*/
 	margin-top: 10px;
 }
 .meta-prep,
@@ -348,7 +264,6 @@ h3#comments-title em{
 }
 #footer-widget-area .widget-area{
 	width: 230px;
-	/*font: normal 12px/160% Helvetica, Arial, Sans-Serif;*/
 	margin-right: 50px;
 }
 #footer-widget-area #fourth{
@@ -369,7 +284,6 @@ h3#comments-title em{
 	font: normal 11px/40px Arial, Helvetica, sans-serif;
 }
 #site-generator a.wpcharity{
-	/*background: url(img/wpcharity.png) no-repeat left center;*/
 	padding: 0;
 	background: none;
 }
@@ -383,11 +297,6 @@ h3#comments-title em{
 	padding: 5px 0 20px 0;
 	margin: 0px auto;
 }
-/*
-#footer #foot #colophon a{
-	color: #fff !important;
-}
-*/
 #foot {
 	margin-top: 10px;
 	font-size: 11px;
@@ -486,20 +395,6 @@ a:hover{
 .widget-area .entry-meta {
 	font-size: 11px;
 }
-
-/*
-.widget-title {
-	font: bold 30px/120%  "Cabin Sketch", Helvetica, Arial, Sans-Serif;
-	line-height: 20px;
-	margin-bottom: 15px;	
-}
-*/
-/*
-.cat-item {
-	margin-top: 0;
-	font-weight: bold;	
-}
-*/
 
 #social-panel {
 	margin: 0 0 30px 10px;
