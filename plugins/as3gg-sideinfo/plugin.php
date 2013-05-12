@@ -77,11 +77,12 @@ class As3ggSideinfo extends WP_Widget {
     	$infos['as3gg_download']	= $this->make_download_href($raw_infos['as3gg_download'][0]);
     	$infos['as3gg_license']		= $this->make_pretty_license_link();
     	$infos['as3gg_site']		= $this->make_pretty_website_link($raw_infos['as3gg_site'][0]);  
-    	$infos['as3gg_twitter']		= $this->make_pretty_twitter_link($raw_infos['as3gg_twitter'][0]);    	
+    	$infos['as3gg_twitter']		= $this->make_pretty_twitter_link($raw_infos['as3gg_twitter'][0]);
     	$infos['as3gg_repo']		= $this->make_pretty_repo_link($raw_infos['as3gg_repo'][0]);
 		$infos['as3gg_stats']		= $this->make_pretty_stats_link($raw_infos['as3gg_stats'][0]);
 		$infos['as3gg_spash']		= $this->generate_spash_img();   
-		$infos['as3gg_hide_license']= $this->is_blog_post();
+		$infos['as3gg_hide_license'] = $this->is_blog_post();
+		$infos['social_code'] 		= $this->get_social_repo_stuff($raw_infos['as3gg_repo'][0]);
 
 		// Display the widget
 		include(WP_PLUGIN_DIR . '/' . PLUGIN_SLUG . '/views/widget.php');
@@ -229,7 +230,26 @@ class As3ggSideinfo extends WP_Widget {
 		}
 		
 		return $ret;
-	} 		
+	}
+	
+	private function get_social_repo_stuff($repo_url) {
+		$ontent = '';
+		$matches = array();
+
+		if(stripos($repo_url, 'github.com') !== false) {
+			preg_match_all("$.*github.com\/(.+)\/(.+)\.git$", $repo_url, $matches);
+
+			if(count($matches) > 1) {
+				$user = $matches[1][0];
+				$repo = $matches[2][0];
+				
+				$content .= '<div class="github"><iframe src="http://ghbtns.com/github-btn.html?user='.$user.'&repo='.$repo.'&type=watch&count=true&size=small" allowtransparency="true" frameborder="0" scrolling="0" style="border: 0; width: 100px; height: 30px; overflow: hidden; margin-top: 10px;"></iframe>';
+				$content .= '<iframe src="http://ghbtns.com/github-btn.html?user='.$user.'&repo='.$repo.'&type=fork&count=true&size=small" allowtransparency="true" frameborder="0" scrolling="0" style="border: 0; width: 100px; height: 30px; overflow: hidden; margin-top: 10px;"></iframe></div>';
+			}
+		}
+
+		return $content;
+	}
 	
 	private function make_pretty_stats_link($project_id) {
 		return $project_id;
