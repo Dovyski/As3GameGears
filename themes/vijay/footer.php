@@ -28,6 +28,7 @@
 				Powered by <a href="http://wordpress.org" target="_blank">WordPress</a> with theme based on Salju, by <a class="wpcharity" href="http://wpcharity.com" target="_blank">WPCharity</a>. All information on this website is provided "as is" with no guarantees (see <a href="http://www.as3gamegears.com/disclaimer" target="_blank">disclaimer page</a>).
 			</p>
 		</div><!-- foot -->
+		<div id="footer-ad"><?php $aProps = get_option("vijay_props"); echo $aProps['footer_ad']; ?></div>
 		</div><!-- #colophon -->
 	</div><!-- #footer -->
 
