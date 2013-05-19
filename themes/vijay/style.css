@@ -5,7 +5,7 @@ Theme URI: http://as3gamegears.com
 Author: Fernando Bevilacqua
 Author URI: http://dovyski.com
 Template: twentyten
-Version: 1.0.4
+Version: 1.0.5
 */
 @import url(../twentyten/style.css);
 @import url('http://fonts.googleapis.com/css?family=Arvo|Cabin+Sketch');
@@ -484,14 +484,14 @@ a:hover{
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 100;
+	z-index: 100 !important;
 }
 
 .home-banner p {
 	position: absolute;
 	bottom: -5px;
 	left: 10px;
-	z-index: 110;
+	z-index: 110 !important;
 	width: 255px;
 	text-align: center !important;
 }

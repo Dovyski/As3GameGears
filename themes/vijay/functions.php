@@ -61,7 +61,7 @@ function vijay_theme_settings_page() {
                 </tr>
 				<tr valign="top">
 					<th scope="row"><label for="footer_ad">Footer ad</label></th>  
-                    <td><textarea name="footer_ad" cols="60" rows="12"><?php echo @$aProps['footer_ad']; ?></textarea></td>  
+                    <td><textarea name="footer_ad" cols="60" rows="12"><?php echo @stripslashes(@$aProps['footer_ad']); ?></textarea></td>  
                 </tr>
             </table>  
 			<p style="margin-top: 30px;"><input type="submit" value="Save settings" class="button-primary"/></p> 
