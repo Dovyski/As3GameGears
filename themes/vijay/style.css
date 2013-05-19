@@ -22,8 +22,8 @@ body, input, textarea, .page-title span, .pingback a.url{
 }
 #wrapper{
 	width: 100%;
-	margin-bottom: 20px;
-	margin-top: 0px;
+	margin-bottom: 0;
+	margin-top: 0;
 	background: #fff;
 	padding: 0;
 }
@@ -484,14 +484,14 @@ a:hover{
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 1;
+	z-index: 100;
 }
 
 .home-banner p {
 	position: absolute;
 	bottom: -5px;
 	left: 10px;
-	z-index: 2;
+	z-index: 110;
 	width: 255px;
 	text-align: center !important;
 }
@@ -525,6 +525,9 @@ a:hover{
 	border: 2px #cfcfcf solid;
 	margin-bottom: 20px;
 }
+
+/* Remove WP-stats smile face from the bottom of the page */
+img#wpstats{display:none}
 
 /* Nice GitHub code highlight :) */
 pre,

@@ -25,7 +25,7 @@
 		<div id="foot">
 			<p>
 				&copy; <?php echo date('Y');?> As3GameGears - Boost your tools!<br/>
-				Powered by <a href="http://wordpress.org" target="_blank">WordPress</a> with theme based on Salju, by <a class="wpcharity" href="http://wpcharity.com" target="_blank">WPCharity</a>
+				Powered by <a href="http://wordpress.org" target="_blank">WordPress</a> with theme based on Salju, by <a class="wpcharity" href="http://wpcharity.com" target="_blank">WPCharity</a>. All information on this website is provided "as is" with no guarantees (see <a href="http://www.as3gamegears.com/disclaimer" target="_blank">disclaimer page</a>).
 			</p>
 		</div><!-- foot -->
 		</div><!-- #colophon -->

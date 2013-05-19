@@ -5,6 +5,15 @@
 add_filter( 'jetpack_enable_opengraph', '__return_false', 99 );
 
 
+// Exclude tags
+function jijay_custom_tag_cloud_widget($args) {
+	$aProps = get_option("vijay_props");
+	$args['exclude'] = isset($aProps['tags_exclude']) ? explode(',', $aProps['tags_exclude']) : array();
+	
+	return $args;
+}
+add_filter( 'widget_tag_cloud_args', 'jijay_custom_tag_cloud_widget' );
+
 function vijay_setup_admin_menus() {  
     add_menu_page('Theme settings', 'Vijay', 'manage_options', 'tut_theme_settings', 'vijay_theme_settings_page');  
 }
@@ -19,10 +28,9 @@ function vijay_theme_settings_page() {
 	}
 	
 	if (isset($_POST["update_settings"])) {  
-		$aProps['open_graph'] 		= isset($_POST["open_graph"]);
-		$aProps['favicons'] 		= isset($_POST["favicons"]);
-		$aProps['code_highlight'] 	= isset($_POST["code_highlight"]);
+		unset($_POST['update_settings']);
 		
+		$aProps = $_POST;
 		update_option("vijay_props", $aProps);
 		
 		echo '<div id="message" class="updated">Settings saved</div>';
@@ -36,16 +44,20 @@ function vijay_theme_settings_page() {
 			<h3>Features</h3>
             <table class="form-table">  
                 <tr valign="top">  
-                    <th scope="row"><label for="num_elements">Open Graph tags</label></th>  
+                    <th scope="row"><label for="open_graph">Open Graph tags</label></th>  
                     <td><input type="checkbox" name="open_graph" <?php echo isset($aProps['open_graph']) && $aProps['open_graph'] ? 'checked="checked"' : ''; ?>/></td>
 				</tr>
 				<tr valign="top">
-					<th scope="row"><label for="num_elements">Favicons</label></th>  
+					<th scope="row"><label for="favicons">Favicons</label></th>  
                     <td><input type="checkbox" name="favicons"  <?php echo isset($aProps['favicons']) && $aProps['favicons'] ? 'checked="checked"' : ''; ?>/></td>  
                 </tr>  
 				<tr valign="top">
-					<th scope="row"><label for="num_elements">Code Highlight</label></th>  
+					<th scope="row"><label for="code_highlight">Code Highlight</label></th>  
                     <td><input type="checkbox" name="code_highlight"  <?php echo isset($aProps['code_highlight']) && $aProps['code_highlight'] ? 'checked="checked"' : ''; ?>/></td>  
+                </tr>
+				<tr valign="top">
+					<th scope="row"><label for="tags_exclude">Tags to exclude</label></th>  
+                    <td><input type="text" name="tags_exclude"  value="<?php echo @$aProps['tags_exclude']; ?>" /></td>  
                 </tr>
             </table>  
 			<p style="margin-top: 30px;"><input type="submit" value="Save settings" class="button-primary"/></p> 
