@@ -24,8 +24,8 @@
 		
 		<?php if($aIsBlogPost) { ?>
 			<div class="author-info">
-				<img src="http://avatars.io/facebook/<?php echo get_the_author(); ?>?size=medium" border="0" title="Blog post" />
-				<p>Post by <strong><?php echo get_the_author(); ?></strong><br/>on <?php echo date('M d, Y', strtotime($post->post_date));?></p>
+				<img src="http://avatars.io/facebook/<?php echo the_author_meta('nickname'); ?>?size=large" border="0" title="<?php echo the_author_meta('display_name'); ?>" />
+				<p>Post by <strong><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author_meta( 'display_name' ); ?></a></strong><br/>on <?php echo date('M d, Y', strtotime($post->post_date));?></p>
 				<p><?php the_tags('Tags: <br/>', ', ', '<br />'); ?></p>
 			</div>
 		<?php } ?>
