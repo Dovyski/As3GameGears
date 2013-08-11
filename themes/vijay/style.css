@@ -5,7 +5,7 @@ Theme URI: http://as3gamegears.com
 Author: Fernando Bevilacqua
 Author URI: http://dovyski.com
 Template: twentyten
-Version: 1.0.5
+Version: 1.0.6
 */
 @import url(../twentyten/style.css);
 @import url('http://fonts.googleapis.com/css?family=Arvo|Cabin+Sketch');
@@ -514,6 +514,11 @@ a:hover{
 .icon-brain  		{ background-image: url(img/div_brain_small.png) !important; }
 .icon-skull  		{ background-image: url(img/div_skull_small.png) !important; }
 .icon-idea  		{ background-image: url(img/div_idea_small.png) !important; }
+.icon-comments  	{ background-image: url(img/div_comments_small.png) !important; }
+.icon-book 	 		{ background-image: url(img/div_book_small.png) !important; }
+.icon-quote 	 	{ background-image: url(img/div_quote_small.png) !important; }
+.icon-cog 	 		{ background-image: url(img/div_cog_small.png) !important; }
+.icon-tool 	 		{ background-image: url(img/div_tool_small.png) !important; }
 
 /* Tip box */
 .tip-box {

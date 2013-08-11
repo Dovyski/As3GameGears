@@ -20,6 +20,17 @@ function vijay_setup_admin_menus() {
 
 add_action("admin_menu", "vijay_setup_admin_menus"); 
 
+
+function vjay_edit_form_after_editor() {
+    echo '<small><strong>Snippets</strong>: class="divider icon-code", class="tip-box icon-brain": icon-code-splash, icon-code, icon-brain, icon-skull, icon-idea, icon-comments, icon-book, icon-quote, icon-cog, icon-tool.';
+	echo '<br/>';
+	echo '<pre>'. htmlentities('<p><strong>Sample</strong></p>
+<pre class="brush: as3">
+</pre>') . '</pre>';
+	echo '</small>';
+}
+add_action('edit_form_after_editor', 'vjay_edit_form_after_editor');
+
 function vijay_theme_settings_page() {  
 	$aProps = get_option("vijay_props");
 	
