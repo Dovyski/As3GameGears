@@ -31,6 +31,37 @@ function vjay_edit_form_after_editor() {
 }
 add_action('edit_form_after_editor', 'vjay_edit_form_after_editor');
 
+
+function vijay_platform_icon_by_cat($cat_obj) {
+    $ret = $cat_obj->name;
+    $icon = '';
+    
+    switch($cat_obj->slug) {
+        case 'android': $icon = 'fa-android'; break;
+        case 'ios':     $icon = 'fa-apple'; break;
+        case 'mac':     $icon = 'fa-apple'; break;
+        case 'windows': $icon = 'fa-windows'; break;
+    }
+    
+    $ret = '<i class="fa '.$icon.' fa-2x"></i>';
+    return $ret;
+}
+
+function vijay_license_icon_by_tag($tag_obj) {
+    $ret = '';
+    $icon = '';
+    
+    switch($tag_obj->slug) {
+        case 'commercial':  $icon = 'fa-dollar'; break;
+        default:            $icon = 'fa-code-fork'; break;
+    }
+
+    $ret .= ' <i class="fa '.$icon.' fa-lg"></i>';
+    
+    return $ret;
+}
+
+
 function vijay_theme_settings_page() {  
 	$aProps = get_option("vijay_props");
 	

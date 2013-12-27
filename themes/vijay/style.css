@@ -197,6 +197,14 @@ blockquote{
 .entry-utility{
 	margin-top: 10px;
 }
+.cat-links {
+    float: right;
+    margin-right: 30px;
+}
+.tag-links {
+    float: left;
+    color: #C48716;
+}
 .meta-prep,
 .entry-meta .meta-sep,
 .entry-utility-prep-tag-links,

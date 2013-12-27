@@ -18,7 +18,7 @@
  * @since Twenty Ten 1.0
  */
  
- function custom_excerpt_length( $length ) {
+function custom_excerpt_length( $length ) {
 	return 28;
 }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
@@ -28,11 +28,16 @@ function new_excerpt_more( $more ) {
 }
 add_filter('excerpt_more', 'new_excerpt_more');
 
-add_filter('get_the_excerpt', 'exc');
-
 function exc($param) {
     return ucfirst(preg_replace("/.*is an? /", "", $param, 1));
 }
+add_filter('get_the_excerpt', 'exc');
+
+function absc($param) {
+    $cats = get_the_category();
+    return $cats[0]->slug == 'air-native-extension' ? str_replace(array('-', 'ANE', 'ane'), array(' ', '', ''), $param) : $param;
+}
+add_filter('the_title', 'absc');
  
 ?>
 
@@ -142,7 +147,7 @@ function exc($param) {
 	<?php else : ?>
 		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 			<h2 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'twentyten' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
-<?php edit_post_link( __( 'Edit', 'twentyten' ), '<span class="meta-sep"></span> <span class="edit-link">', '</span>' ); ?>
+<?php //edit_post_link( __( 'Edit', 'twentyten' ), '<span class="meta-sep"></span> <span class="edit-link">', '</span>' ); ?>
 			<div class="entry-meta">
 				<?php //twentyten_posted_on(); ?>
 			</div><!-- .entry-meta -->
@@ -159,18 +164,33 @@ function exc($param) {
 	<?php endif; ?>
 	
 			<div class="entry-utility">
+                <?php
+                    $category = get_the_category();
+                ?>
 				<?php if ( count( get_the_category() ) ) : ?>
 					<span class="cat-links">
-						<?php printf( __( '<span class="%1$s"></span> %2$s', 'twentyten' ), 'entry-utility-prep entry-utility-prep-cat-links', get_the_category_list( ', ' ) ); ?>
+						<?php
+                            if(count($category)) {
+                                foreach($category as $key => $value) {
+                                    if($value->slug != 'air-native-extension' || $value->term_id != $cat) {
+                                        echo vijay_platform_icon_by_cat($value) . ' ';
+                                    }
+                                }
+                            }
+                        ?>
 					</span>
 					
 				<?php endif; ?>
 				<?php
-					$tags_list = get_the_tag_list( '', ', ' );
-					if ( $tags_list ):
+					$tags_list = get_the_tags();
+					if ( count($tags_list) ):
 				?>
 					<span class="tag-links">
-						<?php printf( __( '<span class="%1$s"></span> %2$s', 'twentyten' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list ); ?>
+						<?php
+                            foreach($tags_list as $key => $value) {
+                                echo vijay_license_icon_by_tag($value) . ' ' . $value->name;
+                            }
+                        ?>
 					</span>
 					<span class="meta-sep"></span>
 				<?php endif; ?><div class="com"></div>
