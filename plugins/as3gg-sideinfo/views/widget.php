@@ -4,35 +4,44 @@
 	$baseUrl = WP_PLUGIN_URL . '/'. PLUGIN_SLUG;
 
 	echo '<div id="widget-as3gg-sideinfo">';
+        echo '<h3>Information</h3>';
+
 		if(!empty($infos['as3gg_spash'])) {
-			echo '<img src="'. $baseUrl.'/images/'.$infos['as3gg_spash'].'" title="Information" />';			
+			//echo '<img src="'. $baseUrl.'/images/'.$infos['as3gg_spash'].'" title="Information" />';			
 		}
 		echo '<div>';
 			if(isset($infos['as3gg_download']) && $infos['as3gg_download'] != '') {
 				echo '<a href="'.$infos['as3gg_download'].'" target="_blank" class="large yellow awesome" style="margin-bottom: 10px;">';
-						echo '<img src="'. $baseUrl.'/images/sideinfo_download.png" border="0" />';
+						echo '<span><i class="fa fa-camera-retro fa-3x"></i></span>';
 						echo 'Download<br /><small>Gimme it!</small>';
 				echo '</a>';
 			}
+
+            if(isset($infos['as3gg_buy']) && $infos['as3gg_buy'] != '') {
+				echo '<a href="'.$infos['as3gg_buy'].'" target="_blank" class="large yellow awesome" style="margin-bottom: 10px;">';
+						echo '<span><i class="fa fa-camera-retro fa-2x"></i></span>';
+						echo 'Buy item <small>from author</small>';
+				echo '</a>';
+			}
+
+            if(isset($infos['as3gg_twitter']) && $infos['as3gg_twitter'] != '') {
+				echo '<img src="http://avatars.io/twitter/'. $raw_infos['as3gg_twitter'][0].'" width="36" height="36" style="margin: 0 8px 0 0;" />';
+				echo '<p><strong>'.$infos['as3gg_twitter'].'</strong><br />Author</p>';				
+			}
 			
 			if(isset($infos['as3gg_hide_license']) && $infos['as3gg_hide_license'] == false) {
-				echo '<img src="'. $baseUrl.'/images/sideinfo_cube.jpg" />';
+				echo '<span><i class="fa fa-book fa-3x"></i></span>';
 				echo '<p><strong>'.$infos['as3gg_license'].'</strong><br />License</p>';
 			}
 			
 			if(isset($infos['as3gg_site']) && $infos['as3gg_site'] != '') {
-				echo '<img src="'. $baseUrl.'/images/sideinfo_web.jpg" />';
+				echo '<span><i class="fa fa-link fa-3x"></i></span>';
 				echo '<p><strong>'.$infos['as3gg_site'].'</strong><br />Website</p>';
 			}
 			
-			if(isset($infos['as3gg_twitter']) && $infos['as3gg_twitter'] != '') {
-				//echo '<img src="'. $baseUrl.'/images/sideinfo_twitter.jpg" />';
-				echo '<img src="http://avatars.io/twitter/'. $raw_infos['as3gg_twitter'][0].'" width="36" height="36" style="margin: 0 5px 0 5px; border: 1px solid #a0a0a0;" />';
-				echo '<p><strong>'.$infos['as3gg_twitter'].'</strong><br />Twitter</p>';				
-			}
-			
 			if(isset($infos['as3gg_repo']) && $infos['as3gg_repo'] != '') {
-				echo '<img src="'. $baseUrl.'/images/sideinfo_box.jpg" />';
+                $icon = isset($infos['as3gg_repo_info']) ? $infos['as3gg_repo_info']['icon'] : 'code';
+				echo '<span><i class="fa fa-'.$icon.' fa-3x"></i></span>';
 				echo '<p><strong>'.$infos['as3gg_repo'].'</strong><br />Code Repository</p>';				
 			}
 			

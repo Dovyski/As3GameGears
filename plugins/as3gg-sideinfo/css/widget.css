@@ -4,10 +4,19 @@
 	text-align: left;
 	color: #000;
 	margin-bottom: 100px;
+    width: 100%;
+    border: #e0e0e0 1px dashed;
+    background: #f2f2f2;
+    padding: 15px;
 }
+#widget-as3gg-sideinfo span,
 #widget-as3gg-sideinfo div img {
 	float: left;
-	margin: 0 2px 0 0;
+	margin: 0 15px 0 0;
+}
+
+#widget-as3gg-sideinfo span {
+    width: 35px;
 }
 
 #widget-as3gg-sideinfo p {	
@@ -15,6 +24,14 @@
 	text-decoration: none;
 	color: #666;
 }
+
+#widget-as3gg-sideinfo h3 {	
+	text-align: center;
+	color: #000;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
 
 #widget-as3gg-sideinfo p strong,
 #widget-as3gg-sideinfo a:link,
