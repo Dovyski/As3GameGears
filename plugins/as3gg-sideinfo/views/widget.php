@@ -6,21 +6,23 @@
 	echo '<div id="widget-as3gg-sideinfo">';
         echo '<h3>Information</h3>';
 
-		if(!empty($infos['as3gg_spash'])) {
-			//echo '<img src="'. $baseUrl.'/images/'.$infos['as3gg_spash'].'" title="Information" />';			
-		}
-		echo '<div>';
+        if (has_post_thumbnail($post->ID)) {
+            $image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'single-post-thumbnail' );
+            echo '<div class="as3gg-spash"><img src="'.$image[0].'" title="" /></div>';
+        }
+
+		echo '<div class="as3gg-content">';
 			if(isset($infos['as3gg_download']) && $infos['as3gg_download'] != '') {
 				echo '<a href="'.$infos['as3gg_download'].'" target="_blank" class="large yellow awesome" style="margin-bottom: 10px;">';
-						echo '<span><i class="fa fa-camera-retro fa-3x"></i></span>';
+						echo '<span><i class="fa fa-download fa-3x"></i></span>';
 						echo 'Download<br /><small>Gimme it!</small>';
 				echo '</a>';
 			}
 
             if(isset($infos['as3gg_buy']) && $infos['as3gg_buy'] != '') {
 				echo '<a href="'.$infos['as3gg_buy'].'" target="_blank" class="large yellow awesome" style="margin-bottom: 10px;">';
-						echo '<span><i class="fa fa-camera-retro fa-2x"></i></span>';
-						echo 'Buy item <small>from author</small>';
+						echo '<span> <i class="fa fa-tag fa-3x"></i></span>';
+						echo 'Buy item<br /><small>in author\'s store</small>';
 				echo '</a>';
 			}
 

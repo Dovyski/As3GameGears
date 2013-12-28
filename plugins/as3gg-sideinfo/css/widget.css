@@ -10,7 +10,7 @@
     padding: 15px;
 }
 #widget-as3gg-sideinfo span,
-#widget-as3gg-sideinfo div img {
+#widget-as3gg-sideinfo div.as3gg-content img {
 	float: left;
 	margin: 0 15px 0 0;
 }
@@ -29,7 +29,7 @@
 	text-align: center;
 	color: #000;
     font-weight: bold;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 
@@ -43,44 +43,49 @@
 	color: #000;
 }
 
+.as3gg-spash {
+    align-content:center;
+    text-align: center !important;
+    padding: 2px;
+    padding-bottom: 20px;
+    overflow: auto;
+}
+
+.as3gg-spash img {
+    max-width: 130px;
+}
+
+
 /* Awesome buttons from: http://www.zurb.com/blog_uploads/0000/0617/buttons-03.html */
 .awesome, .awesome:visited {
 	display: inline-block; 
-	padding: 5px 10px 6px; 
+	padding: 20px; 
 	color: #fff; 
-	text-decoration: none;
-	-moz-border-radius: 5px; 
-	-webkit-border-radius: 5px;
-	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
-	border-bottom: 1px solid rgba(0,0,0,0.25);
+	text-decoration: none !important;
 	position: relative;
 	cursor: pointer;
+    clear: both;
+    width: 70%;
 }
 
-.awesome img, .awesome:visited img {
-	padding-right: 5px;
-}
+.awesome:hover										{ background-color: #111;}
+.awesome:active										{ top: 1px; }
+.small.awesome, .small.awesome:visited 				{ font-size: 11px; padding: 5px; }
+.awesome, .awesome:visited,
+.medium.awesome, .medium.awesome:visited 			{ font-size: 13px; font-weight: bold; line-height: 1;}
+.large.awesome, .large.awesome:visited 				{ font-size: 14px; padding: 15px 40px 3px 10px; }
 
-	.awesome:hover										{ background-color: #111;}
-	.awesome:active										{ top: 1px; }
-	.small.awesome, .small.awesome:visited 				{ font-size: 11px; padding: ; }
-	.awesome, .awesome:visited,
-	.medium.awesome, .medium.awesome:visited 			{ font-size: 13px; font-weight: bold; line-height: 1; text-shadow: 0 -1px 1px rgba(0,0,0,0.25); }
-	.large.awesome, .large.awesome:visited 				{ font-size: 14px; padding: 5px 70px 3px 10px; }
-	
-	.large.awesome small, .large.awesome:visited small	{ font-size: 11px; color: #1f1f1f; }	
-	
-	.green.awesome, .green.awesome:visited		{ background-color: #91bd09; }
-	.green.awesome:hover						{ background-color: #749a02; }
-	.blue.awesome, .blue.awesome:visited		{ background-color: #2daebf; }
-	.blue.awesome:hover							{ background-color: #007d9a; }
-	.red.awesome, .red.awesome:visited			{ background-color: #e33100; }
-	.red.awesome:hover							{ background-color: #872300; }
-	.magenta.awesome, .magenta.awesome:visited		{ background-color: #a9014b; }
-	.magenta.awesome:hover							{ background-color: #630030; }
-	.orange.awesome, .orange.awesome:visited		{ background-color: #ff5c00; }
-	.orange.awesome:hover							{ background-color: #d45500; }
-	.yellow.awesome, .yellow.awesome:visited		{ background-color: #ffb515; }
-	.yellow.awesome:hover							{ background-color: #fc9200; }
+.large.awesome small, .large.awesome:visited small	{ font-size: 11px; color: #1f1f1f; }	
+
+.green.awesome, .green.awesome:visited		{ background-color: #91bd09; }
+.green.awesome:hover						{ background-color: #749a02; }
+.blue.awesome, .blue.awesome:visited		{ background-color: #2daebf; }
+.blue.awesome:hover							{ background-color: #007d9a; }
+.red.awesome, .red.awesome:visited			{ background-color: #e33100; }
+.red.awesome:hover							{ background-color: #872300; }
+.magenta.awesome, .magenta.awesome:visited		{ background-color: #a9014b; }
+.magenta.awesome:hover							{ background-color: #630030; }
+.orange.awesome, .orange.awesome:visited		{ background-color: #ff5c00; }
+.orange.awesome:hover							{ background-color: #d45500; }
+.yellow.awesome, .yellow.awesome:visited		{ background-color: #fc9200; }
+.yellow.awesome:hover							{ background-color: #ffb515; }
