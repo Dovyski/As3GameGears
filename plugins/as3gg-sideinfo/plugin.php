@@ -219,7 +219,7 @@ class As3ggSideinfo extends WP_Widget {
 		
 		if($repo_url != '') {
             $repo_info = $this->get_repo_info($repo_url);
-			$ret = '<a href="'.(strpos($repo_url, '.git') !== false ? 'git://' . $repo_url : $repo_url).'" target="_blank">'.$repo_info['name'].'</a>';
+			$ret = '<a href="'.(strpos($repo_url, 'git://') === false ? 'git://' . $repo_url : $repo_url).'" target="_blank">'.$repo_info['name'].'</a>';
 		}
 		
 		return $ret;
@@ -256,11 +256,18 @@ class As3ggSideinfo extends WP_Widget {
 		$matches = array();
 
 		if(stripos($repo_url, 'github.com') !== false) {
-			preg_match_all("$(.+@)*([\w\d\.]+):(.*)/(.*)\.git$", $repo_url, $matches);
+            $type = 0;
+			if(strpos($repo_url, 'git://') !== false) {
+                preg_match_all("$.*github.com\/(.+)\/(.+)\.git$", $repo_url, $matches);
+
+            } else {
+                $type = 1;
+                preg_match_all("$(.+@)*([\w\d\.]+):(.*)/(.*)\.git$", $repo_url, $matches);
+            }
 
 			if(count($matches) > 1) {
-				$user  = $matches[3][0];
-				$repo  = $matches[4][0];
+				$user  = $type == 0 ? $matches[1][0] : $matches[3][0];
+				$repo  = $type == 0 ? $matches[2][0] : $matches[4][0];
 				
 				$content .= '<div class="github"><iframe src="http://ghbtns.com/github-btn.html?user='.$user.'&repo='.$repo.'&type=watch&count=true&size=small" allowtransparency="true" frameborder="0" scrolling="0" style="border: 0; width: 100px; height: 30px; overflow: hidden; margin-top: 10px;"></iframe>';
 				$content .= '<iframe src="http://ghbtns.com/github-btn.html?user='.$user.'&repo='.$repo.'&type=fork&count=true&size=small" allowtransparency="true" frameborder="0" scrolling="0" style="border: 0; width: 100px; height: 30px; overflow: hidden; margin-top: 10px;"></iframe></div>';
