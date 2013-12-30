@@ -258,8 +258,8 @@ function vijay_get_site_title_info() {
 		$aRet['title']  = 'Oops!';
 	}
 	
-	$aRet['style'] = strlen($aRet['title']) >= 20 ? 'font-size: 50px !important;' : $aRet['style'];
-	$aRet['style'] = strlen($aRet['title']) >= 30 ? 'font-size: 40px !important;' : $aRet['style'];
+	//$aRet['style'] = strlen($aRet['title']) >= 20 ? 'font-size: 50px !important;' : $aRet['style'];
+	//$aRet['style'] = strlen($aRet['title']) >= 30 ? 'font-size: 40px !important;' : $aRet['style'];
 	
 	return $aRet;
 }
