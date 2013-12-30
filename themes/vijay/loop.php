@@ -183,7 +183,7 @@ add_filter('the_title', 'absc');
 				<?php endif; ?>
 				<?php
 					$tags_list = get_the_tags();
-					if ( count($tags_list) ):
+					if (is_array($tags_list) && count($tags_list) > 0 ):
 				?>
 					<span class="tag-links">
 						<?php

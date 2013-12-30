@@ -8,6 +8,7 @@
     border: #e0e0e0 1px dashed;
     background: #f2f2f2;
     padding: 15px;
+    overflow: auto;
 }
 #widget-as3gg-sideinfo span,
 #widget-as3gg-sideinfo div.as3gg-content img {
