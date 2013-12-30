@@ -16,19 +16,13 @@
 	$aCategory 	 = $aCategory[0];
 	$aIsBlogPost = $aCategory->slug == 'blog' && is_single();
 ?>
-	<div id="author-info">		
-		<?php if($aIsBlogPost) { ?>
-			<div class="author-info">
-				<img src="http://avatars.io/facebook/<?php echo the_author_meta('nickname'); ?>?size=large" border="0" title="<?php echo the_author_meta('display_name'); ?>" />
-				<p>Post by <strong><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author_meta( 'display_name' ); ?></a></strong><br/>on <?php echo date('M d, Y', strtotime($post->post_date));?></p>
-				<p><?php the_tags('Tags: <br/>', ', ', '<br />'); ?></p>
-			</div>
-		<?php } ?>
-	</div>
-
-<?php
-	
-?>
+    <?php if($aIsBlogPost) { ?>
+        <div class="author-info">
+            <img src="http://avatars.io/facebook/<?php echo the_author_meta('nickname'); ?>?size=large" border="0" title="<?php echo the_author_meta('display_name'); ?>" />
+            <p>Post by <strong><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author_meta( 'display_name' ); ?></a></strong><br/>on <?php echo date('M d, Y', strtotime($post->post_date));?></p>
+            <p><?php the_tags('Tags: <br/>', ', ', '<br />'); ?></p>
+        </div>
+    <?php } ?>
 
 <?php
 	/* When we call the dynamic_sidebar() function, it'll spit out

@@ -409,11 +409,15 @@ a:hover{
 }
 
 .author-info {
-	margin: 20px 0 5px 0;
+	margin: 0 0 25px 0;
+    border: #e0e0e0 1px dashed;
+    background: #f2f2f2;
+    padding: 15px;
+    overflow: auto;
 }
 
 .author-info img {
-	border: 2px solid #c0c0c0;
+	border: 1px solid #c0c0c0;
 }
 
 /* Styles for pagination */
