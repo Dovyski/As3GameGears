@@ -68,7 +68,9 @@ class As3ggSideinfo extends WP_Widget {
 	 * @instance
 	 */
 	function widget($args, $instance) {
-		if(!is_single()) {
+        $category = get_the_category();
+
+		if(!is_single() || ($category[0] != null && $category[0]->slug == 'blog')) {
 			return;
 		}
 
