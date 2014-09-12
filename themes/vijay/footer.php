@@ -35,9 +35,16 @@
 </div><!-- #wrapper -->
 </div><!-- #outer-wrapper -->
 
-<!-- As3GameGears Tooltip - api.as3gamegears.com/#js -->
-<script src="http://api.as3gamegears.com/js/as3gamegears.min.js"></script>
-<script>As3GameGears.tooltip();</script>
+<?php
+	if($_SERVER['SERVER_PORT'] != '443') {
+?>
+	<!-- As3GameGears Tooltip - api.as3gamegears.com/#js -->
+	<script src="http://api.as3gamegears.com/js/as3gamegears.min.js"></script>
+	<script>As3GameGears.tooltip();</script>
+<?php
+	}
+?>
+
 <?php
 	/* Always have wp_footer() just before the closing </body>
 	 * tag of your theme, or you will break many plugins, which

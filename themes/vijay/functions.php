@@ -9,16 +9,16 @@ add_filter( 'jetpack_enable_opengraph', '__return_false', 99 );
 function jijay_custom_tag_cloud_widget($args) {
 	$aProps = get_option("vijay_props");
 	$args['exclude'] = isset($aProps['tags_exclude']) ? explode(',', $aProps['tags_exclude']) : array();
-	
+
 	return $args;
 }
 add_filter( 'widget_tag_cloud_args', 'jijay_custom_tag_cloud_widget' );
 
-function vijay_setup_admin_menus() {  
-    add_menu_page('Theme settings', 'Vijay', 'manage_options', 'tut_theme_settings', 'vijay_theme_settings_page');  
+function vijay_setup_admin_menus() {
+    add_menu_page('Theme settings', 'Vijay', 'manage_options', 'tut_theme_settings', 'vijay_theme_settings_page');
 }
 
-add_action("admin_menu", "vijay_setup_admin_menus"); 
+add_action("admin_menu", "vijay_setup_admin_menus");
 
 
 function vjay_edit_form_after_editor() {
@@ -35,14 +35,14 @@ add_action('edit_form_after_editor', 'vjay_edit_form_after_editor');
 function vijay_platform_icon_by_cat($cat_obj) {
     $ret = $cat_obj->name;
     $icon = '';
-    
+
     switch($cat_obj->slug) {
         case 'android': $icon = 'fa-android'; break;
         case 'ios':     $icon = 'fa-apple'; break;
         case 'mac':     $icon = 'fa-apple'; break;
         case 'windows': $icon = 'fa-windows'; break;
     }
-    
+
     $ret = '<i class="fa '.$icon.' fa-2x"></i>';
     return $ret;
 }
@@ -50,71 +50,71 @@ function vijay_platform_icon_by_cat($cat_obj) {
 function vijay_license_icon_by_tag($tag_obj) {
     $ret = '';
     $icon = '';
-    
+
     switch($tag_obj->slug) {
         case 'commercial':  $icon = 'fa-dollar'; break;
         default:            $icon = 'fa-code-fork'; break;
     }
 
     $ret .= ' <i class="fa '.$icon.' fa-lg"></i>';
-    
+
     return $ret;
 }
 
 
-function vijay_theme_settings_page() {  
+function vijay_theme_settings_page() {
 	$aProps = get_option("vijay_props");
-	
+
 	if (!is_array($aProps)) {
 		$aProps = array();
 	}
-	
-	if (isset($_POST["update_settings"])) {  
+
+	if (isset($_POST["update_settings"])) {
 		unset($_POST['update_settings']);
-		
+
 		$aProps = $_POST;
 		update_option("vijay_props", $aProps);
-		
+
 		echo '<div id="message" class="updated">Settings saved</div>';
 	}
-?>  
-    <div class="wrap">  
-        <?php screen_icon(); ?> <h2>Vijay Configuration</h2>  
-  
-        <form method="POST" action="">  
+?>
+    <div class="wrap">
+        <?php screen_icon(); ?> <h2>Vijay Configuration</h2>
+
+        <form method="POST" action="">
 			<input type="hidden" name="update_settings" value="Y" />
 			<h3>Features</h3>
-            <table class="form-table">  
-                <tr valign="top">  
-                    <th scope="row"><label for="open_graph">Open Graph tags</label></th>  
+            <table class="form-table">
+                <tr valign="top">
+                    <th scope="row"><label for="open_graph">Open Graph tags</label></th>
                     <td><input type="checkbox" name="open_graph" <?php echo isset($aProps['open_graph']) && $aProps['open_graph'] ? 'checked="checked"' : ''; ?>/></td>
 				</tr>
 				<tr valign="top">
-					<th scope="row"><label for="favicons">Favicons</label></th>  
-                    <td><input type="checkbox" name="favicons"  <?php echo isset($aProps['favicons']) && $aProps['favicons'] ? 'checked="checked"' : ''; ?>/></td>  
-                </tr>  
-				<tr valign="top">
-					<th scope="row"><label for="code_highlight">Code Highlight</label></th>  
-                    <td><input type="checkbox" name="code_highlight"  <?php echo isset($aProps['code_highlight']) && $aProps['code_highlight'] ? 'checked="checked"' : ''; ?>/></td>  
+					<th scope="row"><label for="favicons">Favicons</label></th>
+                    <td><input type="checkbox" name="favicons"  <?php echo isset($aProps['favicons']) && $aProps['favicons'] ? 'checked="checked"' : ''; ?>/></td>
                 </tr>
 				<tr valign="top">
-					<th scope="row"><label for="tags_exclude">Tags to exclude</label></th>  
-                    <td><input type="text" name="tags_exclude"  value="<?php echo @$aProps['tags_exclude']; ?>" /></td>  
+					<th scope="row"><label for="code_highlight">Code Highlight</label></th>
+                    <td><input type="checkbox" name="code_highlight"  <?php echo isset($aProps['code_highlight']) && $aProps['code_highlight'] ? 'checked="checked"' : ''; ?>/></td>
                 </tr>
 				<tr valign="top">
-					<th scope="row"><label for="footer_ad">Footer ad</label></th>  
-                    <td><textarea name="footer_ad" cols="60" rows="12"><?php echo @stripslashes(@$aProps['footer_ad']); ?></textarea></td>  
+					<th scope="row"><label for="tags_exclude">Tags to exclude</label></th>
+                    <td><input type="text" name="tags_exclude"  value="<?php echo @$aProps['tags_exclude']; ?>" /></td>
                 </tr>
-            </table>  
-			<p style="margin-top: 30px;"><input type="submit" value="Save settings" class="button-primary"/></p> 
-        </form>  
-    </div>  
-<?php  
+				<tr valign="top">
+					<th scope="row"><label for="footer_ad">Footer ad</label></th>
+                    <td><textarea name="footer_ad" cols="60" rows="12"><?php echo @stripslashes(@$aProps['footer_ad']); ?></textarea></td>
+                </tr>
+            </table>
+			<p style="margin-top: 30px;"><input type="submit" value="Save settings" class="button-primary"/></p>
+        </form>
+    </div>
+<?php
 }
 
-function vijay_change_favicon() { 
+function vijay_change_favicon() {
 	$aProps = get_option("vijay_props");
-	
+
 	if(isset($aProps['favicons']) && $aProps['favicons']) {
 ?>
 		<!-- Favicons by Vijay -->
@@ -136,7 +136,7 @@ function vijay_hide_comments_form( $post_id ) {
 				jQuery('#comment-switch').on('hover', function() {
 					jQuery('#comment-switch').hide();
 					jQuery('#respond').slideDown();
-				});  
+				});
 			});
         </script>";
 }
@@ -145,7 +145,7 @@ add_action( 'comment_form_before', 'vijay_hide_comments_form' );
 
 function vijay_code_highlight() {
 	$aProps = get_option("vijay_props");
-	
+
 	if(isset($aProps['code_highlight']) && $aProps['code_highlight']) {
 ?>
 		<!-- Code highlight by Vijay -->
@@ -190,14 +190,14 @@ endif;
 
 if ( ! function_exists( 'vijay_header_class' ) ) :
 /**
- * 
+ *
  *
  * @since Twenty Ten 1.0
  */
 function vijay_header_class() {
 	global $post;
 	$aClass = '';
-	
+
 	if(is_category()) {
 		$aClass = 'header-bg-category';
 	} else if(is_single()) {
@@ -207,7 +207,7 @@ function vijay_header_class() {
 	} else if(is_search()) {
 		$aClass = 'header-bg-search';
 	}
-	
+
 	echo 'class="'.$aClass.'"';
 }
 endif;
@@ -233,34 +233,34 @@ if ( ! function_exists( 'vijay_get_site_title_info' ) ) :
 */
 function vijay_get_site_title_info() {
 	global $post;
-	$aRet = array('title' => '', 'desc' => '', 'class' => '', 'style' => '');	
+	$aRet = array('title' => '', 'desc' => '', 'class' => '', 'style' => '');
 
 	if(is_category()) {
 		$aCat 			= get_category( get_query_var( 'cat' ) );
 		$aRet['title']  = $aCat->name;
 		$aRet['desc']	= $aCat->description;
 		$aRet['class']	= 'site-title-category';
-		
+
 	} else if(is_single()){
 		$aRet['title']  = $post->post_title;
-	
+
 	} else if(is_page()){
 		$aRet['title']  = $post->post_title;
 		$aRet['desc']	= $post->post_excerpt;
-		
+
 	} else if(is_search()) {
 		$aRet['title']  = 'Search';
-		
+
 	} else if(is_home()) {
 		$aRet['title']  = 'Blog';
-		
+
 	} else if(is_404()) {
 		$aRet['title']  = 'Oops!';
 	}
-	
+
 	//$aRet['style'] = strlen($aRet['title']) >= 20 ? 'font-size: 50px !important;' : $aRet['style'];
 	//$aRet['style'] = strlen($aRet['title']) >= 30 ? 'font-size: 40px !important;' : $aRet['style'];
-	
+
 	return $aRet;
 }
 endif;
