@@ -1,62 +1,96 @@
-<?php 
+<?php
 	require_once dirname(__FILE__).'/layout.php';
-	
+
 	layoutHeader('Start', View::baseUrl());
-	
+
 	echo '<div class="jumbotron">';
-		echo '<div class="container">';
-			echo '<h1>Codebot</h1>';
-			echo '<p>Ensine e aprenda programação. Ponto.</p>';
+		echo '<div class="container-fluid">';
+			echo '<div class="row">';
+				echo '<div id="headline" class="center-block">';
+					echo '<i class="fa fa-gear fa-5x"></i>';
+					echo '<p>AS3 Game Gears is the right place to find tools, libraries and engines to build your game. There is no need to reinvent the wheel for every new Flash game you create, all you need is a place to search for the tools that best fit your needs.</p>';
+				echo '</div>';
+			echo '</div>';
 		echo '</div>';
 	echo '</div>';
-	
+
 	echo '<div class="container">';
+		echo '<div class="row text-center">';
+			echo '<div class="col-md-4">';
+				echo '<p><i class="fa fa-code fa-5x"></i></p>';
+				echo '<h3>Free Code</h3>';
+				echo '<p>I know how to code, but I&#8217;m broke! Gimme all the free stuff you have.</p>';
+			echo '</div>';
+			echo '<div class="col-md-4">';
+				echo '<p><i class="fa fa-money fa-5x"></i></p>';
+				echo '<h3>Commercial tools</h3>';
+				echo '<p>I have money to spend. Show me the commercial solutions and tools!</p>';
+		echo '</div>';
+			echo '<div class="col-md-4">';
+				echo '<p><i class="fa fa-photo fa-5x"></i></p>';
+				echo '<h3>Free Assets</h3>';
+				echo '<p>I can code, but I have no art. I need assets to make my game!</p>';
+			echo '</div>';
+		echo '</div>';
+
+		echo '<div class="row  text-center" style="padding: 40px 0 30px 0;">';
+			echo '<div class="col-md-12">';
+				echo '<hr><h4 style="margin-top: -30px;">Categories</h4></hr>';
+			echo '</div>';
+		echo '</div>';
+
 		echo '<div class="row">';
-			echo '<div class="col-md-4 index-hero1">';
-				echo '<h2>Planejado</h2>';
-				echo '<p>Um ambiente criado desde o princípio com foco no ensino de programação.</p>';
+			echo '<div class="col-md-3">';
+				echo '<p><i class="fa fa-angle-right"></i> Air Native Extension</p>';
+				echo '<p><i class="fa fa-angle-right"></i> Animation</p>';
+				echo '<p><i class="fa fa-angle-right"></i> Augmented Reality</p>';
+				echo '<p><i class="fa fa-angle-right"></i> Authentication</p>';
+				echo '<p><i class="fa fa-angle-right"></i> Backend</p>';
+				echo '<p><i class="fa fa-angle-right"></i> Compression</p>';
+				echo '<p><i class="fa fa-angle-right"></i> Air Native Extension</p>';
+				echo '<p><i class="fa fa-angle-right"></i> Animation</p>';
+				echo '<p><i class="fa fa-angle-right"></i> Augmented Reality</p>';
+				echo '<p><i class="fa fa-angle-right"></i> Authentication</p>';
 			echo '</div>';
-			
-			echo '<div class="col-md-4 index-hero2">';
-				echo '<h2>Dados na núvem</h2>';
-				echo '<p>Códigos e programas são armazenados e rodados na núvem.</p>';
+
+			echo '<div class="col-md-3">';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Air Native Extension</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Animation</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Augmented Reality</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Authentication</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Backend</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Compression</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Air Native Extension</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Animation</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Augmented Reality</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Authentication</p>';
 			echo '</div>';
-			
-			echo '<div class="col-md-4 index-hero3">';
-				echo '<h2>Expansível</h2>';
-				echo '<p>Novas linguanges de programação podem ser acopladas facilmente.</p>';
+
+			echo '<div class="col-md-3">';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Air Native Extension</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Animation</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Augmented Reality</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Authentication</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Backend</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Compression</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Air Native Extension</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Animation</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Augmented Reality</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Authentication</p>';
+			echo '</div>';
+
+			echo '<div class="col-md-3">';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Air Native Extension</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Animation</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Augmented Reality</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Authentication</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Backend</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Compression</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Air Native Extension</p>';
+				echo '<p><span class="glyphicon glyphicon-chevron-right"></span> Animation</p>';
 			echo '</div>';
 		echo '</div>';
-		
-		$aBaseUrl = View::baseUrl();
-		
-		echo '<hr class="featurette-divider">';
+	echo '</div> <!-- /container -->';
 
-		echo '<div class="featurette">';
-			echo '<img class="featurette-image pull-left" src="'.$aBaseUrl.'/img/feature_ide.jpg">';
-			echo '<h2 class="featurette-heading">Codifique e teste. <span class="muted">No navegador.</span></h2>';
-			echo '<p class="lead">Um ambiente de desenvolvimento completo, disponível através do browser: editor, terminal, compilação, o que for necessário.</p>';
-			echo '<p class="lead">Programe na universidade, em casa, ou qualquer lugar usando as mesmas ferramentas. Tudo salvo automaticamente e disponível onde você estiver.</p>';
-		echo '</div>';
-		
-		echo '<hr class="featurette-divider">';
-
-		echo '<div class="featurette">';
-			echo '<img class="featurette-image pull-right" src="'.$aBaseUrl.'/img/feature_challenges.jpg">';
-			echo '<h2 class="featurette-heading">Desafios e Tarefas. <span class="muted">Por nível de dificuldade.</span></h2>';
-			echo '<p class="lead">Resolva desafios categorizados por assunto e nível de dificuldade. Professores podem criar desafios novos a qualquer momento.</p>';
-			echo '<p class="lead">Um desafio pode ser público (visível para todos) ou pridado (visível apenas pelo grupo no qual está disponível).</p>';
-		echo '</div>';
-		
-		echo '<hr class="featurette-divider">';
-
-		echo '<div class="featurette">';
-			echo '<img class="featurette-image pull-left" src="'.$aBaseUrl.'/img/feature_incode_review.jpg">';
-			echo '<h2 class="featurette-heading">Feedback. <span class="muted">Contextualizado no código.</span></h2>';
-			echo '<p class="lead">O código do aluno e o feedback dado pelo professor são visualizados no mesmo contexto. Feedback junto ao código, porém sem modificá-lo.</p>';
-		echo '</div>';
-		
-	echo '</div>';
-	
 	layoutFooter(View::baseUrl());
 ?>

@@ -6,14 +6,23 @@ function layoutNavBar($theBaseUrl) {
 	echo '<nav class="navbar navbar-default" role="navigation">';
 		echo '<div class="container">';
 			echo '<div class="navbar-header">';
-				echo '<a class="navbar-brand" href="index.php" title="Ir para página inicial"><i class="fa fa-home"/></i></a>';
+				echo '<a class="navbar-brand" href="#"><img src="'.$theBaseUrl.'/img/as3gamegears_logo_full.png"/></a>';
 			echo '</div>';
 
 			echo '<div class="collapse navbar-collapse">';
 					echo '<ul class="nav navbar-nav">';
-						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'><a href="challenges.php">Desafios</a></li>';
-						echo '<li '.($aPage == 'assignments.php' 	? 'class="active"' : '').'><a href="assignments.php">Trabalhos '.($aAssignmentCount != 0 ? '<span class="badge alert-danger">'.$aAssignmentCount.'</span>' : '').'</a></li>';
+						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'<li class="active"><a href="#">Blog</a></li>';
+						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'<li><a href="#">Tools</a></li>';
+						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'<li><a href="#">Assets</a></li>';
+						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'<li><a href="#">Tutorials</a></li>';
+						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'<li><a href="#">About</a></li>';
 					echo '</ul>';
+					echo '<form class="navbar-form navbar-right" role="search">';
+						echo '<div class="form-group">';
+							echo '<input type="text" class="form-control " placeholder="Search">';
+						echo '</div>';
+						echo '<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>';
+					echo '</form>';
 			echo '</div>';
 		echo '</div>';
 	echo '</nav>';
@@ -37,13 +46,17 @@ function layoutHeader($theTitle, $theBaseUrl = '.') {
 
 		echo '<!-- Le styles -->';
 		echo '<link href="'.$theBaseUrl.'/css/bootstrap.css" rel="stylesheet">';
-		echo '<link href="'.$theBaseUrl.'/css/style.css'.$aRandURLs.'" rel="stylesheet">';
+		echo '<link href="'.$theBaseUrl.'/style.css'.$aRandURLs.'" rel="stylesheet">';
 
 		echo '<!-- Le fav and touch icons -->';
 		echo '<link rel="shortcut icon" href="img/favicon.ico">';
 		echo '<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">';
 		echo '<link rel="apple-touch-icon" sizes="72x72" href="/img/apple-touch-icon-72x72.png">';
 		echo '<link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png">';
+
+		echo '<!-- Code highlight -->';
+		//echo '<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css">';
+		//echo '<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>';
 
 		echo '<!-- FontAwesome -->';
 		echo '<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">';
@@ -58,27 +71,37 @@ function layoutHeader($theTitle, $theBaseUrl = '.') {
 }
 
 function layoutFooter($theBaseUrl = '.') {
-		echo '<div class="container">';
-			echo '<hr>';
-			echo '<footer class="footer">';
-				echo '<a href="http://fronteiratec.com" target="_blank"><img src="'.$theBaseUrl.'/img/logo_fronteiratec_small.png"/></a>';
-				echo '<a href="http://cc.uffs.edu.br" target="_blank"><img src="'.$theBaseUrl.'/img/logo_cc_bw.png"/></a>';
-				echo '<p>&copy; '.date('Y').' - FronteiraTec - Todos os direitos reservados.</p>';
-			echo '</footer>';
-
-			echo '<div id="info-overlay">Salvando...</div>';
-
-		if(DEBUG_MODE) {
-			echo '<div class="row" style="margin-top: 80px;">';
-				echo '<div class="span12">';
-					echo '<h2>Debug</h2>';
-					echo 'IP <pre>'.$_SERVER['REMOTE_ADDR'].'</pre>';
-					echo 'Sessão ';
-					var_dump($_SESSION);
+		echo '<footer>';
+			echo '<div class="container-fluid">';
+				echo '<div class="row">';
+					echo '<div class="col-md-1"></div>';
+					echo '<div class="col-md-3">';
+						echo '<h4>Licenses</h4>';
+						echo '<p>AGPL3 Apache 2.0 Boost BSD CC-BY-SA 3.0 CC0 1.0 CC BY-NC-SA 3.0 CC BY 3.0 Commercial Free Free BSD GPL GPL2 GPL3 LGPL LGPL2 LGPL2.1 LGPL3 MIT Mozilla Public 1.1 Mozilla Public 2.0 Ms-PL New BSD Public Domain Simplified BSD WTFPL zlib</p>';
+					echo '</div>';
+					echo '<div class="col-md-1"></div>';
+					echo '<div class="col-md-2 social-links">';
+						echo '<h4>Follow us!</h4>';
+						echo '<li><i class="fa fa-twitter"></i> Twitter</li>';
+						echo '<li><i class="fa fa-google-plus"></i> Google+</li>';
+						echo '<li><i class="fa fa-facebook"></i> Facebook</li>';
+						echo '<li><i class="fa fa-rss"></i> RSS</li>';
+					echo '</div>';
+					echo '<div class="col-md-2">';
+						echo '<h4>More links</h4>';
+						echo '<li>About</li>';
+						echo '<li>Disclaimer</li>';
+						echo '<li>Extras</li>';
+						echo '<li>As3GameGears API</li>';
+						echo '<li>Brain Rating for Games</li>';
+					echo '</div>';
+					echo '<div class="col-md-2">';
+						echo '<p>Play my games:</p>';
+						echo '<img class="img-rounded" src="http://www.as3gamegears.com/wp-content/uploads/2013/05/180x100xpromo_mac_180_120.png.pagespeed.ic.GN1DrWupvM.jpg" width="180" height="120" alt="Madly Angry Cat" title="Madly Angry Cat" border="0">';
+					echo '</div>';
 				echo '</div>';
 			echo '</div>';
-		}
-		echo '</div>';
+		echo '</footer>';
 
 	echo '</body>';
 	echo '</html>';
