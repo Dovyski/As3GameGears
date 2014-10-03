@@ -103,4 +103,42 @@ function layoutFooter($theBaseUrl = '.') {
 	echo '</html>';
 }
 
+
+function layoutPrintCategoryList($theCategories, $theColumns = 3, $theBaseUrl = '.') {
+	echo '<div class="container">';
+		echo '<div class="row  text-center" style="padding: 40px 0 30px 0;">';
+			echo '<div class="col-md-12">';
+				echo '<hr><h4 style="margin-top: -30px;">Categories</h4></hr>';
+			echo '</div>';
+		echo '</div>';
+		echo '<div class="row">';
+			$aTotal = count($theCategories);
+			$aAmountPerColumn = (int)($aTotal / $theColumns);
+
+			$j = 0;
+			$aCount = 0;
+			foreach($theCategories as $aId => $aCategory) {
+				if($aCategory['parent'] != 0) continue;
+
+				if($j == 0 || $j >= $aAmountPerColumn) {
+					if($aCount != 0) {
+						echo '</div>';
+					}
+					if($aCount < $aTotal) {
+						echo '<div class="col-md-'.((int)(12 / $theColumns)).'">';
+					}
+
+					$j = 0;
+				}
+
+				echo '<p><i class="fa fa-angle-right"></i> '.$aCategory['name'].'</p>';
+				$j++;
+				$aCount++;
+			}
+			// Close the last col
+			echo '</div>';
+		echo '</div>';
+	echo '</div>';
+}
+
 ?>
