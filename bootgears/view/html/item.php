@@ -36,27 +36,33 @@
 				echo '<div class="item-meta">';
 					echo '<div>';
 							echo '<img src="http://avatars.io/twitter/'.$aItem['twitter'].'" width="36" height="36">';
-							echo '<p><strong>'.$aItem['twitter'].'</strong> <br/>Developer</p>';
+							echo '<p><strong>'.$aData['developer'].'</strong> <br/>Developer</p>';
 					echo '</div>';
 					echo '<div>';
 							echo '<i class="fa fa-book fa-3x"></i>';
-							echo '<p><strong>'.$aItem['license'].'</strong><br/>License</p>';
+							echo '<p><strong>'.($aData['license'] ? $aData['license'] : 'Unknown').'</strong><br/>License</p>';
 					echo '</div>';
 					echo '<div>';
 							echo '<i class="fa fa-link fa-3x"></i>';
-							echo '<p><strong>github.com/digic...</strong> <br/>Website</p>';
+							echo '<p><strong>'.$aData['site'].'</strong> <br/>Website</p>';
 					echo '</div>';
-					echo '<div>';
-							echo '<i class="fa fa-github fa-3x"></i>';
-							echo '<p><strong>Github</strong> <br/>Code Repository</p>';
-					echo '</div>';
-					echo '<div>';
-							echo '<img src="http://www.ohloh.net/p/flixel/analyses/latest/commits_spark.png" width="179" height="32">';
-					echo '</div>';
-					echo '<div>';
-							//echo '<iframe src="http://ghbtns.com/github-btn.html?user=digicrafts&repo=Rating-ANE&type=watch&count=true&size=small" allowtransparency="true" frameborder="0" scrolling="0" style="border: 0; width: 100px; height: 30px; overflow: hidden; margin-top: 10px;"></iframe>';
-							//echo '<iframe src="http://ghbtns.com/github-btn.html?user=digicrafts&repo=Rating-ANE&type=fork&count=true&size=small" allowtransparency="true" frameborder="0" scrolling="0" style="border: 0; width: 100px; height: 30px; overflow: hidden; margin-top: 10px;"></iframe>';
-					echo '</div>';
+					if($aData['repository']['url'] != '') {
+						echo '<div>';
+								echo '<i class="fa fa-'.$aData['repository']['icon'].' fa-3x"></i>';
+								echo '<p><strong>'.$aData['repository']['url'].'</strong> <br/>Code Repository</p>';
+						echo '</div>';
+					}
+					if($aItem['stats']) {
+						echo '<div>';
+								echo '<img src="http://www.ohloh.net/p/'.$aItem['stats'].'/analyses/latest/commits_spark.png" width="179" height="32">';
+						echo '</div>';
+					}
+
+					if($aData['social_repo']) {
+						echo '<div>';
+								echo $aData['social_repo'];
+						echo '</div>';
+					}
 				echo '</div>';
 			echo '</div>';
 		echo '</div>';
