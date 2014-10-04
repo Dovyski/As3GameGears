@@ -8,7 +8,7 @@
 	$aItems = null;
 
 	if($aId != 0) {
-		$aCategory = categoryFindById($aId);
+		$aCategory = categoryGetById($aId);
 
 		if($aCategory != null) {
 			$aItems = itemFindByCategoryId($aId);

@@ -18,17 +18,17 @@ function categoryFindAll() {
 }
 
 
-function categoryFindById($theId) {
+function categoryGetById($theId) {
   global $gDb;
 
-  $aRet = array();
+  $aRet = null;
   $aQuery = $gDb->prepare("SELECT * FROM categories WHERE id = ?");
 
   if ($aQuery->execute(array($theId))) {
       $aRet = $aQuery->fetch(PDO::FETCH_ASSOC);
   }
 
-  return $aRet;
+  return $aRet ? $aRet : null;
 }
 
 ?>

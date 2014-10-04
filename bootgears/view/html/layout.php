@@ -57,7 +57,7 @@ function layoutHeader($theTitle, $theBaseUrl = '.') {
 		echo '<!-- FontAwesome -->';
 		echo '<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">';
 
-		echo '<script src="'.$theBaseUrl.'/js/jquery.js'.$aRandURLs.'"></script>';
+		echo '<script src="'.$theBaseUrl.'/js/jquery-1.11.1.min.js'.$aRandURLs.'"></script>';
 		echo '<script src="'.$theBaseUrl.'/js/bootstrap.js'.$aRandURLs.'"></script>';
 	echo '</head>';
 

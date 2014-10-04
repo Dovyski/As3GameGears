@@ -100,12 +100,12 @@
 
 	if($aId != 0) {
 		$aItem = itemGetById($aId);
-		$aData['item'] = $aItem;
 	}
 
 	if($aItem != null) {
-		$aLicenses 				= licenseFindByIdBulk(array($aItem['license'], $aItem['license2']));
+		$aData['item'] 		= $aItem;
 		$aData['license'] = '';
+		$aLicenses 				= licenseFindByIdBulk(array($aItem['license'], $aItem['license2']));
 
 		if($aItem['license']) {
 			$aData['license'] .= $aLicenses[$aItem['license']]['name'];
@@ -119,6 +119,11 @@
 		$aData['site'] 				= makePrettyWebsiteLink($aItem['site'], 18);
 		$aData['repository'] 	= makePrettyRepoLink($aItem['repository']);
 		$aData['social_repo'] = getSocialRepoStuff($aItem['repository']);
+
+		if($aItem['category']) {
+			$aData['short_info'] = categoryGetById($aItem['category']);
+			$aData['short_info'] = $aData['short_info'] ? str_replace('-', ' ', $aData['short_info']['slug']) : '';
+		}
 	}
 
 	$aData['categories'] = categoryFindAll();
