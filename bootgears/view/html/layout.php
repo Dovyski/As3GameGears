@@ -131,7 +131,7 @@ function layoutPrintCategoryList($theCategories, $theColumns = 3, $theBaseUrl = 
 					$j = 0;
 				}
 
-				echo '<p><i class="fa fa-angle-right"></i> <a href="/category/'.$aCategory['slug'].'">'.$aCategory['name'].'</a></p>';
+				echo '<p><i class="fa fa-angle-right"></i> <a href="category.php?id='.$aCategory['id'].'">'.$aCategory['name'].'</a></p>';
 				$j++;
 				$aCount++;
 			}

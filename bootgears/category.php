@@ -3,15 +3,21 @@
 
 	$aId = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
 
-	$aCategories = categoryFindAll();
-	$aCategory = array('name' => 'Oops', 'description' => 'No such category');
+	$aCategories = categoryFindAll(); // TODO: cache this
+	$aCategory = null;
+	$aItems = null;
 
 	if($aId != 0) {
 		$aCategory = categoryFindById($aId);
+
+		if($aCategory != null) {
+			$aItems = itemFindByCategoryId($aId);
+		}
 	}
 
 	View::render('category', array(
 		'categories' => $aCategories,
-		'category' => $aCategory
+		'category' => $aCategory,
+		'items' => $aItems
 	));
 ?>

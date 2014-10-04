@@ -33,7 +33,7 @@ body {
 }
 
 .item-descriptor {
-
+  min-height: 225px;
 }
 
 .item-meta {
