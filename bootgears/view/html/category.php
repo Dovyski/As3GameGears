@@ -10,11 +10,13 @@
 
 	echo '<div class="jumbotron">';
 		echo '<div class="container-fluid">';
-			echo '<div class="row">';
-				echo '<div id="headline" class="center-block">';
-					echo '<i class="fa fa-gear fa-5x"></i>';
-					echo '<h2>'.$aCategory['name'].'</h2>';
-					echo '<p>'.$aCategory['description'].'</p>';
+			echo '<div class="container">';
+				echo '<div class="row">';
+					echo '<div id="headline">';
+						echo '<i class="fa fa-gear fa-5x"></i>';
+						echo '<h2>'.$aData['title'].'</h2>';
+						echo '<p>'.$aData['subtitle'].'</p>';
+					echo '</div>';
 				echo '</div>';
 			echo '</div>';
 		echo '</div>';
@@ -43,7 +45,7 @@
 		echo '</div>';
 	}
 
-	layoutPrintCategoryList($aCategories, 4);
+	layoutPrintCategoryList($aCategories, $aData['categoriesPerColumn'], $aData['showCategoryDescription']);
 
 	layoutFooter(View::baseUrl());
 ?>

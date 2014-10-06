@@ -6,16 +6,16 @@ function layoutNavBar($theBaseUrl) {
 	echo '<nav class="navbar navbar-default" role="navigation">';
 		echo '<div class="container">';
 			echo '<div class="navbar-header">';
-				echo '<a class="navbar-brand" href="#"><img src="'.$theBaseUrl.'/img/as3gamegears_logo_full.png"/></a>';
+				echo '<a class="navbar-brand" href="/"><img src="'.$theBaseUrl.'/img/as3gamegears_logo_full.png"/></a>';
 			echo '</div>';
 
 			echo '<div class="collapse navbar-collapse">';
 					echo '<ul class="nav navbar-nav">';
-						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'<li class="active"><a href="#">Blog</a></li>';
-						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'<li><a href="#">Tools</a></li>';
-						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'<li><a href="#">Assets</a></li>';
-						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'<li><a href="#">Tutorials</a></li>';
-						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'<li><a href="#">About</a></li>';
+						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'><a href="#">Blog</a></li>';
+						echo '<li '.($aPage == 'category.php' 		? 'class="active"' : '').'><a href="category.php">Tools</a></li>';
+						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'><a href="category.php?id=1">Assets</a></li>';
+						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'><a href="category.php?id=1">Tutorials</a></li>';
+						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'><a href="category.php?id=1">About</a></li>';
 					echo '</ul>';
 					echo '<form class="navbar-form navbar-right" role="search">';
 						echo '<div class="form-group">';
@@ -104,13 +104,15 @@ function layoutFooter($theBaseUrl = '.') {
 }
 
 
-function layoutPrintCategoryList($theCategories, $theColumns = 3, $theBaseUrl = '.') {
+function layoutPrintCategoryList($theCategories, $theColumns = 3, $theShowDescription = false, $theBaseUrl = '.') {
 	echo '<div class="container">';
-		echo '<div class="row  text-center" style="padding: 40px 0 30px 0;">';
-			echo '<div class="col-md-12">';
-				echo '<hr><h4 style="margin-top: -30px;">Categories</h4></hr>';
+		if(!$theShowDescription) {
+			echo '<div class="row  text-center" style="padding: 40px 0 30px 0;">';
+				echo '<div class="col-md-12">';
+					echo '<hr><h4 style="margin-top: -30px;">Categories</h4></hr>';
+				echo '</div>';
 			echo '</div>';
-		echo '</div>';
+		}
 		echo '<div class="row">';
 			$aTotal = count($theCategories);
 			$aAmountPerColumn = (int)($aTotal / $theColumns);
@@ -118,7 +120,7 @@ function layoutPrintCategoryList($theCategories, $theColumns = 3, $theBaseUrl = 
 			$j = 0;
 			$aCount = 0;
 			foreach($theCategories as $aId => $aCategory) {
-				if($aCategory['parent'] != 0) continue;
+				//if($aCategory['parent'] != 0) continue;
 
 				if($j == 0 || $j >= $aAmountPerColumn) {
 					if($aCount != 0) {
@@ -131,7 +133,7 @@ function layoutPrintCategoryList($theCategories, $theColumns = 3, $theBaseUrl = 
 					$j = 0;
 				}
 
-				echo '<p><i class="fa fa-angle-right"></i> <a href="category.php?id='.$aCategory['id'].'">'.$aCategory['name'].'</a></p>';
+				echo '<p><i class="fa fa-'.($theShowDescription ? 'chevron-circle-right' : 'angle-right').'"></i> <a href="category.php?id='.$aCategory['id'].'">'.$aCategory['name'].'</a>'.($theShowDescription ? '<br/>'.$aCategory['description'] : '').'</p>';
 				$j++;
 				$aCount++;
 			}
@@ -146,7 +148,8 @@ function layoutBreadcrumbs($theData) {
 		echo '<div class="row">';
 			echo '<div class="col-md-12">';
 				echo '<ol class="breadcrumb">';
-					echo '<li><a href="/">Tools</a></li>';
+					echo '<li><a href="/index.php">Site</a></li>';
+					echo '<li><a href="/category.php">Tools</a></li>';
 					if(isset($theData) && count($theData)) {
 						for($i = count($theData) - 1; $i >= 0; $i--) {
 							$aEntry = $theData[$i];

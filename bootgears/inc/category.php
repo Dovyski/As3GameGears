@@ -2,11 +2,11 @@
 
 require_once dirname(__FILE__).'/config.php';
 
-function categoryFindAll() {
+function categoryFindAll($theSimplified = true) {
   global $gDb;
 
   $aRet = array();
-  $aQuery = $gDb->prepare("SELECT id, name, slug, parent FROM categories WHERE 1 ORDER BY name ASC");
+  $aQuery = $gDb->prepare("SELECT id, name, slug, parent".($theSimplified ? "" : ", description")." FROM categories WHERE 1 ORDER BY name ASC");
 
   if ($aQuery->execute()) {
 		while($aRow = $aQuery->fetch(PDO::FETCH_ASSOC)) {
