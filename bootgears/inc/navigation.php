@@ -6,25 +6,6 @@ function navigationMakeBreadcrumbs($theObject, $theCategories) {
   $aRet = null;
 
   if($theObject != null) {
-    /*
-    if(isset($theObject['category'])) {
-      // Object is an item.
-      $aRet = array();
-
-      if() {
-        $aCategory = $theCategories[$theObject['category']];
-        $aRet[] = array('name' => $aCategory['name'], 'link' => 'category.php?id=' . $aCategory['id']);
-      }
-
-      if(isset($theObject['category2'])) {
-        $aCategory = $theCategories[$theObject['category2']];
-        $aRet[] = array('name' => $aCategory['name'], 'link' => 'category.php?id=' . $aCategory['id']);
-      }
-
-      $aRet[] = array('name' => $theObject['name'], 'link' => 'item.php?id=' . $theObject['id']);
-
-    } else if(isset($theObject['parent'])) {
-    */
       $aRet         = array();
       $aIsCategory  = isset($theObject['parent']);
       $aParent      = null;
@@ -45,7 +26,7 @@ function navigationMakeBreadcrumbs($theObject, $theCategories) {
       $i = 0;
       do {
 
-        $aParent = $theCategories[$aParent['parent']];
+        $aParent = @$theCategories[$aParent['parent']];
 
         if($aParent) {
           $aRet[] = array('name' => $aParent['name'], 'link' => 'category.php?id=' . $aParent['id']);
