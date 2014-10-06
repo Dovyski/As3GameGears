@@ -141,4 +141,22 @@ function layoutPrintCategoryList($theCategories, $theColumns = 3, $theBaseUrl = 
 	echo '</div>';
 }
 
+function layoutBreadcrumbs($theData) {
+	echo '<div class="container">';
+		echo '<div class="row">';
+			echo '<div class="col-md-12">';
+				echo '<ol class="breadcrumb">';
+					echo '<li><a href="/">Tools</a></li>';
+					if(isset($theData) && count($theData)) {
+						for($i = count($theData) - 1; $i >= 0; $i--) {
+							$aEntry = $theData[$i];
+							echo '<li class="active"><a href="'.$aEntry['link'].'">'.$aEntry['name'].'</a></li>';
+						}
+					}
+				echo '</ol>';
+			echo '</div>';
+		echo '</div>';
+	echo '</div>';
+}
+
 ?>

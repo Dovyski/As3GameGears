@@ -119,14 +119,10 @@
 		$aData['site'] 				= makePrettyWebsiteLink($aItem['site'], 18);
 		$aData['repository'] 	= makePrettyRepoLink($aItem['repository']);
 		$aData['social_repo'] = getSocialRepoStuff($aItem['repository']);
-
-		if($aItem['category']) {
-			$aData['short_info'] = categoryGetById($aItem['category']);
-			$aData['short_info'] = $aData['short_info'] ? str_replace('-', ' ', $aData['short_info']['slug']) : '';
-		}
 	}
 
-	$aData['categories'] = categoryFindAll();
+	$aData['categories'] 	= categoryFindAll();
+	$aData['breadcrumbs'] = navigationMakeBreadcrumbs($aItem, $aData['categories']);
 
 	View::render('item', $aData);
 ?>

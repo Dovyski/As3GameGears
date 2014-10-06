@@ -18,6 +18,7 @@
 	View::render('category', array(
 		'categories' => $aCategories,
 		'category' => $aCategory,
-		'items' => $aItems
+		'items' => $aItems,
+		'breadcrumbs' => navigationMakeBreadcrumbs($aCategory, $aCategories)
 	));
 ?>

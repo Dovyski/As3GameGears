@@ -15,24 +15,13 @@
 						echo '<i class="fa fa-exclamation-triangle fa-2x"></i>';
 					}
 					echo '<h2>'.($aItem ? $aItem['name'] : 'Not found').'</h2>';
-					echo '<p>'.($aItem ? $aData['short_info'] : 'The item you requested does not exist.').'</p>';
 				echo '</div>';
 			echo '</div>';
 		echo '</div>';
 	echo '</div>';
 
 	if($aItem) {
-		// Breadcrumbs
-		echo '<div class="container">';
-			echo '<div class="row">';
-				echo '<div class="col-md-12">';
-					echo '<ol class="breadcrumb">';
-						echo '<li><a href="#">Home</a></li>';
-						echo '<li class="active"><a href="#">Air Native Extension</a></li>';
-					echo '</ol>';
-				echo '</div>';
-			echo '</div>';
-		echo '</div>';
+		layoutBreadcrumbs($aData['breadcrumbs']);
 
 		echo '<div class="container">';
 			echo '<div class="row">';
@@ -58,7 +47,7 @@
 						}
 						if($aItem['stats']) {
 							echo '<div>';
-									echo '<img src="http://www.ohloh.net/p/'.$aItem['stats'].'/analyses/latest/commits_spark.png" width="179" height="32">';
+									echo '<img src="http://www.ohloh.net/p/'.$aItem['stats'].'/analyses/latest/commits_spark.png" width="179" height="34">';
 							echo '</div>';
 						}
 

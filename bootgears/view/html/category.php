@@ -20,16 +20,7 @@
 		echo '</div>';
 	echo '</div>';
 
-	echo '<div class="container">';
-		echo '<div class="row">';
-			echo '<div class="col-md-12">';
-				echo '<ol class="breadcrumb">';
-					echo '<li><a href="#">Home</a></li>';
-					echo '<li class="active"><a href="#">Air Native Extension</a></li>';
-				echo '</ol>';
-			echo '</div>';
-		echo '</div>';
-	echo '</div>';
+	layoutBreadcrumbs($aData['breadcrumbs']);
 
 	if(count($aItems) > 0) {
 		echo '<div class="container">';
