@@ -9,12 +9,14 @@
 
 	echo '<div class="jumbotron item-jumbotron">';
 		echo '<div class="container-fluid">';
-			echo '<div class="row">';
-				echo '<div id="headline" class="center-block">';
-					if(!$aItem) {
-						echo '<i class="fa fa-exclamation-triangle fa-2x"></i>';
-					}
-					echo '<h2>'.($aItem ? $aItem['name'] : 'Not found').'</h2>';
+			echo '<div class="container">';
+				echo '<div class="row">';
+					echo '<div id="headline">';
+						if(!$aItem) {
+							echo '<i class="fa fa-exclamation-triangle fa-2x"></i>';
+						}
+						echo '<h2>'.($aItem ? $aItem['name'] : 'Not found').'</h2>';
+					echo '</div>';
 				echo '</div>';
 			echo '</div>';
 		echo '</div>';
@@ -39,7 +41,7 @@
 								echo '<i class="fa fa-link fa-3x"></i>';
 								echo '<p><strong>'.$aData['site'].'</strong> <br/>Website</p>';
 						echo '</div>';
-						if($aData['repository']['url'] != '') {
+						if(isset($aData['repository']['url']) && $aData['repository']['url'] != '') {
 							echo '<div>';
 									echo '<i class="fa fa-'.$aData['repository']['icon'].' fa-3x"></i>';
 									echo '<p><strong>'.$aData['repository']['url'].'</strong> <br/>Code Repository</p>';
