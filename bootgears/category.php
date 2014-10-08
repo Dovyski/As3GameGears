@@ -20,8 +20,10 @@
 				if (isset($aItem['license2'])) $aLicenses[$aItem['license2']] = true;
 			}
 			
-			$aLicenseIds = array_keys($aLicenses);
-			$aLicenses = licenseFindByIdBulk($aLicenseIds);
+			if($aLicenses != null) {
+				$aLicenseIds = array_keys($aLicenses);
+				$aLicenses = licenseFindByIdBulk($aLicenseIds);
+			}
 		}
 	} else {
 		$aListCategoriesOnly = true;
