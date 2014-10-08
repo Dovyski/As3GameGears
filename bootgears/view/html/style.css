@@ -32,8 +32,8 @@ body {
   margin-bottom: 15px;
 }
 
-.item-descriptor {
-  min-height: 225px;
+.item-descriptor div.panel-body {
+  min-height: 100px;
 }
 
 .item-meta {

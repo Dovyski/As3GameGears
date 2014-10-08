@@ -5,6 +5,7 @@
 	$aCategories 	= $aData['categories'];
 	$aCategory 		= $aData['category'];
 	$aItems 			= $aData['items'];
+	$aLicenses 			= $aData['licenses'];
 
 	layoutHeader('Start', View::baseUrl());
 
@@ -29,15 +30,21 @@
 			echo '<div class="row">';
 				foreach($aItems as $aId => $aItem) {
 					echo '<div class="col-md-4">';
-						echo '<div class="thumbnail item-descriptor">';
-							echo '<div class="caption">';
-								echo '<h3><a href="item.php?id='.$aItem['id'].'">'.$aItem['name'].'</a></h3>';
-								echo '<p>'.$aItem['excerpt'].'</p>';
-								echo '<p>';
-									echo '<a href="#" class="btn btn-default"><i class="fa fa-folder"></i> ANE</a></li> ';
-									echo '<a href="#" class="btn btn-default"><i class="fa fa-book"></i> MIT</a></li>';
-								echo '</p>';
-							echo '</div>';
+						echo '<div class="panel panel-default item-descriptor">';
+							echo '<div class="panel-heading"><a href="item.php?id='.$aItem['id'].'">'.$aItem['name'].'</a></div>';
+							echo '<div class="panel-body">';
+								echo $aItem['excerpt'];
+							echo '</div>';	
+							echo '<ul class="list-group">';
+								echo '<li class="list-group-item">';
+									if (isset($aItem['category'])) echo ($aData['showCategoryInItems'] ? '<a href="category.php?id='.$aItem['category'].'"><i class="fa fa-folder"></i> '.@$aCategories[$aItem['category']]['name'].'</a>' : '&nbsp;');
+									
+									echo '<span class="pull-right">';
+										if (isset($aItem['license'])) echo ' <a href="search.php?license='.$aItem['license'].'"><i class="fa fa-book"></i> '.$aLicenses[$aItem['license']]['name'].'</a>';
+										if (isset($aItem['license2'])) echo ', <a href="search.php?license='.$aItem['license2'].'" class="pull-right"> '.$aLicenses[$aItem['license2']]['name'].'</a>';
+									echo '</span>';
+								echo '</li>';
+							echo '</ul>';
 						echo '</div>';
 					echo '</div>';
 				}
