@@ -56,9 +56,11 @@ function layoutHeader($theTitle, $theBaseUrl = '.') {
 
 		echo '<!-- FontAwesome -->';
 		echo '<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">';
-
+		
+		// TODO: move to page bottom
 		echo '<script src="'.$theBaseUrl.'/js/jquery-1.11.1.min.js'.$aRandURLs.'"></script>';
 		echo '<script src="'.$theBaseUrl.'/js/bootstrap.js'.$aRandURLs.'"></script>';
+		echo '<script src="'.$theBaseUrl.'/js/app.js'.$aRandURLs.'"></script>';
 	echo '</head>';
 
 	echo '<body>';
@@ -98,7 +100,7 @@ function layoutFooter($theBaseUrl = '.') {
 				echo '</div>';
 			echo '</div>';
 		echo '</footer>';
-
+		
 	echo '</body>';
 	echo '</html>';
 }
@@ -160,6 +162,25 @@ function layoutBreadcrumbs($theData) {
 			echo '</div>';
 		echo '</div>';
 	echo '</div>';
+}
+
+function layoutPrintMarkdownTextarea($theFieldName, $theInitialText = '', $theTabsText = array(), $theTextAreaHeight = '300px') {
+	echo '<div class="tabbable markdown-panel">';
+		echo '<ul class="nav nav-tabs">';
+			echo '<li class="active"><a href="#'.$theFieldName.'-tab-markdown" data-toggle="tab">'.(isset($theTabsText[0]) ? $theTabsText[0] : 'Source').'</a></li>';
+			echo '<li><a href="#'.$theFieldName.'-tab-view-markdown" data-toggle="tab">'.(isset($theTabsText[1]) ? $theTabsText[1] : 'View').'</a></li>';
+		echo '</ul>';
+		echo '<div class="tab-content" style="min-height: '.$theTextAreaHeight.'; width: 100%; overflow: auto;">';
+			echo '<div class="tab-pane active" id="'.$theFieldName.'-tab-markdown">';
+				echo '<textarea name="'.$theFieldName.'" id="'.$theFieldName.'" style="width: 100%; height: '.$theTextAreaHeight.'; border-top: none; padding-top: 5px">'.$theInitialText.'</textarea>';
+			echo '</div>';
+			echo '<div class="tab-pane" id="'.$theFieldName.'-tab-view-markdown" style="padding: 7px 5px 5px 3px;">';
+				echo 'A visualização não está disponível ainda. Desculpe!';
+			echo '</div>';
+		echo '</div>';
+	echo '</div>';
+	
+	echo '<script type="text/javascript">AS3GAMEGEARS.createMarkdownTextarea(\''.$theFieldName.'\');</script>';
 }
 
 ?>

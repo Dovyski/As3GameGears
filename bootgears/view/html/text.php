@@ -11,13 +11,13 @@
 		echo '<div class="container-fluid">';
 			echo '<div class="container">';
 				echo '<div class="row">';
-					echo '<div id="headline" class="pull-left">';
+					echo '<div id="headline" class="col-md-10">';
 						if(!$aText) {
 							echo '<i class="fa fa-exclamation-triangle fa-2x"></i>';
 						}
 						echo '<h2>'.($aText ? $aText['title'] : 'Not found').'</h2>';
 					echo '</div>';
-					echo '<div class="pull-right">'.$aAuthor['display_name'].' <img src="http://avatars.io/twitter/'.$aAuthor['display_name'].'?size=medium" class="img-thumbnail" /></div>';
+					echo '<div class="col-md-2">'.$aAuthor['display_name'].' <img src="http://avatars.io/twitter/'.$aAuthor['display_name'].'?size=medium" class="img-thumbnail" /></div>';
 				echo '</div>';
 			echo '</div>';
 		echo '</div>';
@@ -29,7 +29,11 @@
 		echo '<div class="container">';
 			echo '<div class="row">';
 				echo '<div class="col-md-12">';
-					echo $aText['content'];
+					if($aData['editMode']) {
+						layoutPrintMarkdownTextarea('test', $aText['content']);
+					} else {
+						echo MarkdownExtended($aText['content']);
+					}
 				echo '</div>';
 			echo '</div>';
 		echo '</div>';
