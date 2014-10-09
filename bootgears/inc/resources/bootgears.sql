@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.8
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 29, 2014 at 12:41 PM
--- Server version: 5.6.14
--- PHP Version: 5.4.24
+-- Generation Time: Oct 09, 2014 at 05:51 PM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `as3gamegears`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `authors`
+--
+
+CREATE TABLE IF NOT EXISTS `authors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `display_name` varchar(50) NOT NULL,
+  `login` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `login` (`login`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -75,6 +90,36 @@ CREATE TABLE IF NOT EXISTS `licenses` (
   `slug` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `texts`
+--
+
+CREATE TABLE IF NOT EXISTS `texts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `author` int(11) NOT NULL,
+  `date` int(10) unsigned NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0',
+  `slug` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `slug` (`slug`),
+  KEY `author` (`author`,`status`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `texts`
+--
+ALTER TABLE `texts`
+  ADD CONSTRAINT `texts_ibfk_1` FOREIGN KEY (`author`) REFERENCES `authors` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
