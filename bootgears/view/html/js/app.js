@@ -8,7 +8,7 @@ var AS3GAMEGEARS = new function() {
 			aOldTab 		= aOldTab.substr(aOldTab.lastIndexOf('#'));
 
 			if(aActiveTab.indexOf('view-markdown') != -1) {
-				$(aActiveTab).html('<img src="./ajax-loader.gif" title="Loading" align="absmiddle"> Loading...');
+				$(aActiveTab).html('<i class="fa fa-circle-o-notch fa-spin"></i> Loading...');
 
 				$.ajax({
 				  type: 'POST',
@@ -22,6 +22,21 @@ var AS3GAMEGEARS = new function() {
 					$(aActiveTab).html('Oops, algum erro aconteceu. Desculpe =/');
 				});
 			}
+		});
+	};
+	
+	this.saveItem = function(theDomId, theItemId) {
+		console.log(theItemId, $('#' + theDomId).val());
+		$.ajax({
+		  type: 'POST',
+		  url: 'ajax-edit.php',
+		  data: {'action': 'savetext', 'id': theItemId, 'content': $('#' + theDomId).val() }
+		})
+		.done(function( msg ) {
+			console.log(msg);
+		})
+		.fail(function(jqXHR, textStatus) {
+			console.log('Something went wrong!');
 		});
 	};
 };

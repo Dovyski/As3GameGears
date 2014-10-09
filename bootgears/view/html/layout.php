@@ -169,6 +169,7 @@ function layoutPrintMarkdownTextarea($theFieldName, $theInitialText = '', $theTa
 		echo '<ul class="nav nav-tabs">';
 			echo '<li class="active"><a href="#'.$theFieldName.'-tab-markdown" data-toggle="tab">'.(isset($theTabsText[0]) ? $theTabsText[0] : 'Source').'</a></li>';
 			echo '<li><a href="#'.$theFieldName.'-tab-view-markdown" data-toggle="tab">'.(isset($theTabsText[1]) ? $theTabsText[1] : 'View').'</a></li>';
+			echo '<li class="pull-right"><button onclick="AS3GAMEGEARS.saveItem(\''.$theFieldName.'\', 1);" class="btn btn-default"><i class="fa fa-save"></i></button></li>';
 		echo '</ul>';
 		echo '<div class="tab-content" style="min-height: '.$theTextAreaHeight.'; width: 100%; overflow: auto;">';
 			echo '<div class="tab-pane active" id="'.$theFieldName.'-tab-markdown">';
