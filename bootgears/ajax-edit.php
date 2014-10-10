@@ -16,6 +16,7 @@ switch($aAction) {
 		$aData = array(
 			'id' 		=>  $aItemId,
 			'content' 	=>  isset($_REQUEST['content']) 	? $_REQUEST['content'] : '',
+			'title' 	=>  isset($_REQUEST['title']) 		? $_REQUEST['title'] : '',
 		);
 		
 		$aInfo = itemCreateOrUpdate($aItemId, $aData);

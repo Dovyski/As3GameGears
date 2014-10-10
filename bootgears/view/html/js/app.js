@@ -25,12 +25,21 @@ var AS3GAMEGEARS = new function() {
 		});
 	};
 	
-	this.saveItem = function(theDomId, theItemId) {
-		console.log(theItemId, $('#' + theDomId).val());
+	this.saveContent = function(theItemId) {
+		var aData = {};
+		
+		$('.editable').each(function() {
+			aData[$(this).attr('name')] = $(this).val();
+		});
+		
+		aData['action'] = 'savetext';
+		
+		console.log(aData);
+		
 		$.ajax({
 		  type: 'POST',
 		  url: 'ajax-edit.php',
-		  data: {'action': 'savetext', 'id': theItemId, 'content': $('#' + theDomId).val() }
+		  data: aData
 		})
 		.done(function( msg ) {
 			console.log(msg);
