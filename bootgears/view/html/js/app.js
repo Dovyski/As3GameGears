@@ -25,17 +25,19 @@ var AS3GAMEGEARS = new function() {
 		});
 	};
 	
-	this.saveContent = function(theItemId) {
+	this.saveEntry = function(theEntryId, theEntryType) {
 		var aData = {};
 		
 		$('.editable').each(function() {
 			aData[$(this).attr('name')] = $(this).val();
 		});
 		
-		aData['action'] = 'savetext';
+		aData['action'] = 'save';
+		aData['id'] 	= theEntryId;
+		aData['type'] 	= theEntryType;
 		
-		console.log(aData);
-		
+		console.log(theEntryId, theEntryType, aData);
+
 		$.ajax({
 		  type: 'POST',
 		  url: 'ajax-edit.php',

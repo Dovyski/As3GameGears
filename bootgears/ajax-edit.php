@@ -10,17 +10,30 @@ $aRet = array('status' => false);
 header('Content-Type: text/javascript; charset=iso-8859-1');
 
 switch($aAction) {
-	case 'savetext':
-		$aItemId = isset($_REQUEST['id']) ? $_REQUEST['id'] : 'NULL';
+	case 'save':
+		$aEntryId = isset($_REQUEST['id']) ? $_REQUEST['id'] : 'NULL';
+		$aType	  = isset($_REQUEST['type']) ? $_REQUEST['type'] : 'item';
+		$aData	  = null;
 		
-		$aData = array(
-			'id' 		=>  $aItemId,
-			'content' 	=>  isset($_REQUEST['content']) 	? $_REQUEST['content'] : '',
-			'title' 	=>  isset($_REQUEST['title']) 		? $_REQUEST['title'] : '',
-		);
+		if ($aType == 'item') {
+			$aData = array(
+				'id' 			=>  $aEntryId,
+				'name' 			=>  isset($_REQUEST['name']) 			? $_REQUEST['name'] : '',
+				'description' 	=>  isset($_REQUEST['description']) 	? $_REQUEST['description'] : '',
+			);
+			$aInfo = itemCreateOrUpdate($aEntryId, $aData);
+			$aRet['status'] = $aInfo != 0;		
 		
-		$aInfo = itemCreateOrUpdate($aItemId, $aData);
-		$aRet['status'] = $aInfo != 0;		
+		} else if ($aType == 'text') {
+			$aData = array(
+				'id' 		=>  $aEntryId,
+				'title' 	=>  isset($_REQUEST['title']) 		? $_REQUEST['title'] : '',
+				'content' 	=>  isset($_REQUEST['content']) 	? $_REQUEST['content'] : '',
+			);		
+			
+			$aInfo = textCreateOrUpdate($aEntryId, $aData);
+			$aRet['status'] = $aInfo != 0;		
+		}
 		break;
 		
 	default:

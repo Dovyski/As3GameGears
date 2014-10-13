@@ -15,11 +15,11 @@ function textGetById($theId) {
   return $aRet;
 }
 
-function itemCreateOrUpdate($theTextId, $theData) {
+function textCreateOrUpdate($theTextId, $theData) {
 	global $gDb;
 
 	$aRet					= false;
-	$aId 					= $theTextId + 0;
+	$aId 					= $theTextId;
 	$aAuthor 				= isset($theData['author']) 	? $theData['author'] 	: 1;
 	$aDate 					= isset($theData['date']) 		? $theData['date'] 		: time();
 	$aStatus	 			= isset($theData['status']) 	? $theData['status'] 	: '';

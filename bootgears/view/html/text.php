@@ -28,7 +28,20 @@
 		echo '</div>';
 	echo '</div>';
 
-	if($aText) {
+	if ($aText) {
+		if ($aData['showEditOption']) {
+			echo '<div class="container">';
+				echo '<div class="row">';
+					echo '<div class="col-md-2 col-md-offset-10 text-right">';
+						if ($aData['editMode']) {
+							layoutPrintEditPanel($aText['id'], 'text');
+						} else { 
+							echo '<a href="text.php?id='.$aText['id'].'&edit=1"><i class="fa fa-edit"></i> Edit</a>';
+						}
+					echo '</div>';
+				echo '</div>';
+			echo '</div>';
+		}
 		//layoutBreadcrumbs($aData['breadcrumbs']);
 
 		echo '<div class="container">';

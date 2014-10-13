@@ -22,7 +22,21 @@
 		echo '</div>';
 	echo '</div>';
 
-	if($aItem) {
+	if ($aItem) {
+		if ($aData['showEditOption']) {
+			echo '<div class="container">';
+				echo '<div class="row">';
+					echo '<div class="col-md-2 col-md-offset-10 text-right">';
+						if ($aData['editMode']) {
+							layoutPrintEditPanel($aItem['id'], 'item');
+						} else { 
+							echo '<a href="item.php?id='.$aItem['id'].'&edit=1"><i class="fa fa-edit"></i> Edit</a>';
+						}
+					echo '</div>';
+				echo '</div>';
+			echo '</div>';
+		}
+	
 		layoutBreadcrumbs($aData['breadcrumbs']);
 
 		echo '<div class="container">';
@@ -66,7 +80,11 @@
 		echo '<div class="container">';
 			echo '<div class="row">';
 				echo '<div class="col-md-12">';
-					echo '<p>'.str_replace("\n", '</p><p>', $aItem['description']).'</p>';
+					if($aData['editMode']) {
+						layoutPrintMarkdownTextarea('description', $aItem['description']);
+					} else {
+						echo MarkdownExtended($aItem['description']);
+					}
 				echo '</div>';
 
 				if($aItem['sample']) {

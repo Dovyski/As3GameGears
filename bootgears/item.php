@@ -123,6 +123,8 @@
 
 	$aData['categories'] 	= categoryFindAll();
 	$aData['breadcrumbs'] = navigationMakeBreadcrumbs($aItem, $aData['categories']);
+	$aData['showEditOption'] = true;
+	$aData['editMode'] = isset($_REQUEST['edit']);
 
 	View::render('item', $aData);
 ?>

@@ -17,7 +17,8 @@
 	
 	$aData['text'] = $aText;
 	$aData['author'] = $aAuthor;
-	$aData['editMode'] = true;
+	$aData['showEditOption'] = true;
+	$aData['editMode'] = isset($_REQUEST['edit']);
 
 	//$aData['breadcrumbs'] = navigationMakeBreadcrumbs($aText, array());
 

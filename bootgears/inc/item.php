@@ -30,4 +30,25 @@ function itemFindByCategoryId($theCategoryId, $theSimplified = true) {
   return $aRet;
 }
 
+function itemCreateOrUpdate($theItemId, $theData) {
+	global $gDb;
+
+	$aRet					= false;
+	$aId 					= $theItemId;
+	$aName 					= isset($theData['name']) 				? $theData['name'] 				: '';
+	$aDescription			= isset($theData['description']) 		? $theData['description'] 		: '';
+
+	$aQuery = $gDb->prepare("INSERT INTO items (id, name, description) VALUES (?, ?, ?)
+								ON DUPLICATE KEY UPDATE description = ?");
+
+	$aParams = array($aId, $aName, $aDescription,
+					 $aDescription);
+	
+	$aQuery->execute($aParams);
+	$aRet = $aQuery->rowCount();
+	
+	return $aRet;
+}
+
+
 ?>
