@@ -28,7 +28,7 @@ switch($aAction) {
 				'repository' 	=>  isset($_REQUEST['repository']) 		? $_REQUEST['repository'] : '',
 				'twitter' 		=>  isset($_REQUEST['twitter']) 		? $_REQUEST['twitter'] : '',
 				'stats' 		=>  isset($_REQUEST['stats']) 			? $_REQUEST['stats'] : '',
-				//'sample' 		=>  isset($_REQUEST['sample']) 			? $_REQUEST['sample'] : '',
+				'sample' 		=>  isset($_REQUEST['sample']) 			? $_REQUEST['sample'] : '',
 			);
 			$aInfo = itemCreateOrUpdate($aEntryId, $aData);
 			$aRet['status'] = $aInfo != 0;		

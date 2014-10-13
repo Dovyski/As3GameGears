@@ -118,9 +118,13 @@
 				if($aItem['sample']) {
 					echo '<div class="col-md-12">';
 						echo '<p><strong>Sample</strong></p>';
-						echo '<pre class="brush: as3">';
-							echo $aItem['sample'];
-						echo '</pre>';
+						if($aEditMode) {
+							echo '<textarea name="sample" class="editable form-control">'.htmlentities($aItem['sample']).'</textarea>';
+						} else {
+							echo '<pre class="brush: as3">';
+								echo $aItem['sample'];
+							echo '</pre>';
+						}
 					echo '</div>';
 				}
 			echo '</div>';
