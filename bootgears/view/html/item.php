@@ -115,7 +115,7 @@
 					}
 				echo '</div>';
 
-				if($aItem['sample']) {
+				if($aEditMode || $aItem['sample']) {
 					echo '<div class="col-md-12">';
 						echo '<p><strong>Sample</strong></p>';
 						if($aEditMode) {
