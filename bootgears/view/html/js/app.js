@@ -25,7 +25,7 @@ var AS3GAMEGEARS = new function() {
 		});
 	};
 	
-	this.saveEntry = function(theEntryId, theEntryType) {
+	this.saveEntry = function(theEntryId, theEntryType, theButton) {
 		var aData = {};
 		
 		$('.editable').each(function() {
@@ -36,18 +36,21 @@ var AS3GAMEGEARS = new function() {
 		aData['id'] 	= theEntryId;
 		aData['type'] 	= theEntryType;
 		
-		console.log(theEntryId, theEntryType, aData);
+		$(theButton).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
 
 		$.ajax({
 		  type: 'POST',
 		  url: 'ajax-edit.php',
-		  data: aData
+		  data: aData,
+		  dataType: 'json'
 		})
 		.done(function( msg ) {
-			console.log(msg);
+			$(theButton).attr('class', 'btn btn-default')
+						.html('<i class="fa fa-save"></i>');
 		})
 		.fail(function(jqXHR, textStatus) {
-			console.log('Something went wrong!');
+			$(theButton).attr('class', 'btn btn-danger')
+						.html('<i class="fa fa-save"></i>');
 		});
 	};
 };

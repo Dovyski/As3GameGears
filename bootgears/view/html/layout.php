@@ -184,7 +184,7 @@ function layoutPrintMarkdownTextarea($theFieldName, $theInitialText = '', $theTa
 }
 
 function layoutPrintEditPanel($theEntryId, $theEntryType) {
-	echo '<button onclick="AS3GAMEGEARS.saveEntry('.$theEntryId.', \''.$theEntryType.'\');" class="btn btn-default"><i class="fa fa-save"></i></button>';
+	echo '<button onclick="AS3GAMEGEARS.saveEntry('.$theEntryId.', \''.$theEntryType.'\', this);" class="btn btn-default"><i class="fa fa-save"></i></button>';
 }
 
 ?>
