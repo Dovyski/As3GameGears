@@ -25,4 +25,21 @@ function licenseFindByIdBulk($theIds) {
 	return $aRet;
 }
 
+
+function licenseFindAll() {
+	global $gDb;
+
+	$aRet = array();
+
+	$aQuery = $gDb->prepare("SELECT * FROM licenses WHERE 1");
+
+	if ($aQuery->execute()) {
+		while($aRow = $aQuery->fetch(PDO::FETCH_ASSOC)) {
+			$aRet[$aRow['id']] = $aRow;
+		}
+	}
+
+	return $aRet;
+}
+
 ?>

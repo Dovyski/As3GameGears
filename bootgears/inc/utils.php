@@ -31,8 +31,8 @@ function utilsMakePrettyRepoLink($theRepoUrl) {
 	$aRet = array('url', 'icon');
 
 	if($theRepoUrl != '') {
-	$aRepoInfo 		= getRepoInfo($theRepoUrl);
-		$aRet['url'] 	= '<a href="'.(strpos($theRepoUrl, 'git://') === false ? 'git://' . $theRepoUrl : $theRepoUrl).'" target="_blank">'.$aRepoInfo['name'].'</a>';
+		$aRepoInfo 	  = utilsGetRepoInfo($theRepoUrl);
+		$aRet['url']  = '<a href="'.(strpos($theRepoUrl, 'git://') === false ? 'git://' . $theRepoUrl : $theRepoUrl).'" target="_blank">'.$aRepoInfo['name'].'</a>';
 		$aRet['icon'] = $aRepoInfo['icon'];
 		$aRet['name'] = $aRepoInfo['name'];
 	}
@@ -55,11 +55,11 @@ function utilsGetRepoInfo($theRepoUrl) {
 		
 		if(!isset($aParts['host'])) {
 			preg_match_all('$(.+@)*([\w\d\.]+):(.*)$', $theRepoUrl, $aParts);
-			$aParts['host'] = $aParts[2][0];
+			$aParts['host'] = @$aParts[2][0];
 		}
 		
 		$aDomain 	= explode('.', $aParts['host']);
-		$aName		= $aDomain[count($aDomain) - 2];
+		$aName		= @$aDomain[count($aDomain) - 2];
 		$aDomain 	= $aName . '.' . $aDomain[count($aDomain) - 1];
 
 		$aRet = isset($aMaps[$aDomain]) ? $aMaps[$aDomain] : array('icon' => 'code', 'name' => ucwords($aName));

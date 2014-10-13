@@ -3,9 +3,13 @@
 
 	$aId = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
 
-	$aData			= array();
-	$aItem 			= array('name' => 'Oops', 'description' => 'No such item');
-	$aLicenses  	= null;
+	$aData				= array();
+	$aItem 				= array('name' => 'Oops', 'description' => 'No such item');
+	$aLicenses  		= null;
+	
+	// TODO: check it properly
+	$aShowEditOption	= true;
+	$aEditMode			= isset($_REQUEST['edit']);
 
 	if($aId != 0) {
 		$aItem = itemGetById($aId);
@@ -32,8 +36,12 @@
 
 	$aData['categories'] 		= categoryFindAll();
 	$aData['breadcrumbs'] 		= navigationMakeBreadcrumbs($aItem, $aData['categories']);
-	$aData['showEditOption'] 	= true;
-	$aData['editMode'] 			= isset($_REQUEST['edit']);
+	$aData['showEditOption'] 	= $aShowEditOption;
+	$aData['editMode'] 			= $aEditMode;
+	
+	if ($aEditMode) {
+		$aData['licenses'] = licenseFindAll();
+	}
 
 	View::render('item', $aData);
 ?>

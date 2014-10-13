@@ -69,6 +69,24 @@ body {
   margin-right: 30px;
 }
 
+.editable {
+	
+}
+
+div.item-meta .editable {
+	background: transparent;
+	color: black;
+	font-weight: bold;
+}
+
+div#headline input.editable {
+	background: transparent;
+	color: black;
+	font-size: 2em;
+	height: 40px;
+	border: none;
+}
+
 .breadcrumb a,
 .breadcrumb a:active,
 .breadcrumb a:hover,

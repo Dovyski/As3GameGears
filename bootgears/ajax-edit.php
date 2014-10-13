@@ -20,6 +20,15 @@ switch($aAction) {
 				'id' 			=>  $aEntryId,
 				'name' 			=>  isset($_REQUEST['name']) 			? $_REQUEST['name'] : '',
 				'description' 	=>  isset($_REQUEST['description']) 	? $_REQUEST['description'] : '',
+				//'category' 		=>  isset($_REQUEST['category']) 		? $_REQUEST['category'] : '',
+				//'category2'		=>  isset($_REQUEST['category2']) 		? $_REQUEST['category2'] : '',
+				'license' 		=>  isset($_REQUEST['license']) 		? $_REQUEST['license'] : '',
+				'license2' 		=>  isset($_REQUEST['license2']) 		? $_REQUEST['license2'] : '',
+				'site' 			=>  isset($_REQUEST['site']) 			? $_REQUEST['site'] : '',
+				'repository' 	=>  isset($_REQUEST['repository']) 		? $_REQUEST['repository'] : '',
+				'twitter' 		=>  isset($_REQUEST['twitter']) 		? $_REQUEST['twitter'] : '',
+				'stats' 		=>  isset($_REQUEST['stats']) 			? $_REQUEST['stats'] : '',
+				//'sample' 		=>  isset($_REQUEST['sample']) 			? $_REQUEST['sample'] : '',
 			);
 			$aInfo = itemCreateOrUpdate($aEntryId, $aData);
 			$aRet['status'] = $aInfo != 0;		
