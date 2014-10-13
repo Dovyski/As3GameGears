@@ -6,8 +6,17 @@ body {
   margin-top: -20px;
 }
 
+a:active,
+a:link,
+a:hover,
+a:visited {
+	color: #000;
+}
+
+.index-icon {
+}
+
 #headline {
-  width: 80%;
 }
 
 .jumbotron i {
@@ -107,6 +116,7 @@ footer .container-fluid {
   padding-top: 20px;
   margin-top: 40px;
   background: #E0E0E0;
+  padding-bottom: 30px;
 }
 
 footer li {

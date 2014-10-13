@@ -1,4 +1,8 @@
 <?php 
 	require_once dirname(__FILE__).'/inc/globals.php';
-	View::render('index');
+	
+	$aData					= array();
+	$aData['categories'] 	= categoryFindAll();
+	
+	View::render('index', $aData);
 ?>
