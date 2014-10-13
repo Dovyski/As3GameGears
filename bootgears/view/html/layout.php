@@ -109,11 +109,11 @@ function layoutPrintCategoryList($theCategories, $theColumns = 3, $theShowDescri
 		if(!$theShowDescription) {
 			echo '<div class="row  text-center" style="padding: 40px 0 30px 0;">';
 				echo '<div class="col-md-12">';
-					echo '<hr><h4 style="margin-top: -30px;">Categories</h4></hr>';
+					echo '<hr><h4 style="margin-top: -30px;">Browse by category</h4></hr>';
 				echo '</div>';
 			echo '</div>';
 		}
-		echo '<div class="row">';
+		echo '<div class="row '.($theShowDescription ? 'category-showroom' : '').'">';
 			$aTotal = count($theCategories);
 			$aAmountPerColumn = (int)($aTotal / $theColumns);
 
@@ -148,7 +148,7 @@ function layoutBreadcrumbs($theData) {
 		echo '<div class="row">';
 			echo '<div class="col-md-12">';
 				echo '<ol class="breadcrumb">';
-					echo '<li><a href="/index.php">Site</a></li>';
+					echo '<li><i class="fa fa-angle-right"></i> <a href="/index.php">Site</a></li>';
 					echo '<li><a href="/category.php">Tools</a></li>';
 					if(isset($theData) && count($theData)) {
 						for($i = count($theData) - 1; $i >= 0; $i--) {

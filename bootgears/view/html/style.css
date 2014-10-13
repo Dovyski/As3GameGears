@@ -45,6 +45,10 @@ a:visited {
   min-height: 100px;
 }
 
+.item-descriptor div.panel-heading {
+  font-weight: bold;
+}
+
 .item-meta {
   margin-bottom: 25px;
   background: #efefef;
@@ -121,4 +125,16 @@ footer .container-fluid {
 
 footer li {
   list-style-type: none;
+}
+
+.category-showroom p {
+	margin-bottom: 25px;
+}
+
+.category-showroom a:link,
+.category-showroom a:active,
+.category-showroom a:visited,
+.category-showroom a:hover {
+	font-size: 1.2em;
+	font-weight: bold;
 }
