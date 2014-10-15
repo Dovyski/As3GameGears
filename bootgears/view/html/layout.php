@@ -48,10 +48,9 @@ function layoutHeader($theTitle, $theBaseUrl = '.') {
 		echo '<link href="'.$theBaseUrl.'/style.css'.$aRandURLs.'" rel="stylesheet">';
 
 		echo '<!-- Le fav and touch icons -->';
-		echo '<link rel="shortcut icon" href="/img/favicon.ico">';
-		echo '<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">';
-		echo '<link rel="apple-touch-icon" sizes="72x72" href="/img/apple-touch-icon-72x72.png">';
-		echo '<link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png">';
+		echo '<link rel="shortcut icon" href="'.$theBaseUrl.'/img/as3gamegears.png"/>';
+		echo '<link rel="icon" type="image/png" href="'.$theBaseUrl.'/img/as3gamegears.png"/>';
+		echo '<link rel="apple-touch-icon" href="'.$theBaseUrl.'/img/apple-touch-icon.png">';
 
 		echo '<!-- FontAwesome -->';
 		echo '<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">';
