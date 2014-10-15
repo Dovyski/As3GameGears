@@ -35,13 +35,20 @@
 	}
 
 	$aData['categories'] 		= categoryFindAll();
-	$aData['breadcrumbs'] 		= navigationMakeBreadcrumbs($aItem, $aData['categories']);
 	$aData['showEditOption'] 	= $aShowEditOption;
 	$aData['editMode'] 			= $aEditMode;
 	
 	if ($aEditMode) {
 		$aData['licenses'] = licenseFindAll();
 	}
+	
+	$aBreadcrumbs = navigationMakeBreadcrumbs($aItem, $aData['categories']);
+	$aBreadcrumbs[] = array(
+		'name' => 'Tools',
+		'link' => '/category/'
+	);
+	
+	$aData['breadcrumbs'] = $aBreadcrumbs;
 
 	View::render('item', $aData);
 ?>

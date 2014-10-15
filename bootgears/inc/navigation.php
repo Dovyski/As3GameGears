@@ -15,11 +15,11 @@ function navigationMakeBreadcrumbs($theObject, $theCategories) {
         $aParent = array('parent' => $theObject['parent']);
 
       } else {
-        $aParent = array('parent' => isset($theObject['category2']) ? $theObject['category2'] : $theObject['category']);
+        $aParent = array('parent' => isset($theObject['category2']) ? $theObject['category2'] : @$theObject['category']);
       }
 
       $aRet[] = array(
-        'name' => $theObject['name'],
+        'name' => isset($theObject['name']) ? $theObject['name'] : $theObject['title'],
         'link' => ($aIsCategory ? 'category.php?id=' : 'item.php?id=') . $theObject['id']
       );
 

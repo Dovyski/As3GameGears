@@ -82,17 +82,23 @@ function layoutFooter($theBaseUrl = '.') {
 						echo '</div>';
 						echo '<div class="col-md-3">';
 							echo '<h4>More links</h4>';
-							echo '<li><a href="">About</a></li>';
-							echo '<li><a href="">Disclaimer</a></li>';
-							echo '<li><a href="">Extras</a></li>';
-							echo '<li><a href="">As3GameGears API</a></li>';
-							echo '<li><a href="">Brain Rating for Games</a></li>';
+							echo '<li><a href="/about/">About</a></li>';
+							echo '<li><a href="/blog/">Blog</a></li>';
+							echo '<li><a href="/displaimer/">Disclaimer</a></li>';
+							echo '<li><a href="/extras/">Extras</a></li>';
+							echo '<li><a href="/extras/as3gamegears-api">As3GameGears API</a></li>';
+							echo '<li><a href="/extras/brain-rating-for-games/">Brain Rating for Games</a></li>';
 						echo '</div>';
 						echo '<div class="col-md-6">';
 							echo '<p>Play my games:</p>';
 							echo '<img class="img-rounded" src="http://www.as3gamegears.com/wp-content/uploads/2013/05/180x100xpromo_mac_180_120.png.pagespeed.ic.GN1DrWupvM.jpg" width="180" height="120" alt="Madly Angry Cat" title="Madly Angry Cat" border="0"> ';
 							echo '<img class="img-rounded" src="http://www.as3gamegears.com/wp-content/uploads/2013/05/180x100xpromo_mac_180_120.png.pagespeed.ic.GN1DrWupvM.jpg" width="180" height="120" alt="Madly Angry Cat" title="Madly Angry Cat" border="0"> ';
 							echo '<img class="img-rounded" src="http://www.as3gamegears.com/wp-content/uploads/2013/05/180x100xpromo_mac_180_120.png.pagespeed.ic.GN1DrWupvM.jpg" width="180" height="120" alt="Madly Angry Cat" title="Madly Angry Cat" border="0"> ';
+						echo '</div>';
+					echo '</div>';
+					echo '<div class="row">';
+						echo '<div class="col-md-12 notice">';
+							echo 'All information on this website is provided "as is" with no guarantees (see <a href="/disclaimer/">disclaimer page</a>).';
 						echo '</div>';
 					echo '</div>';
 				echo '</div>';
@@ -168,7 +174,6 @@ function layoutBreadcrumbs($theData) {
 			echo '<div class="col-md-12">';
 				echo '<ol class="breadcrumb">';
 					echo '<li><i class="fa fa-angle-right"></i> <a href="/index.php">Site</a></li>';
-					echo '<li><a href="/category.php">Tools</a></li>';
 					if(isset($theData) && count($theData)) {
 						for($i = count($theData) - 1; $i >= 0; $i--) {
 							$aEntry = $theData[$i];
@@ -176,7 +181,7 @@ function layoutBreadcrumbs($theData) {
 						}
 					}
 				echo '</ol>';
-			echo '</div>';
+			echo '</div>';			
 		echo '</div>';
 	echo '</div>';
 }

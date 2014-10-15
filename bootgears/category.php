@@ -35,6 +35,12 @@
 	
 	$aSimplified = $aListCategoriesOnly == false;
 	$aCategories = categoryFindAll($aSimplified);
+	
+	$aBreadcrumbs = navigationMakeBreadcrumbs($aCategory, $aCategories);
+	$aBreadcrumbs[] = array(
+		'name' => 'Tools',
+		'link' => '/category.php'
+	);
 
 	View::render('category', array(
 		'categories' 				=> $aCategories,
@@ -47,6 +53,6 @@
 		'showCategoryInItems' 		=> false,
 		'items' 					=> $aItems,
 		'licenses' 					=> $aLicenses,
-		'breadcrumbs' 				=> navigationMakeBreadcrumbs($aCategory, $aCategories)
+		'breadcrumbs' 				=> $aBreadcrumbs
 	));
 ?>
