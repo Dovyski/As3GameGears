@@ -15,6 +15,19 @@ function itemGetById($theId) {
   return $aRet;
 }
 
+function itemGetBySlug($theSlug) {
+  global $gDb;
+
+  $aRet = array();
+  $aQuery = $gDb->prepare("SELECT * FROM items WHERE name = ?"); // TODO: change to slug
+
+  if ($aQuery->execute(array($theSlug))) {
+      $aRet = $aQuery->fetch(PDO::FETCH_ASSOC);
+  }
+
+  return $aRet;
+}
+
 function itemFindByCategoryId($theCategoryId, $theSimplified = true) {
   global $gDb;
 

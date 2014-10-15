@@ -1,7 +1,7 @@
 <?php
 	require_once dirname(__FILE__).'/inc/globals.php';
 
-	$aId = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
+	$aSlug = isset($_REQUEST['slug']) ? $_REQUEST['slug'] : '';
 
 	$aData				= array();
 	$aItem 				= array('name' => 'Oops', 'description' => 'No such item');
@@ -11,8 +11,8 @@
 	$aShowEditOption	= true;
 	$aEditMode			= isset($_REQUEST['edit']);
 
-	if($aId != 0) {
-		$aItem = itemGetById($aId);
+	if($aSlug != '') {
+		$aItem = itemGetBySlug($aSlug);
 	}
 
 	if($aItem != null) {
@@ -42,7 +42,7 @@
 		$aData['licenses'] = licenseFindAll();
 	}
 	
-	$aBreadcrumbs = navigationMakeBreadcrumbs($aItem, $aData['categories']);
+	$aBreadcrumbs = Navigation::makeBreadcrumbs($aItem, $aData['categories']);
 	$aBreadcrumbs[] = array(
 		'name' => 'Tools',
 		'link' => '/category/'

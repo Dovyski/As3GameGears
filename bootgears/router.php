@@ -31,15 +31,20 @@
 	
 	if (isset($aPages[$aFirst])) {
 		$_REQUEST['slug'] = $aFirst;
+		Navigation::setCurrentPage('text.php');
+		
 		require_once dirname(__FILE__).'/text.php';
 		
 	} else if(isset($aRoutes[$aFirst])){
 		$_REQUEST['slug'] = isset($aParts[1]) ? $aParts[1] : '';
+		Navigation::setCurrentPage($aRoutes[$aFirst]);
+		
 		require_once dirname(__FILE__).'/' . $aRoutes[$aFirst];
 		
 	} else {
 		$_REQUEST['slug'] = $aLast;
 		$aHandler = $aCount >= 2 ? 'item.php' : 'category.php';
+		Navigation::setCurrentPage($aHandler);
 
 		require_once dirname(__FILE__) . '/' . $aHandler;
 	}

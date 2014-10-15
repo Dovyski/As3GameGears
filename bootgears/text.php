@@ -20,7 +20,7 @@
 	$aData['showEditOption'] = true;
 	$aData['editMode'] = isset($_REQUEST['edit']);
 
-	$aBreadcrumbs = navigationMakeBreadcrumbs($aText, array());
+	$aBreadcrumbs = Navigation::makeBreadcrumbs($aText, array());
 	$aBreadcrumbs[] = array(
 		'name' => 'Blog',
 		'link' => '/blog/'

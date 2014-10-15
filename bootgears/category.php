@@ -36,10 +36,10 @@
 	$aSimplified = $aListCategoriesOnly == false;
 	$aCategories = categoryFindAll($aSimplified);
 	
-	$aBreadcrumbs = navigationMakeBreadcrumbs($aCategory, $aCategories);
+	$aBreadcrumbs = Navigation::makeBreadcrumbs($aCategory, $aCategories);
 	$aBreadcrumbs[] = array(
 		'name' => 'Tools',
-		'link' => '/category.php'
+		'link' => '/category/'
 	);
 
 	View::render('category', array(

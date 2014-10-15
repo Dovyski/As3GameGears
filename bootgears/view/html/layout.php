@@ -1,7 +1,7 @@
 <?php
 
 function layoutNavBar($theBaseUrl) {
-	$aPage = basename($_SERVER['PHP_SELF']);
+	$aPage = Navigation::currentPage();
 
 	echo '<nav class="navbar navbar-default" role="navigation">';
 		echo '<div class="container">';
@@ -11,11 +11,9 @@ function layoutNavBar($theBaseUrl) {
 
 			echo '<div class="collapse navbar-collapse">';
 					echo '<ul class="nav navbar-nav">';
-						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'><a href="#">Blog</a></li>';
-						echo '<li '.($aPage == 'category.php' 		? 'class="active"' : '').'><a href="category.php">Tools</a></li>';
-						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'><a href="category.php?id=1">Assets</a></li>';
-						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'><a href="category.php?id=1">Tutorials</a></li>';
-						echo '<li '.($aPage == 'challenges.php' 	? 'class="active"' : '').'><a href="category.php?id=1">About</a></li>';
+						echo '<li '.($aPage == 'blog.php' 			? 'class="active"' : '').'><a href="/blog">Blog</a></li>';
+						echo '<li '.($aPage == 'category.php' 		? 'class="active"' : '').'><a href="/category">Tools</a></li>';
+						echo '<li '.($aPage == 'about.php' 			? 'class="active"' : '').'><a href="/about">About</a></li>';
 					echo '</ul>';
 					echo '<form class="navbar-form navbar-right" role="search">';
 						echo '<div class="form-group">';
@@ -150,13 +148,13 @@ function layoutPrintCategoryList($theCategories, $theColumns = 3, $theShowDescri
 				}
 
 				$aHasChildren = isset($aChildren[$aId]);
-				echo '<p><i class="fa fa-'.($theShowDescription ? 'chevron-circle-right' : 'angle-right').'"></i> <a href="category.php?id='.$aCategory['id'].'">'.$aCategory['name'].'</a>'.($theShowDescription ? '<br/>'.$aCategory['description'] : '').'</p>';
+				echo '<p><i class="fa fa-'.($theShowDescription ? 'chevron-circle-right' : 'angle-right').'"></i> <a href="/category/'.$aCategory['slug'].'">'.$aCategory['name'].'</a>'.($theShowDescription ? '<br/>'.$aCategory['description'] : '').'</p>';
 				$j++;
 				$aCount++;
 				
 				if ($aHasChildren) {
 					foreach($aChildren[$aId] as $aChildId => $aChild) {
-						echo '<p style="margin-left: 25px;"><i class="fa fa-'.($theShowDescription ? 'chevron-right' : 'caret-right').'"></i> <a href="category.php?id='.$aChild['id'].'">'.$aChild['name'].'</a>'.($theShowDescription ? '<br/>'.$aChild['description'] : '').'</p>';
+						echo '<p style="margin-left: 25px;"><i class="fa fa-'.($theShowDescription ? 'chevron-right' : 'caret-right').'"></i> <a href="category/'.$aChild['slug'].'">'.$aChild['name'].'</a>'.($theShowDescription ? '<br/>'.$aChild['description'] : '').'</p>';
 						$j++;
 						$aCount++;
 					}
@@ -173,7 +171,7 @@ function layoutBreadcrumbs($theData) {
 		echo '<div class="row">';
 			echo '<div class="col-md-12">';
 				echo '<ol class="breadcrumb">';
-					echo '<li><i class="fa fa-angle-right"></i> <a href="/index.php">Site</a></li>';
+					echo '<li><i class="fa fa-angle-right"></i> <a href="/">Site</a></li>';
 					if(isset($theData) && count($theData)) {
 						for($i = count($theData) - 1; $i >= 0; $i--) {
 							$aEntry = $theData[$i];
