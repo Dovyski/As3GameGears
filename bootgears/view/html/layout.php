@@ -1,7 +1,8 @@
 <?php
 
 function layoutNavBar($theBaseUrl) {
-	$aPage = Navigation::currentPage();
+	$aNavTree 	= Navigation::currentNavtree();
+	$aSlug 		= @$aNavTree[0];
 
 	echo '<nav class="navbar navbar-default" role="navigation">';
 		echo '<div class="container">';
@@ -11,9 +12,9 @@ function layoutNavBar($theBaseUrl) {
 
 			echo '<div class="collapse navbar-collapse">';
 					echo '<ul class="nav navbar-nav">';
-						echo '<li '.($aPage == 'blog.php' 			? 'class="active"' : '').'><a href="/blog">Blog</a></li>';
-						echo '<li '.($aPage == 'category.php' 		? 'class="active"' : '').'><a href="/category">Tools</a></li>';
-						echo '<li '.($aPage == 'about.php' 			? 'class="active"' : '').'><a href="/about">About</a></li>';
+						echo '<li '.($aSlug == 'blog' 			? 'class="active"' : '').'><a href="/blog">Blog</a></li>';
+						echo '<li '.($aSlug == 'category' 		? 'class="active"' : '').'><a href="/category">Tools</a></li>';
+						echo '<li '.($aSlug == 'about' 			? 'class="active"' : '').'><a href="/about">About</a></li>';
 					echo '</ul>';
 					echo '<form class="navbar-form navbar-right" role="search">';
 						echo '<div class="form-group">';

@@ -41,7 +41,9 @@
 		$_REQUEST['slug'] = $aLast;
 		$aRoute = $aCount >= 2 ? 'item.php' : 'category.php';
 	}
-	
+
 	Navigation::setCurrentPage($aRoute);
+	Navigation::setCurrentNavtree($aParts);
+	
 	require_once dirname(__FILE__).'/' . $aRoute;
 ?>
