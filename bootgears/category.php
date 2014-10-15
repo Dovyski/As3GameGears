@@ -1,7 +1,7 @@
 <?php
 	require_once dirname(__FILE__).'/inc/globals.php';
 
-	$aId = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
+	$aSlug = isset($_REQUEST['slug']) ? $_REQUEST['slug'] : '';
 
 	$aCategories = null;
 	$aCategory = null;
@@ -9,11 +9,11 @@
 	$aListCategoriesOnly = false;
 	$aLicenses = null;
 
-	if($aId != 0) {
-		$aCategory = categoryGetById($aId);
+	if($aSlug != '') {
+		$aCategory = categoryGetBySlug($aSlug);
 
 		if($aCategory != null) {
-			$aItems = itemFindByCategoryId($aId);
+			$aItems = itemFindByCategoryId($aCategory['id']);
 
 			foreach($aItems as $aId => $aItem) {
 				if (isset($aItem['license'])) $aLicenses[$aItem['license']] = true;

@@ -12,7 +12,7 @@
 	
 	$aCount 	= count($aParts);
 	$aIndex		= $aCount - 1;
-	$aLast 		= isset($aParts[$aIndex]) && $aIndex != 0 ? $aParts[$aIndex] : '';
+	$aLast 		= isset($aParts[$aIndex]) ? $aParts[$aIndex] : '';
 	
 	$aPages = array(
 		'about'						=> '',

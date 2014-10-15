@@ -31,4 +31,17 @@ function categoryGetById($theId) {
   return $aRet ? $aRet : null;
 }
 
+function categoryGetBySlug($theSlug) {
+  global $gDb;
+
+  $aRet = null;
+  $aQuery = $gDb->prepare("SELECT * FROM categories WHERE slug = ?");
+
+  if ($aQuery->execute(array($theSlug))) {
+      $aRet = $aQuery->fetch(PDO::FETCH_ASSOC);
+  }
+
+  return $aRet ? $aRet : null;
+}
+
 ?>

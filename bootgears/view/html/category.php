@@ -2,8 +2,8 @@
 	require_once dirname(__FILE__).'/layout.php';
 
 	$aData 				= View::data();
-	$aCategories 	= $aData['categories'];
-	$aCategory 		= $aData['category'];
+	$aCategories 		= $aData['categories'];
+	$aCategory 			= $aData['category'];
 	$aItems 			= $aData['items'];
 	$aLicenses 			= $aData['licenses'];
 
