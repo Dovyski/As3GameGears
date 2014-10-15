@@ -15,6 +15,19 @@ function textGetById($theId) {
   return $aRet;
 }
 
+function textGetBySlug($theSlug) {
+  global $gDb;
+
+  $aRet = array();
+  $aQuery = $gDb->prepare("SELECT * FROM texts WHERE slug = ?");
+
+  if ($aQuery->execute(array($theSlug))) {
+      $aRet = $aQuery->fetch(PDO::FETCH_ASSOC);
+  }
+
+  return $aRet;
+}
+
 function textCreateOrUpdate($theTextId, $theData) {
 	global $gDb;
 

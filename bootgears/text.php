@@ -1,14 +1,14 @@
 <?php
 	require_once dirname(__FILE__).'/inc/globals.php';
 
-	$aId = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
+	$aSlug = isset($_REQUEST['slug']) ? $_REQUEST['slug'] : '';
 
 	$aData		= array();
 	$aText 		= null;
 	$aAuthor 	= null;
 
-	if($aId != 0) {
-		$aText = textGetById($aId);
+	if($aSlug != '') {
+		$aText = textGetBySlug($aSlug);
 	}
 
 	if ($aText != null) {
