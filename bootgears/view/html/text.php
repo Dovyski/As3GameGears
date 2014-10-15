@@ -22,10 +22,13 @@
 							echo '<input name="title" value="'.@$aText['title'].'" class="form-control editable" style="background: transparent; color: black; font-size: 2em; height: 40px; border: none;" />';
 						}
 					echo '</div>';
-					echo '<div class="col-md-4 post-author">';
-						echo '<a href="http://twitter.com/'.$aAuthor['display_name'].'" target="_blank"><img src = "http://avatars.io/twitter/'.$aAuthor['display_name'].'?size=medium" class="img-thumbnail" border="0" /></a>';
-						echo '<p><strong><a href="http://twitter.com/'.$aAuthor['display_name'].'" target="_blank">'.$aAuthor['name'].'</a></strong><br/> on '.date('M d, Y').' </p>';
-					echo '</div>';						
+					
+					if(!$aText['page']) {
+						echo '<div class="col-md-4 post-author">';
+							echo '<a href="http://twitter.com/'.$aAuthor['display_name'].'" target="_blank"><img src = "http://avatars.io/twitter/'.$aAuthor['display_name'].'?size=medium" class="img-thumbnail" border="0" /></a>';
+							echo '<p><strong><a href="http://twitter.com/'.$aAuthor['display_name'].'" target="_blank">'.$aAuthor['name'].'</a></strong><br/> on '.date('M d, Y').' </p>';
+						echo '</div>';
+					}
 				echo '</div>';
 			echo '</div>';
 		echo '</div>';
@@ -45,7 +48,10 @@
 				echo '</div>';
 			echo '</div>';
 		}
-		layoutBreadcrumbs($aData['breadcrumbs']);
+		
+		if(!$aText['page']) {
+			layoutBreadcrumbs($aData['breadcrumbs']);
+		}
 
 		echo '<div class="container">';
 			echo '<div class="row">';

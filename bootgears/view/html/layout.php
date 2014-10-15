@@ -82,7 +82,7 @@ function layoutFooter($theBaseUrl = '.') {
 							echo '<h4>More links</h4>';
 							echo '<li><a href="/about/">About</a></li>';
 							echo '<li><a href="/blog/">Blog</a></li>';
-							echo '<li><a href="/displaimer/">Disclaimer</a></li>';
+							echo '<li><a href="/disclaimer/">Disclaimer</a></li>';
 							echo '<li><a href="/extras/">Extras</a></li>';
 							echo '<li><a href="/extras/as3gamegears-api">As3GameGears API</a></li>';
 							echo '<li><a href="/extras/brain-rating-for-games/">Brain Rating for Games</a></li>';

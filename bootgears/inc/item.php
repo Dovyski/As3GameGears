@@ -19,7 +19,7 @@ function itemGetBySlug($theSlug) {
   global $gDb;
 
   $aRet = array();
-  $aQuery = $gDb->prepare("SELECT * FROM items WHERE name = ?"); // TODO: change to slug
+  $aQuery = $gDb->prepare("SELECT * FROM items WHERE slug = ?");
 
   if ($aQuery->execute(array($theSlug))) {
       $aRet = $aQuery->fetch(PDO::FETCH_ASSOC);

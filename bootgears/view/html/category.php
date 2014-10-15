@@ -31,6 +31,7 @@
 				foreach($aItems as $aId => $aItem) {
 					echo '<div class="col-md-4">';
 						echo '<div class="panel panel-default item-descriptor">';
+							// TODO: use something like utils::url() to expand those links using parent info...
 							echo '<div class="panel-heading"><a href="/'.@$aCategories[$aItem['category']]['slug'].'/'.$aItem['name'].'">'.$aItem['name'].'</a></div>';
 							echo '<div class="panel-body">';
 								echo $aItem['excerpt'];

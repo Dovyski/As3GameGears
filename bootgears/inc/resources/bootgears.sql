@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 09, 2014 at 05:51 PM
+-- Generation Time: Oct 15, 2014 at 07:11 PM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -60,6 +60,8 @@ CREATE TABLE IF NOT EXISTS `categories` (
 CREATE TABLE IF NOT EXISTS `items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
+  `slug` varchar(100) NOT NULL,
+  `date` int(10) unsigned NOT NULL,
   `description` text NOT NULL,
   `excerpt` varchar(255) DEFAULT NULL,
   `category` int(11) NOT NULL,
@@ -72,8 +74,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `stats` varchar(80) NOT NULL,
   `sample` text,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`),
-  KEY `excerpt` (`excerpt`),
+  UNIQUE KEY `slug` (`slug`),
   KEY `category` (`category`,`category2`),
   KEY `license` (`license`,`license2`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
@@ -91,7 +92,6 @@ CREATE TABLE IF NOT EXISTS `licenses` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
 -- --------------------------------------------------------
 
 --
@@ -103,6 +103,7 @@ CREATE TABLE IF NOT EXISTS `texts` (
   `author` int(11) NOT NULL,
   `date` int(10) unsigned NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '0',
+  `page` tinyint(4) NOT NULL DEFAULT '0',
   `slug` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
