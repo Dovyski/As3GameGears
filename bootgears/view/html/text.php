@@ -8,7 +8,7 @@
 
 	layoutHeader('Start', View::baseUrl());
 
-	echo '<div class="jumbotron item-jumbotron">';
+	echo '<div class="jumbotron text-jumbotron">';
 		echo '<div class="container-fluid">';
 			echo '<div class="container">';
 				echo '<div class="row">';

@@ -35,10 +35,19 @@ a:visited {
   margin-top: -10px;
 }
 
+.text-jumbotron {
+	height: 130px;
+	padding-top: 20px;
+}
+
 .item-jumbotron {
-  height: 150px;
+  height: 130px;
   padding-top: 20px;
   margin-bottom: 15px;
+}
+
+.item-jumbotron h2 {
+	font-size: 2.5em;
 }
 
 .item-descriptor div.panel-body {
@@ -153,7 +162,7 @@ footer div.notice {
 
 .post-author {
 	font-size: 1em;
-	margin-top: 18px;
+	margin-top: 10px;
 }
 
 .post-author img {
