@@ -32,23 +32,27 @@
 		$aData['site'] 			= utilsMakePrettyWebsiteLink($aItem['site'], 18);
 		$aData['repository'] 	= utilsMakePrettyRepoLink($aItem['repository']);
 		$aData['social_repo'] 	= utilsGetSocialRepoStuff($aItem['repository']);
-	}
 
-	$aData['categories'] 		= categoryFindAll();
-	$aData['showEditOption'] 	= $aShowEditOption;
-	$aData['editMode'] 			= $aEditMode;
-	
-	if ($aEditMode) {
-		$aData['licenses'] = licenseFindAll();
-	}
-	
-	$aBreadcrumbs = Navigation::makeBreadcrumbs($aItem, $aData['categories']);
-	$aBreadcrumbs[] = array(
-		'name' => 'Tools',
-		'link' => '/category'
-	);
-	
-	$aData['breadcrumbs'] = $aBreadcrumbs;
+		$aData['categories'] 		= categoryFindAll();
+		$aData['showEditOption'] 	= $aShowEditOption;
+		$aData['editMode'] 			= $aEditMode;
+		
+		if ($aEditMode) {
+			$aData['licenses'] = licenseFindAll();
+		}
+		
+		$aBreadcrumbs = Navigation::makeBreadcrumbs($aItem, $aData['categories']);
+		$aBreadcrumbs[] = array(
+			'name' => 'Tools',
+			'link' => '/category'
+		);
+		
+		$aData['breadcrumbs'] = $aBreadcrumbs;
 
-	View::render('item', $aData);
+		View::render('item', $aData);
+		
+	} else {
+		utilsMakeNotFoundHeader();
+		View::render('404');
+	}
 ?>

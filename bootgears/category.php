@@ -28,6 +28,12 @@
 				$aLicenseIds = array_keys($aLicenses);
 				$aLicenses = licenseFindByIdBulk($aLicenseIds);
 			}
+		} else {
+			// Category not found
+			utilsMakeNotFoundHeader();
+			View::render('404');
+			
+			exit();
 		}
 	} else {
 		$aListCategoriesOnly = true;

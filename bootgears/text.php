@@ -13,20 +13,24 @@
 
 	if ($aText != null) {
 		$aAuthor = authorGetById($aText['author']);
+
+		$aData['text'] = $aText;
+		$aData['author'] = $aAuthor;
+		$aData['showEditOption'] = true;
+		$aData['editMode'] = isset($_REQUEST['edit']);
+
+		$aBreadcrumbs = Navigation::makeBreadcrumbs($aText, array());
+		$aBreadcrumbs[] = array(
+			'name' => 'Blog',
+			'link' => '/blog/'
+		);
+
+		$aData['breadcrumbs'] = $aBreadcrumbs;
+		
+		View::render('text', $aData);
+		
+	} else {
+		utilsMakeNotFoundHeader();
+		View::render('404');
 	}
-	
-	$aData['text'] = $aText;
-	$aData['author'] = $aAuthor;
-	$aData['showEditOption'] = true;
-	$aData['editMode'] = isset($_REQUEST['edit']);
-
-	$aBreadcrumbs = Navigation::makeBreadcrumbs($aText, array());
-	$aBreadcrumbs[] = array(
-		'name' => 'Blog',
-		'link' => '/blog/'
-	);
-
-	$aData['breadcrumbs'] = $aBreadcrumbs;
-	
-	View::render('text', $aData);
 ?>

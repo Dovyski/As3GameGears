@@ -94,4 +94,8 @@ function utilsGetSocialRepoStuff($theRepoUrl) {
 	return $aContent;
 }
 
+function utilsMakeNotFoundHeader() {
+	header('HTTP/1.0 404 Not Found', true);
+}
+
 ?>
