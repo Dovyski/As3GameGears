@@ -12,7 +12,7 @@
 		echo '<div class="container-fluid">';
 			echo '<div class="container">';
 				echo '<div class="row">';
-					echo '<div id="headline" class="col-md-10">';
+					echo '<div id="headline" class="col-md-8">';
 						if(!$aText) {
 							echo '<i class="fa fa-exclamation-triangle fa-2x"></i>';
 						}
@@ -22,7 +22,10 @@
 							echo '<input name="title" value="'.@$aText['title'].'" class="form-control editable" style="background: transparent; color: black; font-size: 2em; height: 40px; border: none;" />';
 						}
 					echo '</div>';
-					echo '<div class="col-md-2">'.$aAuthor['display_name'].' <img src="http://avatars.io/twitter/'.$aAuthor['display_name'].'?size=medium" class="img-thumbnail" /></div>';
+					echo '<div class="col-md-4 post-author">';
+						echo '<a href="http://twitter.com/'.$aAuthor['display_name'].'" target="_blank"><img src = "http://avatars.io/twitter/'.$aAuthor['display_name'].'?size=medium" class="img-thumbnail" border="0" /></a>';
+						echo '<p><strong><a href="http://twitter.com/'.$aAuthor['display_name'].'" target="_blank">'.$aAuthor['name'].'</a></strong><br/> on '.date('M d, Y').' </p>';
+					echo '</div>';						
 				echo '</div>';
 			echo '</div>';
 		echo '</div>';
@@ -42,7 +45,7 @@
 				echo '</div>';
 			echo '</div>';
 		}
-		//layoutBreadcrumbs($aData['breadcrumbs']);
+		layoutBreadcrumbs($aData['breadcrumbs']);
 
 		echo '<div class="container">';
 			echo '<div class="row">';
