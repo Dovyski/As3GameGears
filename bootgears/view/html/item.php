@@ -12,7 +12,7 @@
 		echo '<div class="container-fluid">';
 			echo '<div class="container">';
 				echo '<div class="row">';
-					echo '<div id="headline">';
+					echo '<div id="headline" class="col-md-12">';
 						if(!$aItem) {
 							echo '<i class="fa fa-exclamation-triangle fa-2x"></i>';
 						}

@@ -18,6 +18,10 @@
 			foreach($aItems as $aId => $aItem) {
 				if (isset($aItem['license'])) $aLicenses[$aItem['license']] = true;
 				if (isset($aItem['license2'])) $aLicenses[$aItem['license2']] = true;
+				
+				if (strlen($aItem['excerpt']) > 140) {
+					$aItems[$aId]['excerpt'] = substr($aItem['excerpt'], 0, 140) . '...';
+				}
 			}
 			
 			if($aLicenses != null) {
