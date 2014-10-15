@@ -19,8 +19,8 @@
 				if (isset($aItem['license'])) $aLicenses[$aItem['license']] = true;
 				if (isset($aItem['license2'])) $aLicenses[$aItem['license2']] = true;
 				
-				if (strlen($aItem['excerpt']) > 140) {
-					$aItems[$aId]['excerpt'] = substr($aItem['excerpt'], 0, 140) . '...';
+				if (strlen($aItem['excerpt']) > 135) {
+					$aItems[$aId]['excerpt'] = substr($aItem['excerpt'], 0, 135) . '...';
 				}
 			}
 			
@@ -42,7 +42,7 @@
 		'title' 					=> $aCategory ? $aCategory['name'] : 'Tools',
 		'subtitle'					=> $aCategory ? $aCategory['description'] : 'Browse tools by category.',
 		'listCategoriesOnly' 		=> $aListCategoriesOnly,
-		'categoriesPerColumn' 		=> $aListCategoriesOnly ? 2 : 3,
+		'categoriesPerColumn' 		=> $aListCategoriesOnly ? 2 : 4,
 		'showCategoryDescription' 	=> $aListCategoriesOnly,
 		'showCategoryInItems' 		=> false,
 		'items' 					=> $aItems,

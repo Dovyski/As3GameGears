@@ -116,12 +116,22 @@ function layoutPrintCategoryList($theCategories, $theColumns = 3, $theShowDescri
 		echo '<div class="row '.($theShowDescription ? 'category-showroom' : '').'">';
 			$aTotal = count($theCategories);
 			$aAmountPerColumn = (int)($aTotal / $theColumns);
+			$aChildren = array();
+			
+			foreach($theCategories as $aId => $aCategory) {
+				if ($aCategory['parent'] != 0) {
+					if (!isset($aChildren[$aCategory['parent']])) {
+						$aChildren[$aCategory['parent']] = array();
+					}
+					
+					$aChildren[$aCategory['parent']][$aCategory['id']] = $aCategory;
+					unset($theCategories[$aId]);
+				}
+			}
 
 			$j = 0;
 			$aCount = 0;
 			foreach($theCategories as $aId => $aCategory) {
-				//if($aCategory['parent'] != 0) continue;
-
 				if($j == 0 || $j >= $aAmountPerColumn) {
 					if($aCount != 0) {
 						echo '</div>';
@@ -133,9 +143,18 @@ function layoutPrintCategoryList($theCategories, $theColumns = 3, $theShowDescri
 					$j = 0;
 				}
 
+				$aHasChildren = isset($aChildren[$aId]);
 				echo '<p><i class="fa fa-'.($theShowDescription ? 'chevron-circle-right' : 'angle-right').'"></i> <a href="category.php?id='.$aCategory['id'].'">'.$aCategory['name'].'</a>'.($theShowDescription ? '<br/>'.$aCategory['description'] : '').'</p>';
 				$j++;
 				$aCount++;
+				
+				if ($aHasChildren) {
+					foreach($aChildren[$aId] as $aChildId => $aChild) {
+						echo '<p style="margin-left: 25px;"><i class="fa fa-'.($theShowDescription ? 'chevron-right' : 'caret-right').'"></i> <a href="category.php?id='.$aChild['id'].'">'.$aChild['name'].'</a>'.($theShowDescription ? '<br/>'.$aChild['description'] : '').'</p>';
+						$j++;
+						$aCount++;
+					}
+				}
 			}
 			// Close the last col
 			echo '</div>';
