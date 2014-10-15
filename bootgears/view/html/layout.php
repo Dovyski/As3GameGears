@@ -154,7 +154,7 @@ function layoutPrintCategoryList($theCategories, $theColumns = 3, $theShowDescri
 				
 				if ($aHasChildren) {
 					foreach($aChildren[$aId] as $aChildId => $aChild) {
-						echo '<p style="margin-left: 25px;"><i class="fa fa-'.($theShowDescription ? 'chevron-right' : 'caret-right').'"></i> <a href="category/'.$aChild['slug'].'">'.$aChild['name'].'</a>'.($theShowDescription ? '<br/>'.$aChild['description'] : '').'</p>';
+						echo '<p style="margin-left: 25px;"><i class="fa fa-'.($theShowDescription ? 'chevron-right' : 'caret-right').'"></i> <a href="/category/'.$aCategory['slug'].'/'.$aChild['slug'].'">'.$aChild['name'].'</a>'.($theShowDescription ? '<br/>'.$aChild['description'] : '').'</p>';
 						$j++;
 						$aCount++;
 					}
@@ -172,10 +172,18 @@ function layoutBreadcrumbs($theData) {
 			echo '<div class="col-md-12">';
 				echo '<ol class="breadcrumb">';
 					echo '<li><i class="fa fa-angle-right"></i> <a href="/">Site</a></li>';
-					if(isset($theData) && count($theData)) {
+					if (isset($theData) && count($theData)) {
+						$aTemp = '';
+
 						for($i = count($theData) - 1; $i >= 0; $i--) {
 							$aEntry = $theData[$i];
-							echo '<li class="active"><a href="'.$aEntry['link'].'">'.$aEntry['name'].'</a></li>';
+							
+							if($i != 0) {
+								$aTemp .= $aEntry['link'] . '/';
+							} else {
+								$aTemp = $aEntry['link'];
+							}
+							echo '<li class="active"><a href="'.$aTemp.'">'.$aEntry['name'].'</a></li>';
 						}
 					}
 				echo '</ol>';

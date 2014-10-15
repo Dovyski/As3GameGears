@@ -40,7 +40,7 @@ class Navigation {
 			$aParent = @$theCategories[$aParent['parent']];
 
 			if($aParent) {
-			  $aRet[] = array('name' => $aParent['name'], 'link' => '/category/' . $aParent['slug']);
+			  $aRet[] = array('name' => $aParent['name'], 'link' => $aParent['slug']);
 			}
 		  } while($aParent != null && $i++ < 5);
 	  }

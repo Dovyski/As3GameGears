@@ -45,7 +45,7 @@
 	$aBreadcrumbs = Navigation::makeBreadcrumbs($aItem, $aData['categories']);
 	$aBreadcrumbs[] = array(
 		'name' => 'Tools',
-		'link' => '/category/'
+		'link' => '/category'
 	);
 	
 	$aData['breadcrumbs'] = $aBreadcrumbs;

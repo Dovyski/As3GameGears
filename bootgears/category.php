@@ -19,8 +19,8 @@
 				if (isset($aItem['license'])) $aLicenses[$aItem['license']] = true;
 				if (isset($aItem['license2'])) $aLicenses[$aItem['license2']] = true;
 				
-				if (strlen($aItem['excerpt']) > 135) {
-					$aItems[$aId]['excerpt'] = substr($aItem['excerpt'], 0, 135) . '...';
+				if (strlen($aItem['excerpt']) > 130) {
+					$aItems[$aId]['excerpt'] = substr($aItem['excerpt'], 0, 130) . '...';
 				}
 			}
 			
