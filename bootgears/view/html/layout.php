@@ -16,9 +16,9 @@ function layoutNavBar($theBaseUrl) {
 						echo '<li '.($aSlug == 'category' 		? 'class="active"' : '').'><a href="/category">Tools</a></li>';
 						echo '<li '.($aSlug == 'about' 			? 'class="active"' : '').'><a href="/about">About</a></li>';
 					echo '</ul>';
-					echo '<form class="navbar-form navbar-right" role="search">';
+					echo '<form action="/search" class="navbar-form navbar-right" role="search" method="get">';
 						echo '<div class="form-group">';
-							echo '<input type="text" class="form-control " placeholder="Search">';
+							echo '<input name="s" type="text" class="form-control" placeholder="Search" value="'.(isset($_REQUEST['s']) ? $_REQUEST['s'] : '').'">';
 						echo '</div>';
 						echo '<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>';
 					echo '</form>';

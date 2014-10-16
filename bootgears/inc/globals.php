@@ -15,6 +15,7 @@ require_once dirname(__FILE__).'/navigation.php';
 require_once dirname(__FILE__).'/text.php';
 require_once dirname(__FILE__).'/author.php';
 require_once dirname(__FILE__).'/utils.php';
+require_once dirname(__FILE__).'/search.php';
 
 require_once(dirname(__FILE__).'/libs/markdown/markdown_extended.php');
 ?>

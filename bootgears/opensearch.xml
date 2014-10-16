@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>As3GameGears.com</ShortName>
+  <LongName>Search As3GameGears.com Content</LongName>
+  <Description>Search the content listed at As3GameGears.com.</Description>
+  <Image height="200" width="200" type="image/png">http://www.as3gamegears.com/view/html/img/as3gamegears.png</Image>
+  <Developer>Fernando Bevilacqua</Developer>
+  <Url type="application/opensearchdescription+xml" rel="self" template="http://www.as3gamegears.com/opensearch.xml" />
+  <Url type="text/html" rel="results" template="http://www.as3gamegears.com/?s={searchTerms}&amp;page={startPage?}" />
+  <Query role="example" searchTerms="Flixel" />
+</OpenSearchDescription>
