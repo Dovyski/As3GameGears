@@ -43,6 +43,33 @@ function itemFindByCategoryId($theCategoryId, $theSimplified = true) {
   return $aRet;
 }
 
+function itemFindByCategoryIdPaginated($theCategoryId, & $theTotal, $thePage = 0, $thePerPage = 15) {
+  global $gDb;
+
+  $aRet = array();
+
+  // Find how many items exist.
+  $aQuery = $gDb->prepare("SELECT COUNT(*) AS total FROM items WHERE category = ? OR category2 = ?");
+  $aQuery->execute(array($theCategoryId, $theCategoryId));
+  $aRow = $aQuery->fetch(PDO::FETCH_ASSOC);
+  $theTotal = $aRow['total'];
+
+  $thePage = $thePage + 0;
+  $thePerPage = $thePerPage + 0;
+
+  $thePage = $thePage - 1;
+  $thePage = $thePage <= 0 ? 0 : $thePage;
+
+  $aQuery = $gDb->prepare("SELECT id,name,excerpt,category,category2,license,license2 FROM items WHERE category = ? OR category2 = ? LIMIT ".($thePage * $thePerPage).",".$thePerPage);
+  if ($aQuery->execute(array($theCategoryId, $theCategoryId))) {
+      while($aRow = $aQuery->fetch(PDO::FETCH_ASSOC)) {
+        $aRet[$aRow['id']] = $aRow;
+      }
+  }
+
+  return $aRet;
+}
+
 function itemCreateOrUpdate($theItemId, $theData) {
 	global $gDb;
 
@@ -66,10 +93,10 @@ function itemCreateOrUpdate($theItemId, $theData) {
 
 	$aParams = array($aId, $aName, $aDescription, $aCategory, $aCategory2, $aLicense, $aLicense2, $aSite, $aRepository, $aTwitter, $aStats, $aSample,
 					 $aDescription, $aCategory, $aCategory2, $aLicense, $aLicense2, $aSite, $aRepository, $aTwitter, $aStats, $aSample);
-	
+
 	$aQuery->execute($aParams);
 	$aRet = $aQuery->rowCount();
-	
+
 	return $aRet;
 }
 

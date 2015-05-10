@@ -5,23 +5,32 @@ require_once dirname(__FILE__).'/config.php';
 class Navigation {
 	private static $mCurrentPage;
 	private static $mNavTree;
+	private static $mCurrentURL;
 
 	public static function setCurrentPage($thePage) {
 		self::$mCurrentPage = $thePage;
 	}
-	
+
+	public static function setCurrentURL($theURL) {
+		self::$mCurrentURL = $theURL;
+	}
+
+	public static function getCurrentURL() {
+		return self::$mCurrentURL;
+	}
+
 	public static function setCurrentNavTree($theArray) {
 		self::$mNavTree = $theArray;
-	}	
-	
+	}
+
 	public static function currentPage() {
 		return self::$mCurrentPage;
 	}
-	
+
 	public static function currentNavTree() {
 		return self::$mNavTree;
 	}
-	
+
 	public static function makeBreadcrumbs($theObject, $theCategories) {
 	  $aRet = null;
 
