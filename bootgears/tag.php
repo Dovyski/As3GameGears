@@ -33,12 +33,12 @@
 	if($aLicense != null) {
 		$aBreadcrumbs[] = array(
 			'name' => $aLicense['name'],
-			'link' => '/tag/' . $aLicense['slug'] . '/'
+			'link' => '/license/' . $aLicense['slug'] . '/'
 		);
 	}
 	$aBreadcrumbs[] = array(
 		'name' => 'License',
-		'link' => '/tag/'
+		'link' => '/license/'
 	);
 
 	$aCategories = categoryFindAll();

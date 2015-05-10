@@ -44,8 +44,8 @@
 									if (isset($aItem['category'])) echo '<a href="/category/'.@$aCategories[$aItem['category']]['slug'].'"><i class="fa fa-folder"></i> '.@$aCategories[$aItem['category']]['name'].'</a>';
 
 									echo '<span class="pull-right">';
-										if (isset($aItem['license'])) echo ' <a href="/search?license='.$aItem['license'].'"><i class="fa fa-book"></i> '.$aLicenses[$aItem['license']]['name'].'</a>';
-										if (isset($aItem['license2'])) echo ', <a href="/search?license='.$aItem['license2'].'" class="pull-right"> '.$aLicenses[$aItem['license2']]['name'].'</a>';
+										if (isset($aItem['license'])) echo ' <a href="/license/'.$aLicenses[$aItem['license']]['slug'].'"><i class="fa fa-book"></i> '.$aLicenses[$aItem['license']]['name'].'</a>';
+										if (isset($aItem['license2'])) echo ', <a href="/license/'.$aLicenses[$aItem['license2']]['slug'].'" class="pull-right"> '.$aLicenses[$aItem['license2']]['name'].'</a>';
 									echo '</span>';
 								echo '</li>';
 							echo '</ul>';

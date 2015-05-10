@@ -34,14 +34,14 @@
 					echo '<div class="col-md-2 col-md-offset-10 text-right">';
 						if ($aEditMode) {
 							layoutPrintEditPanel($aItem['id'], 'item');
-						} else { 
-							echo '<a href="item.php?id='.$aItem['id'].'&edit=1"><i class="fa fa-edit"></i> Edit</a>';
+						} else {
+							echo '<a href="?id='.$aItem['id'].'&edit=1"><i class="fa fa-edit"></i> Edit</a>';
 						}
 					echo '</div>';
 				echo '</div>';
 			echo '</div>';
 		}
-	
+
 		layoutBreadcrumbs($aData['breadcrumbs']);
 
 		echo '<div class="container">';
@@ -52,7 +52,7 @@
 								echo '<img src="http://avatars.io/twitter/'.$aItem['twitter'].'" width="36" height="36">';
 								echo '<p><strong>'.($aEditMode ? '<input name="twitter" value="'.@$aItem['twitter'].'" class="editable" />' : $aData['developer']).'</strong> <br/>Developer</p>';
 						echo '</div>';
-						
+
 						echo '<div>';
 								echo '<i class="fa fa-book fa-3x"></i>';
 								echo '<p><strong>';
@@ -72,19 +72,19 @@
 									}
 								echo '</strong><br/>License</p>';
 						echo '</div>';
-						
+
 						echo '<div>';
 								echo '<i class="fa fa-link fa-3x"></i>';
 								echo '<p><strong>'.($aEditMode ? '<input name="site" value="'.@$aItem['site'].'" class="editable" />' : $aData['site']).'</strong> <br/>Website</p>';
 						echo '</div>';
-						
+
 						if($aEditMode || isset($aData['repository']['url']) && $aData['repository']['url'] != '') {
 							echo '<div>';
 									echo '<i class="fa fa-'.@$aData['repository']['icon'].' fa-3x"></i>';
 									echo '<p><strong>'.($aEditMode ? '<input name="repository" value="'.@$aItem['repository'].'" class="editable" />' : @$aData['repository']['url']).'</strong> <br/>Code Repository</p>';
 							echo '</div>';
 						}
-						
+
 						if($aEditMode || $aItem['stats']) {
 							echo '<div>';
 									if(!$aEditMode) {
