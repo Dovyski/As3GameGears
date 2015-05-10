@@ -5,7 +5,7 @@
 	$aPage 		= isset($_REQUEST['page']) 	? $_REQUEST['page'] : '';
 	$aItems		= array();
 	$aLicenses 	= array();
-	$aPerPage	= 1;
+	$aPerPage	= 15;
 	$aPages		= 0;
 
 	if($aQuery != '') {
