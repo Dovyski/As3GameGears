@@ -38,6 +38,7 @@
 		'blog' 		=> 'blog.php',
 		'category' 	=> 'category.php',
 		'tag' 		=> 'tag.php',
+		'license' 	=> 'tag.php',
 		'search' 	=> 'search.php'
 	);
 

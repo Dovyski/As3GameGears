@@ -3,7 +3,7 @@
 
 	$aData 			= View::data();
 	$aCategories 	= $aData['categories'];
-	
+
 	layoutHeader('Start', View::baseUrl());
 
 	echo '<div class="jumbotron">';
@@ -22,13 +22,13 @@
 	echo '<div class="container">';
 		echo '<div class="row text-center">';
 			echo '<div class="col-md-4">';
-				echo '<p><a href="/tag/mit"><i class="fa fa-code fa-5x index-icon"></i></a></p>';
-				echo '<h3><a href="/tag/mit">Free Code</a></h3>';
+				echo '<p><a href="/license/mit"><i class="fa fa-code fa-5x index-icon"></i></a></p>';
+				echo '<h3><a href="/license/mit">Free Code</a></h3>';
 				echo '<p>I know how to code, but I&#8217;m broke! Gimme all the free stuff you have.</p>';
 			echo '</div>';
 			echo '<div class="col-md-4">';
-				echo '<p><a href="/tag/commercial"><i class="fa fa-money fa-5x index-icon"></i></a></p>';
-				echo '<h3><a href="/tag/commercial">Commercial tools</a></h3>';
+				echo '<p><a href="/license/commercial"><i class="fa fa-money fa-5x index-icon"></i></a></p>';
+				echo '<h3><a href="/license/commercial">Commercial tools</a></h3>';
 				echo '<p>I have money to spend. Show me the commercial solutions and tools!</p>';
 		echo '</div>';
 			echo '<div class="col-md-4">';

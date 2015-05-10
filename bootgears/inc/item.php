@@ -70,6 +70,33 @@ function itemFindByCategoryIdPaginated($theCategoryId, & $theTotal, $thePage = 0
   return $aRet;
 }
 
+function itemFindByLicenseIdPaginated($theLicenseId, & $theTotal, $thePage = 0, $thePerPage = 15) {
+  global $gDb;
+
+  $aRet = array();
+
+  // Find how many items exist.
+  $aQuery = $gDb->prepare("SELECT COUNT(*) AS total FROM items WHERE license = ? OR license2 = ?");
+  $aQuery->execute(array($theLicenseId, $theLicenseId));
+  $aRow = $aQuery->fetch(PDO::FETCH_ASSOC);
+  $theTotal = $aRow['total'];
+
+  $thePage = $thePage + 0;
+  $thePerPage = $thePerPage + 0;
+
+  $thePage = $thePage - 1;
+  $thePage = $thePage <= 0 ? 0 : $thePage;
+
+  $aQuery = $gDb->prepare("SELECT id,name,excerpt,category,category2,license,license2 FROM items WHERE license = ? OR license2 = ? LIMIT ".($thePage * $thePerPage).",".$thePerPage);
+  if ($aQuery->execute(array($theLicenseId, $theLicenseId))) {
+      while($aRow = $aQuery->fetch(PDO::FETCH_ASSOC)) {
+        $aRet[$aRow['id']] = $aRow;
+      }
+  }
+
+  return $aRet;
+}
+
 function itemCreateOrUpdate($theItemId, $theData) {
 	global $gDb;
 

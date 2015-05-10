@@ -42,4 +42,17 @@ function licenseFindAll() {
 	return $aRet;
 }
 
+function licenseGetBySlug($theSlug) {
+  global $gDb;
+
+  $aRet = null;
+  $aQuery = $gDb->prepare("SELECT * FROM licenses WHERE slug = ?");
+
+  if ($aQuery->execute(array($theSlug))) {
+      $aRet = $aQuery->fetch(PDO::FETCH_ASSOC);
+  }
+
+  return $aRet;
+}
+
 ?>
