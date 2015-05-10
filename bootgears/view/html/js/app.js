@@ -12,7 +12,7 @@ var AS3GAMEGEARS = new function() {
 
 				$.ajax({
 				  type: 'POST',
-				  url: 'ajax-markdown.php',
+				  url: '/ajax-markdown.php',
 				  data: {'text': $('#' + theTextId).val() }
 				})
 				.done(function( msg ) {
@@ -24,23 +24,23 @@ var AS3GAMEGEARS = new function() {
 			}
 		});
 	};
-	
+
 	this.saveEntry = function(theEntryId, theEntryType, theButton) {
 		var aData = {};
-		
+
 		$('.editable').each(function() {
 			aData[$(this).attr('name')] = $(this).val();
 		});
-		
+
 		aData['action'] = 'save';
 		aData['id'] 	= theEntryId;
 		aData['type'] 	= theEntryType;
-		
+
 		$(theButton).html('<i class="fa fa-circle-o-notch fa-spin"></i>');
 
 		$.ajax({
 		  type: 'POST',
-		  url: 'ajax-edit.php',
+		  url: '/ajax-edit.php',
 		  data: aData,
 		  dataType: 'json'
 		})
